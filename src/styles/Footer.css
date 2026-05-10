@@ -1,6 +1,6 @@
 .footer {
-  background: var(--bg-secondary);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-mid);
+  border-top: 1px solid rgba(255,255,255,0.04);
   padding: 2rem 0;
 }
 
@@ -20,9 +20,7 @@
   color: var(--text-muted);
 }
 
-.footer-copy span {
-  color: var(--accent);
-}
+.footer-copy span { color: var(--blue-bright); }
 
 .footer-links {
   display: flex;
@@ -39,6 +37,4 @@
   transition: color 0.2s;
 }
 
-.footer-link:hover {
-  color: var(--accent);
-}
+.footer-link:hover { color: var(--blue-bright); }
