@@ -10,7 +10,11 @@ const PROFICIENCY = [
     },
     { icon: "fa-solid fa-flag", name: "CTF Competitions", pct: 85 },
     { icon: "fa-solid fa-bug", name: "Bug Bounty Hunting", pct: 78 },
-    { icon: "fa-brands fa-python", name: "Python Scripting", pct: 75 },
+    {
+        icon: "fa-solid fa-terminal",
+        name: "Low-level And High-level Language Scripting",
+        pct: 75
+    },
     {
         icon: "fa-solid fa-magnifying-glass",
         name: "OSINT & Intelligence",

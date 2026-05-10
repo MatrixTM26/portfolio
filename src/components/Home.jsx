@@ -20,8 +20,8 @@ const SOCIALS = [
 
 const STATS = [
     { number: "50+", label: "CTF Solved" },
-    { number: "10+", label: "Bugs Reported" },
-    { number: "2+", label: "Years Active" }
+    { number: "20+", label: "Bugs Reported" },
+    { number: "4+", label: "Years Active" }
 ];
 
 export default function Home() {
