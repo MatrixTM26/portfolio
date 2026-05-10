@@ -1,0 +1,250 @@
+/* ═══════════════════════════════════════════════
+   MATRIXTM26 PORTFOLIO — GLOBAL STYLES
+   Cyber Security Theme | Dark Neon Aesthetic
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* Color Palette */
+  --bg-void:       #020408;
+  --bg-deep:       #040d14;
+  --bg-card:       #071520;
+  --bg-card-hover: #0a1e2e;
+  --border-dim:    rgba(0, 255, 136, 0.12);
+  --border-glow:   rgba(0, 255, 136, 0.4);
+
+  /* Neon Accents */
+  --neon-green:  #00ff88;
+  --neon-cyan:   #00ccff;
+  --neon-blue:   #0088ff;
+  --neon-red:    #ff2244;
+  --neon-yellow: #ffcc00;
+
+  /* Text */
+  --text-primary:   #e0ffe8;
+  --text-secondary: #7ab8a0;
+  --text-muted:     #3a6050;
+  --text-code:      #00ff88;
+
+  /* Typography */
+  --font-display: 'Orbitron', monospace;
+  --font-mono:    'Share Tech Mono', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+
+  /* Spacing */
+  --section-pad: clamp(60px, 8vw, 120px);
+  --container:   1200px;
+
+  /* Effects */
+  --glow-green: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.15);
+  --glow-cyan:  0 0 20px rgba(0, 204, 255, 0.4), 0 0 40px rgba(0, 204, 255, 0.15);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: var(--neon-green);
+  border-radius: 3px;
+  box-shadow: var(--glow-green);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 255, 136, 0.25);
+  color: var(--neon-green);
+}
+
+/* ─── Utility ─── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 60px);
+}
+
+.section {
+  padding: var(--section-pad) 0;
+  position: relative;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--neon-green);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-title::before {
+  content: '//';
+  color: var(--neon-cyan);
+  margin-right: 0.75rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* ─── Glow Line Divider ─── */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-green), var(--neon-cyan), transparent);
+  margin: 0.75rem 0 1.5rem;
+  opacity: 0.5;
+}
+
+/* ─── Neon Button ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.8rem;
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--neon-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--bg-void);
+  box-shadow: var(--glow-green);
+}
+
+.btn:hover::before { transform: scaleX(1); }
+
+.btn-outline {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.btn-outline::before { background: var(--neon-cyan); }
+.btn-outline:hover { box-shadow: var(--glow-cyan); }
+
+/* ─── Tag/Badge ─── */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border-dim);
+  color: var(--neon-cyan);
+  background: rgba(0, 204, 255, 0.05);
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* ─── Grid Scan Overlay ─── */
+.scan-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Scanline Effect ─── */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.15), transparent);
+  animation: scanMove 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes scanMove {
+  0%   { top: -2px; }
+  100% { top: 100vh; }
+}
+
+/* ─── Fade In Animation ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; text-shadow: none; }
+  92% { transform: skewX(-3deg); text-shadow: 2px 0 var(--neon-red); }
+  94% { transform: skewX(3deg);  text-shadow: -2px 0 var(--neon-cyan); }
+  96% { transform: none;         text-shadow: 1px 0 var(--neon-red), -1px 0 var(--neon-cyan); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,255,136,0.3); }
+  50%       { box-shadow: 0 0 25px rgba(0,255,136,0.7), 0 0 50px rgba(0,255,136,0.3); }
+}
+
+/* ─── Responsive Helpers ─── */
+@media (max-width: 768px) {
+  :root { --section-pad: 60px; }
+}
