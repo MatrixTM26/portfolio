@@ -1,72 +1,61 @@
-import { useEffect, useRef, useState } from 'react'
-import '../styles/sections.css'
+import { useState, useEffect, useRef } from 'react'
+import '../styles/Skills.css'
 
-const SKILL_CATEGORIES = [
-  {
-    icon: '🎯',
-    name: 'Offensive Security',
-    items: ['Penetration Testing', 'Red Teaming', 'Exploit Development', 'Privilege Escalation', 'Post Exploitation', 'OSINT', 'Social Engineering'],
-  },
-  {
-    icon: '🌐',
-    name: 'Web Security',
-    items: ['SQL Injection', 'XSS / CSRF', 'SSRF / XXE', 'IDOR', 'Authentication Bypass', 'API Security', 'JWT Attacks', 'Business Logic Flaws'],
-  },
-  {
-    icon: '🔍',
-    name: 'Reconnaissance',
-    items: ['Subdomain Enumeration', 'Port Scanning', 'Fingerprinting', 'Google Dorking', 'Shodan / Censys', 'DNS Enumeration', 'Network Mapping'],
-  },
-  {
-    icon: '🏆',
-    name: 'CTF & Research',
-    items: ['Binary Exploitation', 'Reverse Engineering', 'Cryptography', 'Forensics', 'Steganography', 'Web Challenges', 'OSCP Style Labs'],
-  },
-  {
-    icon: '💻',
-    name: 'Programming',
-    items: ['Python', 'Bash Scripting', 'JavaScript', 'PHP', 'PowerShell', 'SQL', 'YAML / JSON'],
-  },
-  {
-    icon: '🛡️',
-    name: 'Defensive / Blue Team',
-    items: ['Log Analysis', 'Incident Response', 'Threat Intelligence', 'SIEM Basics', 'Malware Analysis', 'Network Forensics'],
-  },
+const PROFICIENCY = [
+  { icon: 'fa-solid fa-globe',           name: 'Web App Penetration Testing', pct: 88 },
+  { icon: 'fa-solid fa-network-wired',   name: 'Network Scanning & Recon',    pct: 82 },
+  { icon: 'fa-solid fa-flag',            name: 'CTF Competitions',             pct: 85 },
+  { icon: 'fa-solid fa-bug',             name: 'Bug Bounty Hunting',           pct: 78 },
+  { icon: 'fa-brands fa-python',         name: 'Python Scripting',             pct: 75 },
+  { icon: 'fa-solid fa-magnifying-glass', name: 'OSINT & Intelligence',        pct: 80 },
 ]
 
-const CORE_SKILLS = [
-  { name: 'Web Application Penetration Testing', pct: 88 },
-  { name: 'Network Scanning & Enumeration',      pct: 82 },
-  { name: 'CTF / Capture the Flag',              pct: 85 },
-  { name: 'Bug Bounty Hunting',                  pct: 78 },
-  { name: 'Python Scripting',                    pct: 75 },
-  { name: 'OSINT & Reconnaissance',              pct: 80 },
+const CATEGORIES = [
+  {
+    icon: 'fa-solid fa-crosshairs',
+    name: 'Offensive Security',
+    tags: ['Pen Testing', 'Red Team', 'Exploit Dev', 'Priv Esc', 'Post Exploitation'],
+  },
+  {
+    icon: 'fa-solid fa-globe',
+    name: 'Web Security',
+    tags: ['SQLi', 'XSS/CSRF', 'SSRF/XXE', 'IDOR', 'JWT Attacks', 'Auth Bypass'],
+  },
+  {
+    icon: 'fa-solid fa-magnifying-glass',
+    name: 'Reconnaissance',
+    tags: ['Subdomain Enum', 'Port Scan', 'Google Dork', 'DNS Enum', 'Shodan'],
+  },
+  {
+    icon: 'fa-solid fa-lock',
+    name: 'Cryptography & Forensics',
+    tags: ['Hash Cracking', 'Steganography', 'Packet Analysis', 'Log Analysis'],
+  },
 ]
 
 const TOOLS = [
-  { icon: '🗡️', name: 'Burp Suite' },
-  { icon: '🔎', name: 'Nmap' },
-  { icon: '🕷️', name: 'Metasploit' },
-  { icon: '🌐', name: 'Gobuster' },
-  { icon: '🔐', name: 'Hashcat' },
-  { icon: '🐉', name: 'Kali Linux' },
-  { icon: '🦝', name: 'SQLMap' },
-  { icon: '📡', name: 'Wireshark' },
-  { icon: '⚙️', name: 'Nikto' },
-  { icon: '🧩', name: 'John the Ripper' },
-  { icon: '🕵️', name: 'theHarvester' },
-  { icon: '🌩️', name: 'Hydra' },
-  { icon: '🔭', name: 'Shodan' },
-  { icon: '🐝', name: 'Ffuf' },
-  { icon: '📦', name: 'Docker' },
-  { icon: '🖥️', name: 'VirtualBox' },
+  { icon: 'fa-solid fa-spider',         name: 'Burp Suite'       },
+  { icon: 'fa-solid fa-satellite-dish', name: 'Nmap'             },
+  { icon: 'fa-solid fa-bomb',           name: 'Metasploit'       },
+  { icon: 'fa-solid fa-key',            name: 'Hashcat'          },
+  { icon: 'fa-solid fa-database',       name: 'SQLMap'           },
+  { icon: 'fa-solid fa-wave-square',    name: 'Wireshark'        },
+  { icon: 'fa-solid fa-robot',          name: 'Nikto'            },
+  { icon: 'fa-solid fa-magnifying-glass', name: 'theHarvester'   },
+  { icon: 'fa-solid fa-water',          name: 'Hydra'            },
+  { icon: 'fa-solid fa-eye',            name: 'Shodan'           },
+  { icon: 'fa-solid fa-terminal',       name: 'Ffuf'             },
+  { icon: 'fa-brands fa-linux',         name: 'Kali Linux'       },
 ]
 
-function SkillBar({ name, pct, visible }) {
+function SkillBar({ icon, name, pct, visible }) {
   return (
     <div className="skill-bar-item">
-      <div className="skill-bar-info">
-        <span className="skill-bar-name">{name}</span>
+      <div className="skill-bar-meta">
+        <span className="skill-bar-name">
+          <i className={icon} />
+          {name}
+        </span>
         <span className="skill-bar-pct">{pct}%</span>
       </div>
       <div className="skill-bar-track">
@@ -86,73 +75,61 @@ export default function Skills() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true) },
-      { threshold: 0.2 }
+      { threshold: 0.15 },
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section className="section skills-section" id="skills">
+    <section className="section skills" id="skills">
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">Skills & Arsenal</h2>
-          <div className="glow-line" />
-          <p className="section-subtitle">// CAPABILITIES_SCAN — INITIALIZING...</p>
+        <div className="skills-header">
+          <p className="section-label">What I Do</p>
+          <h2 className="section-title">Skills & Expertise</h2>
+          <p className="section-desc">
+            A focused toolkit built through real-world practice — from CTF competitions
+            to live bug bounty programs and hands-on penetration testing engagements.
+          </p>
         </div>
 
-        {/* Skill Categories */}
-        <div className="skills-grid">
-          {SKILL_CATEGORIES.map(cat => (
-            <div key={cat.name} className="skill-category">
-              <div className="skill-cat-header">
-                <span className="skill-cat-icon">{cat.icon}</span>
-                <span className="skill-cat-name">{cat.name}</span>
+        <div className="skills-layout">
+          <div className="skills-proficiency" ref={ref}>
+            {PROFICIENCY.map(s => (
+              <SkillBar key={s.name} icon={s.icon} name={s.name} pct={s.pct} visible={visible} />
+            ))}
+          </div>
+
+          <div className="skills-categories">
+            {CATEGORIES.map(cat => (
+              <div key={cat.name} className="skill-cat-card">
+                <div className="skill-cat-top">
+                  <div className="skill-cat-icon">
+                    <i className={cat.icon} />
+                  </div>
+                  <span className="skill-cat-name">{cat.name}</span>
+                </div>
+                <div className="skill-tag-list">
+                  {cat.tags.map(tag => (
+                    <span key={tag} className="skill-tag">{tag}</span>
+                  ))}
+                </div>
               </div>
-              <div className="skill-items">
-                {cat.items.map(item => (
-                  <span key={item} className="skill-item">{item}</span>
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Proficiency Bars */}
-        <div className="skill-bars" ref={ref}>
-          <h3 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '0.9rem',
-            color: 'var(--neon-cyan)',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            marginBottom: '1.5rem'
-          }}>
-            // Core Proficiency
-          </h3>
-          {CORE_SKILLS.map(s => (
-            <SkillBar key={s.name} name={s.name} pct={s.pct} visible={visible} />
-          ))}
-        </div>
-
-        {/* Tools */}
-        <div style={{ marginTop: '3.5rem' }}>
-          <h3 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '0.9rem',
-            color: 'var(--neon-cyan)',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            marginBottom: '1.5rem'
-          }}>
-            // Tools & Weaponry
-          </h3>
-          <div className="tools-grid">
+        <div className="tools-block">
+          <p className="tools-block-title">
+            <i className="fa-solid fa-screwdriver-wrench" />
+            Tools & Arsenal
+          </p>
+          <div className="tools-row">
             {TOOLS.map(tool => (
-              <div key={tool.name} className="tool-card">
-                <div className="tool-icon">{tool.icon}</div>
-                <div className="tool-name">{tool.name}</div>
-              </div>
+              <span key={tool.name} className="tool-pill">
+                <i className={tool.icon} />
+                {tool.name}
+              </span>
             ))}
           </div>
         </div>

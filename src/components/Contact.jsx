@@ -1,131 +1,131 @@
 import { useState } from 'react'
-import '../styles/sections.css'
+import '../styles/Contact.css'
 
 const CHANNELS = [
   {
-    icon: '✈️',
-    name: 'Telegram',
+    icon: 'fa-brands fa-telegram',
+    label: 'Telegram',
     value: '@MatrixTM26',
-    href: 'https://t.me/MatrixTM26',
+    href:  'https://t.me/MatrixTM26',
   },
   {
-    icon: '🐙',
-    name: 'GitHub',
+    icon: 'fa-brands fa-github',
+    label: 'GitHub',
     value: 'github.com/MatrixTM26',
-    href: 'https://github.com/MatrixTM26',
+    href:  'https://github.com/MatrixTM26',
   },
   {
-    icon: '📸',
-    name: 'Instagram',
+    icon: 'fa-brands fa-instagram',
+    label: 'Instagram',
     value: '@matrix.tm26',
-    href: 'https://instagram.com/matrix.tm26',
+    href:  'https://instagram.com/matrix.tm26',
   },
 ]
 
 export default function Contact() {
-  const [form, setForm]     = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState(null) // 'success' | 'error' | null
+  const [form,   setForm]   = useState({ name: '', email: '', subject: '', message: '' })
+  const [status, setStatus] = useState(null)
 
-  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  const handleChange = e =>
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.message) {
       setStatus('error')
       return
     }
-    // Encode message for mailto fallback
-    const subject = encodeURIComponent(`[Portfolio Contact] Message from ${form.name}`)
-    const body    = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`)
-    window.open(`mailto:matrixtm26@example.com?subject=${subject}&body=${body}`)
+    const sub  = encodeURIComponent(form.subject || `Message from ${form.name}`)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    window.open(`mailto:matrixtm26@proton.me?subject=${sub}&body=${body}`)
     setStatus('success')
-    setForm({ name: '', email: '', message: '' })
+    setForm({ name: '', email: '', subject: '', message: '' })
   }
 
   return (
-    <section className="section contact-section" id="contact">
+    <section className="section" id="contact">
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">Contact</h2>
-          <div className="glow-line" />
-          <p className="section-subtitle">// ESTABLISH_CONNECTION — AWAITING HANDSHAKE</p>
-        </div>
+        <p className="section-label">Get in Touch</p>
+        <h2 className="section-title">Contact Me</h2>
+        <p className="section-desc">
+          Have a security project, bug bounty collaboration, or just want to connect?
+          Drop a message and I'll respond promptly.
+        </p>
 
-        <div className="contact-grid">
-          {/* Info */}
-          <div className="contact-info">
-            <p>
-              Have a security challenge, collaboration idea, or just want to talk hacking?
-              I'm always open to interesting conversations. Reach out through any channel below
-              and I'll get back to you ASAP.
-            </p>
-
+        <div className="contact-layout">
+          <div className="contact-left">
             <div className="contact-channels">
               {CHANNELS.map(ch => (
                 <a
-                  key={ch.name}
+                  key={ch.label}
                   href={ch.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-channel"
                 >
-                  <span className="channel-icon">{ch.icon}</span>
-                  <div className="channel-info">
-                    <div className="channel-name">{ch.name}</div>
-                    <div className="channel-value">{ch.value}</div>
+                  <div className="ch-icon-wrap">
+                    <i className={ch.icon} />
                   </div>
-                  <span className="channel-arrow">→</span>
+                  <div className="ch-info">
+                    <div className="ch-label">{ch.label}</div>
+                    <div className="ch-value">{ch.value}</div>
+                  </div>
+                  <i className="fa-solid fa-arrow-right ch-arrow" />
                 </a>
               ))}
             </div>
 
-            {/* PGP Note */}
-            <div style={{
-              marginTop: '1.5rem',
-              padding: '1rem',
-              background: 'rgba(0,204,255,0.04)',
-              border: '1px solid rgba(0,204,255,0.15)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
-              color: 'var(--text-secondary)',
-              letterSpacing: '0.06em',
-              lineHeight: '1.8',
-            }}>
-              <span style={{ color: 'var(--neon-cyan)' }}>// NOTE:</span> For sensitive security
-              disclosures, use Telegram for end-to-end encrypted communication.
-              Responsible disclosure always welcomed.
+            <div className="contact-availability">
+              <span className="avail-dot" />
+              <span className="avail-text">
+                Currently <strong>available</strong> for freelance security engagements and bug bounty collaborations.
+              </span>
             </div>
           </div>
 
-          {/* Form */}
           <div className="contact-form">
+            <div className="form-row">
+              <div className="form-group">
+                <label className="form-label">Name</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Email</label>
+                <input
+                  className="form-input"
+                  type="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  value={form.email}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
             <div className="form-group">
-              <label className="form-label">Name / Handle</label>
+              <label className="form-label">Subject</label>
               <input
                 className="form-input"
                 type="text"
-                name="name"
-                placeholder="your_name"
-                value={form.name}
+                name="subject"
+                placeholder="What's this about?"
+                value={form.subject}
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                className="form-input"
-                type="email"
-                name="email"
-                placeholder="user@domain.com"
-                value={form.email}
-                onChange={handleChange}
-              />
-            </div>
+
             <div className="form-group">
               <label className="form-label">Message</label>
               <textarea
                 className="form-textarea"
                 name="message"
-                placeholder="// enter your message here..."
+                placeholder="Describe your project or question..."
                 value={form.message}
                 onChange={handleChange}
                 rows={5}
@@ -134,17 +134,19 @@ export default function Contact() {
 
             {status === 'success' && (
               <div className="form-status success">
-                ✅ Message transmitted successfully. Standing by for response.
-              </div>
-            )}
-            {status === 'error' && (
-              <div className="form-status error">
-                ❌ All fields required. Please fill in the blanks.
+                <i className="fa-solid fa-circle-check" /> Message sent successfully. I'll get back to you soon.
               </div>
             )}
 
-            <button className="btn" onClick={handleSubmit} style={{ width: '100%', justifyContent: 'center' }}>
-              ⚡ Send Message
+            {status === 'error' && (
+              <div className="form-status error">
+                <i className="fa-solid fa-circle-exclamation" /> Please fill in all required fields.
+              </div>
+            )}
+
+            <button className="btn-primary form-submit" onClick={handleSubmit}>
+              <i className="fa-solid fa-paper-plane" />
+              Send Message
             </button>
           </div>
         </div>

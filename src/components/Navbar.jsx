@@ -2,24 +2,21 @@ import { useState, useEffect } from 'react'
 import '../styles/Navbar.css'
 
 const NAV_ITEMS = [
-  { label: 'About',    href: '#about',    prefix: '01.' },
-  { label: 'Skills',   href: '#skills',   prefix: '02.' },
-  { label: 'Projects', href: '#projects', prefix: '03.' },
-  { label: 'Contact',  href: '#contact',  prefix: '04.' },
+  { label: 'Home',    href: '#home'    },
+  { label: 'Skills',  href: '#skills'  },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const [active,   setActive]     = useState('')
+  const [scrolled, setScrolled] = useState(false)
+  const [active,   setActive]   = useState('#home')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 30)
-
-      // Active section tracking
-      const sections = ['about','skills','projects','contact']
-      for (const id of sections.reverse()) {
+      setScrolled(window.scrollY > 40)
+      const ids = ['contact', 'skills', 'home']
+      for (const id of ids) {
         const el = document.getElementById(id)
         if (el && window.scrollY >= el.offsetTop - 120) {
           setActive(`#${id}`)
@@ -31,29 +28,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleLink = (href) => {
-    setMenuOpen(false)
-    setActive(href)
-  }
+  const close = () => setMenuOpen(false)
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="navbar-inner">
-        {/* Logo */}
-        <a href="#" className="nav-logo" onClick={() => setMenuOpen(false)}>
-          <span className="nav-logo-icon">M</span>
-          MatrixTM26
+        <a href="#home" className="nav-logo" onClick={close}>
+          <span className="nav-logo-icon">
+            <i className="fa-solid fa-shield-halved" />
+          </span>
+          <span className="nav-logo-text">Matrix<span>TM26</span></span>
         </a>
 
-        {/* Links */}
-        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+        <ul className={`nav-links${menuOpen ? ' open' : ''}`}>
           {NAV_ITEMS.map(item => (
             <li key={item.href}>
               <a
                 href={item.href}
-                data-prefix={item.prefix}
                 className={active === item.href ? 'active' : ''}
-                onClick={() => handleLink(item.href)}
+                onClick={close}
               >
                 {item.label}
               </a>
@@ -61,19 +54,16 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Status */}
-        <div className="nav-status">
-          <span className="status-dot" />
-          <span>ONLINE</span>
-        </div>
+        <a href="#contact" className="nav-cta desktop" onClick={close}>
+          Let's Talk
+        </a>
 
-        {/* Burger */}
         <button
-          className={`nav-toggle ${menuOpen ? 'open' : ''}`}
+          className="nav-toggle"
           onClick={() => setMenuOpen(v => !v)}
           aria-label="Toggle menu"
         >
-          <span /><span /><span />
+          <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'}`} />
         </button>
       </div>
     </nav>

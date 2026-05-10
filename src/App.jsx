@@ -1,28 +1,18 @@
 import Navbar  from './components/Navbar'
-import Hero    from './components/Hero'
-import About   from './components/About'
+import Home    from './components/Home'
 import Skills  from './components/Skills'
-import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer  from './components/Footer'
 
 export default function App() {
   return (
     <>
-      {/* Ambient effects */}
-      <div className="scan-bg" />
-      <div className="scanline" />
-
       <Navbar />
-
       <main>
-        <Hero />
-        <About />
+        <Home />
         <Skills />
-        <Projects />
         <Contact />
       </main>
-
       <Footer />
     </>
   )
