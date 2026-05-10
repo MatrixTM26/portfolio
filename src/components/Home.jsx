@@ -33,11 +33,6 @@ export default function Home() {
             <div className="container">
                 <div className="home-inner">
                     <div className="home-left">
-                        <p className="home-greeting-text">
-                            <i className="fa-solid fa-satellite-dish" />
-                            Hello, I'm MatrixTM26
-                        </p>
-
                         <div className="home-headline-block">
                             <p className="home-role-label">
                                 Cybersecurity Specialist
@@ -120,7 +115,7 @@ export default function Home() {
                             </div>
 
                             <div className="profile-info">
-                                <h2 className="profile-name">MatrixTM26</h2>
+                                <h2 className="profile-name">TEUKU MAULANA</h2>
                                 <p className="profile-title">
                                     Penetration Tester · Bug Hunter
                                 </p>
