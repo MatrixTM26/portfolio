@@ -4,19 +4,22 @@ import "../styles/Navbar.css";
 const NAV_ITEMS = [
     { label: "Home", href: "#home", icon: "fa-solid fa-house" },
     { label: "Skills", href: "#skills", icon: "fa-solid fa-shield-halved" },
+    { label: "Projects", href: "#projects", icon: "fa-solid fa-code-branch" },
     { label: "Contact", href: "#contact", icon: "fa-solid fa-envelope" }
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme, onToggleTheme }) {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState("#home");
     const [mobileOpen, setMobileOpen] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [showFDock, setShowFDock] = useState(false);
 
     useEffect(() => {
         const onScroll = () => {
             setScrolled(window.scrollY > 40);
-            const ids = ["contact", "skills", "home"];
+            setShowFDock(window.scrollY > 300);
+            const ids = ["contact", "projects", "skills", "home"];
             for (const id of ids) {
                 const el = document.getElementById(id);
                 if (el && window.scrollY >= el.offsetTop - 120) {
@@ -39,9 +42,10 @@ export default function Navbar() {
     const closeMobile = () => setMobileOpen(false);
     const closeDrawer = () => setDrawerOpen(false);
 
-    const handleDockLink = href => {
+    const handleLink = href => {
         setActive(href);
         closeMobile();
+        closeDrawer();
     };
 
     return (
@@ -51,10 +55,7 @@ export default function Navbar() {
                     <a
                         href="#home"
                         className="nav-logo"
-                        onClick={() => {
-                            closeMobile();
-                            closeDrawer();
-                        }}
+                        onClick={() => handleLink("#home")}
                     >
                         <span className="nav-logo-icon">
                             <i className="fa-solid fa-shield-halved" />
@@ -73,31 +74,45 @@ export default function Navbar() {
                                         className={
                                             active === item.href ? "active" : ""
                                         }
-                                        onClick={() => setActive(item.href)}
+                                        onClick={() => handleLink(item.href)}
                                     >
                                         {item.label}
                                     </a>
                                 </li>
                             ))}
                         </ul>
-                        <a
-                            href="#contact"
-                            className="nav-cta-desktop"
-                            onClick={() => setActive("#contact")}
-                        >
-                            Let's Talk
-                        </a>
-                        <button
-                            className="nav-burger-desktop"
-                            onClick={() => setDrawerOpen(v => !v)}
-                            aria-label="Open menu"
-                        >
-                            <span className="burger-icon">
-                                <span />
-                                <span />
-                                <span />
-                            </span>
-                        </button>
+
+                        <div className="nav-right">
+                            <button
+                                className="theme-toggle"
+                                onClick={onToggleTheme}
+                                aria-label="Toggle theme"
+                            >
+                                <div className="theme-toggle-thumb">
+                                    <i
+                                        className={`fa-solid ${theme === "dark" ? "fa-moon" : "fa-sun"}`}
+                                    />
+                                </div>
+                            </button>
+                            <a
+                                href="#contact"
+                                className="nav-cta-desktop"
+                                onClick={() => handleLink("#contact")}
+                            >
+                                Let's Talk
+                            </a>
+                            <button
+                                className="nav-burger-desktop"
+                                onClick={() => setDrawerOpen(v => !v)}
+                                aria-label="Menu"
+                            >
+                                <span className="burger-icon">
+                                    <span />
+                                    <span />
+                                    <span />
+                                </span>
+                            </button>
+                        </div>
                     </div>
 
                     <button
@@ -115,30 +130,27 @@ export default function Navbar() {
             </nav>
 
             <div
-                className={`mobile-menu-overlay${mobileOpen ? " open" : ""}`}
-                onClick={closeMobile}
-            />
-
-            <div className={`mobile-dock${mobileOpen ? " open" : ""}`}>
-                {NAV_ITEMS.map((item, i) => (
+                className={`desktop-float-dock${showFDock ? "" : " hidden-dock"}`}
+            >
+                {NAV_ITEMS.map(item => (
                     <a
                         key={item.href}
                         href={item.href}
-                        className={`dock-item${active === item.href ? " active" : ""}`}
-                        onClick={() => handleDockLink(item.href)}
+                        className={`fdock-item${active === item.href ? " active" : ""}`}
+                        onClick={() => handleLink(item.href)}
                     >
                         <i className={item.icon} />
-                        <span className="dock-label">{item.label}</span>
+                        {item.label}
                     </a>
                 ))}
-                <span className="dock-divider" />
+                <span className="fdock-divider" />
                 <a
                     href="#contact"
-                    className="dock-cta"
-                    onClick={() => handleDockLink("#contact")}
+                    className="fdock-cta"
+                    onClick={() => handleLink("#contact")}
                 >
                     <i className="fa-solid fa-paper-plane" />
-                    <span className="dock-label">Talk</span>
+                    Contact
                 </a>
             </div>
 
@@ -149,11 +161,7 @@ export default function Navbar() {
             <div className={`nav-drawer${drawerOpen ? " open" : ""}`}>
                 <div className="drawer-header">
                     <span className="drawer-title">Navigation</span>
-                    <button
-                        className="drawer-close"
-                        onClick={closeDrawer}
-                        aria-label="Close"
-                    >
+                    <button className="drawer-close" onClick={closeDrawer}>
                         <i className="fa-solid fa-xmark" />
                     </button>
                 </div>
@@ -163,10 +171,7 @@ export default function Navbar() {
                             <a
                                 href={item.href}
                                 className={active === item.href ? "active" : ""}
-                                onClick={() => {
-                                    setActive(item.href);
-                                    closeDrawer();
-                                }}
+                                onClick={() => handleLink(item.href)}
                             >
                                 <i className={item.icon} />
                                 {item.label}
@@ -178,15 +183,39 @@ export default function Navbar() {
                     <a
                         href="#contact"
                         className="drawer-cta"
-                        onClick={() => {
-                            setActive("#contact");
-                            closeDrawer();
-                        }}
+                        onClick={() => handleLink("#contact")}
                     >
                         <i className="fa-solid fa-paper-plane" />
                         Let's Talk
                     </a>
                 </div>
+            </div>
+
+            <div
+                className={`mobile-menu-overlay${mobileOpen ? " open" : ""}`}
+                onClick={closeMobile}
+            />
+            <div className={`mobile-dock${mobileOpen ? " open" : ""}`}>
+                {NAV_ITEMS.map(item => (
+                    <a
+                        key={item.href}
+                        href={item.href}
+                        className={`dock-item${active === item.href ? " active" : ""}`}
+                        onClick={() => handleLink(item.href)}
+                    >
+                        <i className={item.icon} />
+                        <span className="dock-label">{item.label}</span>
+                    </a>
+                ))}
+                <span className="dock-divider" />
+                <a
+                    href="#contact"
+                    className="dock-cta"
+                    onClick={() => handleLink("#contact")}
+                >
+                    <i className="fa-solid fa-paper-plane" />
+                    <span className="dock-label">Talk</span>
+                </a>
             </div>
         </>
     );

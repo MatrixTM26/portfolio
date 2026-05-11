@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import "../styles/Home.css";
 
 const SOCIALS = [
@@ -25,9 +26,21 @@ const STATS = [
 ];
 
 export default function Home() {
+    const bgRef = useRef(null);
+
+    useEffect(() => {
+        const onScroll = () => {
+            if (bgRef.current) {
+                bgRef.current.style.transform = `translateY(${window.scrollY * 0.4}px)`;
+            }
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
     return (
         <section className="home" id="home">
-            <div className="home-bg" />
+            <div className="home-parallax-bg" ref={bgRef} />
             <div className="home-grid-lines" />
 
             <div className="container">
@@ -72,7 +85,7 @@ export default function Home() {
 
                         <div className="home-cta">
                             <a href="#contact" className="btn-primary">
-                                Get Started
+                                Get Started{" "}
                                 <i className="fa-solid fa-arrow-right" />
                             </a>
                             <a href="#skills" className="btn-ghost">
@@ -115,9 +128,7 @@ export default function Home() {
                             </div>
 
                             <div className="profile-info">
-                                <h2 className="profile-name">
-                                    Hi, I'm TEUKU MAULANA
-                                </h2>
+                                <h2 className="profile-name">TEUKU MAULANA</h2>
                                 <p className="profile-title">
                                     Penetration Tester · Bug Hunter
                                 </p>

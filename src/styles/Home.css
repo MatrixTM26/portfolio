@@ -7,9 +7,9 @@
     overflow: hidden;
 }
 
-.home-bg {
+.home-parallax-bg {
     position: absolute;
-    inset: 0;
+    inset: -80px;
     background:
         radial-gradient(
             ellipse 55% 55% at 65% 45%,
@@ -27,6 +27,7 @@
             transparent 55%
         );
     pointer-events: none;
+    will-change: transform;
 }
 
 .home-grid-lines {
@@ -37,6 +38,12 @@
         linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
+}
+
+[data-theme="light"] .home-grid-lines {
+    background-image:
+        linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
 }
 
 .home-inner {
@@ -92,7 +99,6 @@
 .home-stats {
     display: flex;
     align-items: center;
-    gap: 0;
 }
 
 .home-stat {
@@ -114,7 +120,11 @@
     transform: translateY(-50%);
     width: 1px;
     height: 32px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .stat-divider {
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .home-stat-number {
@@ -171,6 +181,10 @@
         background 0.2s;
 }
 
+[data-theme="light"] .social-icon-link {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
 .social-icon-link:hover {
     border-color: var(--blue-border);
     color: var(--blue-bright);
@@ -209,6 +223,7 @@
         var(--blue-bright) 360deg
     );
     opacity: 0.6;
+    animation: spinRing 8s linear infinite;
 }
 
 .profile-ring::before {
@@ -288,6 +303,15 @@
     color: var(--blue-bright);
 }
 
+@keyframes spinRing {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 960px) {
     .home-inner {
         grid-template-columns: 1fr;
@@ -299,27 +323,18 @@
     .home-right {
         order: -1;
     }
-
-    .home-greeting-text {
-        justify-content: center;
-    }
-
     .home-desc {
         margin: 0 auto;
     }
-
     .home-cta {
         justify-content: center;
     }
-
     .home-socials {
         justify-content: center;
     }
-
     .home-stats {
         justify-content: center;
     }
-
     .profile-avatar-wrap {
         width: 240px;
         height: 240px;
@@ -330,28 +345,19 @@
     .home {
         padding-bottom: 100px;
     }
-
     .home-headline {
         font-size: clamp(1.9rem, 8vw, 2.5rem);
     }
-
     .profile-avatar-wrap {
         width: 200px;
         height: 200px;
     }
-
     .profile-name {
         font-size: 1.25rem;
     }
-
-    .home-stats {
-        gap: 0;
-    }
-
     .home-stat {
         padding-right: 1.5rem;
     }
-
     .stat-divider {
         right: 0.75rem;
     }
