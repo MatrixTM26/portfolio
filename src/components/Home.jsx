@@ -128,7 +128,9 @@ export default function Home() {
                             </div>
 
                             <div className="profile-info">
-                                <h2 className="profile-name">TEUKU MAULANA</h2>
+                                <h2 className="profile-name">
+                                    Hi, I'M TEUKU MAULANA
+                                </h2>
                                 <p className="profile-title">
                                     Penetration Tester · Bug Hunter
                                 </p>
