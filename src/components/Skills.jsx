@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useScrollReveal, useParallax } from "../hooks/useScrollReveal";
 import "../styles/Skills.css";
 
 const PROFICIENCY = [
@@ -11,8 +12,8 @@ const PROFICIENCY = [
     { icon: "fa-solid fa-flag", name: "CTF Competitions", pct: 85 },
     { icon: "fa-solid fa-bug", name: "Bug Bounty Hunting", pct: 78 },
     {
-        icon: "fa-solid fa-terminal",
-        name: "Low-Level and High-Level Language Scripting",
+        icon: "fa-brands fa-python",
+        name: "Low-Level And High-Level Language Scripting",
         pct: 75
     },
     {
@@ -84,9 +85,12 @@ const TOOLS = [
     { icon: "fa-brands fa-linux", name: "Kali Linux" }
 ];
 
-function SkillBar({ icon, name, pct, visible }) {
+function SkillBar({ icon, name, pct, visible, delay }) {
     return (
-        <div className="skill-bar-item">
+        <div
+            className="skill-bar-item"
+            style={{ transitionDelay: `${delay}ms` }}
+        >
             <div className="skill-bar-meta">
                 <span className="skill-bar-name">
                     <i className={icon} />
@@ -105,24 +109,33 @@ function SkillBar({ icon, name, pct, visible }) {
 }
 
 export default function Skills() {
-    const [visible, setVisible] = useState(false);
-    const ref = useRef(null);
+    const [barsVisible, setBarsVisible] = useState(false);
+    const barsRef = useRef(null);
+    const parallaxBg = useParallax(0.15);
+    const header = useScrollReveal();
+    const leftCol = useScrollReveal();
+    const rightCol = useScrollReveal();
+    const toolsRow = useScrollReveal();
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) setVisible(true);
+                if (entry.isIntersecting) setBarsVisible(true);
             },
             { threshold: 0.15 }
         );
-        if (ref.current) observer.observe(ref.current);
+        if (barsRef.current) observer.observe(barsRef.current);
         return () => observer.disconnect();
     }, []);
 
     return (
         <section className="section skills" id="skills">
+            <div className="skills-parallax-bg" ref={parallaxBg} />
             <div className="container">
-                <div className="skills-header">
+                <div
+                    className={`skills-header reveal${header.visible ? " visible" : ""}`}
+                    ref={header.ref}
+                >
                     <p className="section-label">What I Do</p>
                     <h2 className="section-title">Skills & Expertise</h2>
                     <p className="section-desc">
@@ -133,21 +146,33 @@ export default function Skills() {
                 </div>
 
                 <div className="skills-layout">
-                    <div className="skills-proficiency" ref={ref}>
-                        {PROFICIENCY.map(s => (
-                            <SkillBar
-                                key={s.name}
-                                icon={s.icon}
-                                name={s.name}
-                                pct={s.pct}
-                                visible={visible}
-                            />
-                        ))}
+                    <div
+                        className={`skills-proficiency reveal-left${leftCol.visible ? " visible" : ""}`}
+                        ref={leftCol.ref}
+                    >
+                        <div ref={barsRef}>
+                            {PROFICIENCY.map((s, i) => (
+                                <SkillBar
+                                    key={s.name}
+                                    icon={s.icon}
+                                    name={s.name}
+                                    pct={s.pct}
+                                    visible={barsVisible}
+                                    delay={i * 80}
+                                />
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="skills-categories">
-                        {CATEGORIES.map(cat => (
-                            <div key={cat.name} className="skill-cat-card">
+                    <div
+                        className={`skills-categories reveal-right${rightCol.visible ? " visible" : ""}`}
+                        ref={rightCol.ref}
+                    >
+                        {CATEGORIES.map((cat, i) => (
+                            <div
+                                key={cat.name}
+                                className={`skill-cat-card delay-${(i + 1) * 100}`}
+                            >
                                 <div className="skill-cat-top">
                                     <div className="skill-cat-icon">
                                         <i className={cat.icon} />
@@ -168,14 +193,21 @@ export default function Skills() {
                     </div>
                 </div>
 
-                <div className="tools-block">
+                <div
+                    className={`tools-block reveal${toolsRow.visible ? " visible" : ""}`}
+                    ref={toolsRow.ref}
+                >
                     <p className="tools-block-title">
-                        <i className="fa-solid fa-screwdriver-wrench" />
-                        Tools & Arsenal
+                        <i className="fa-solid fa-screwdriver-wrench" /> Tools &
+                        Arsenal
                     </p>
                     <div className="tools-row">
-                        {TOOLS.map(tool => (
-                            <span key={tool.name} className="tool-pill">
+                        {TOOLS.map((tool, i) => (
+                            <span
+                                key={tool.name}
+                                className="tool-pill"
+                                style={{ transitionDelay: `${i * 40}ms` }}
+                            >
                                 <i className={tool.icon} />
                                 {tool.name}
                             </span>

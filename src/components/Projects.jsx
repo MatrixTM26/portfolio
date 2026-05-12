@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
+import { useScrollReveal, useParallax } from "../hooks/useScrollReveal";
 import "../styles/Projects.css";
-import { json } from 'react-router-dom';
 
 const LANG_COLORS = {
     Python: "#3572A5",
@@ -18,11 +18,7 @@ const LANG_COLORS = {
     Rust: "#dea584"
 };
 
-function getLangColor(lang) {
-    return LANG_COLORS[lang] || "#3b82f6";
-}
-
-function getProjectIcon(name, lang) {
+function getIcon(name, lang) {
     const n = (name || "").toLowerCase();
     if (n.includes("ctf") || n.includes("hack") || n.includes("pwn"))
         return "fa-solid fa-flag";
@@ -49,6 +45,10 @@ export default function Projects() {
     const [error, setError] = useState(false);
     const [showAll, setShowAll] = useState(false);
 
+    const header = useScrollReveal();
+    const grid = useScrollReveal();
+    const parallaxBg = useParallax(0.12);
+
     useEffect(() => {
         fetch(
             "https://api.github.com/users/MatrixTM26/repos?sort=updated&per_page=100"
@@ -58,15 +58,16 @@ export default function Projects() {
                 return r.json();
             })
             .then(data => {
-                const filtered = data
-                    .filter(r => !r.fork)
-                    .sort(
-                        (a, b) =>
-                            b.stargazers_count +
-                            b.forks_count -
-                            (a.stargazers_count + a.forks_count)
-                    );
-                setRepos(filtered);
+                setRepos(
+                    data
+                        .filter(r => !r.fork)
+                        .sort(
+                            (a, b) =>
+                                b.stargazers_count +
+                                b.forks_count -
+                                (a.stargazers_count + a.forks_count)
+                        )
+                );
                 setLoading(false);
             })
             .catch(() => {
@@ -79,8 +80,12 @@ export default function Projects() {
 
     return (
         <section className="section projects" id="projects">
+            <div className="projects-parallax-bg" ref={parallaxBg} />
             <div className="container">
-                <div className="projects-header">
+                <div
+                    className={`projects-header reveal${header.visible ? " visible" : ""}`}
+                    ref={header.ref}
+                >
                     <div>
                         <p className="section-label">Open Source</p>
                         <h2 className="section-title">GitHub Projects</h2>
@@ -91,8 +96,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="projects-github-btn"
                     >
-                        <i className="fa-brands fa-github" />
-                        View Profile
+                        <i className="fa-brands fa-github" /> View Profile
                     </a>
                 </div>
 
@@ -121,13 +125,22 @@ export default function Projects() {
 
                 {!loading && !error && (
                     <>
-                        <div className="projects-grid">
-                            {displayed.map(repo => (
-                                <div key={repo.id} className="project-card">
+                        <div
+                            className={`projects-grid reveal${grid.visible ? " visible" : ""}`}
+                            ref={grid.ref}
+                        >
+                            {displayed.map((repo, i) => (
+                                <div
+                                    key={repo.id}
+                                    className="project-card"
+                                    style={{
+                                        transitionDelay: `${(i % 6) * 80}ms`
+                                    }}
+                                >
                                     <div className="project-card-top">
                                         <div className="project-icon-wrap">
                                             <i
-                                                className={getProjectIcon(
+                                                className={getIcon(
                                                     repo.name,
                                                     repo.language
                                                 )}
@@ -156,16 +169,13 @@ export default function Projects() {
                                             )}
                                         </div>
                                     </div>
-
                                     <h3 className="project-name">
                                         {repo.name}
                                     </h3>
-
                                     <p className="project-desc">
                                         {repo.description ||
                                             "No description provided."}
                                     </p>
-
                                     <div className="project-meta">
                                         {repo.language && (
                                             <span className="project-lang">
@@ -173,9 +183,9 @@ export default function Projects() {
                                                     className="lang-dot"
                                                     style={{
                                                         background:
-                                                            getLangColor(
+                                                            LANG_COLORS[
                                                                 repo.language
-                                                            )
+                                                            ] || "#3b82f6"
                                                     }}
                                                 />
                                                 {repo.language}
@@ -190,8 +200,7 @@ export default function Projects() {
                                             {repo.forks_count}
                                         </span>
                                     </div>
-
-                                    {repo.topics && repo.topics.length > 0 && (
+                                    {repo.topics?.length > 0 && (
                                         <div
                                             style={{
                                                 display: "flex",

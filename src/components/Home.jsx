@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Home.css";
 
 const SOCIALS = [
@@ -27,12 +28,18 @@ const STATS = [
 
 export default function Home() {
     const bgRef = useRef(null);
+    const imgRef = useRef(null);
+
+    const leftReveal = useScrollReveal();
+    const rightReveal = useScrollReveal();
 
     useEffect(() => {
         const onScroll = () => {
-            if (bgRef.current) {
-                bgRef.current.style.transform = `translateY(${window.scrollY * 0.4}px)`;
-            }
+            const y = window.scrollY;
+            if (bgRef.current)
+                bgRef.current.style.transform = `translateY(${y * 0.35}px)`;
+            if (imgRef.current)
+                imgRef.current.style.transform = `translateY(${y * 0.15}px)`;
         };
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
@@ -45,7 +52,10 @@ export default function Home() {
 
             <div className="container">
                 <div className="home-inner">
-                    <div className="home-left">
+                    <div
+                        className={`home-left reveal-left${leftReveal.visible ? " visible" : ""}`}
+                        ref={leftReveal.ref}
+                    >
                         <div className="home-headline-block">
                             <p className="home-role-label">
                                 Cybersecurity Specialist
@@ -110,9 +120,12 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="home-right">
+                    <div
+                        className={`home-right reveal-right${rightReveal.visible ? " visible" : ""}`}
+                        ref={rightReveal.ref}
+                    >
                         <div className="profile-section">
-                            <div className="profile-avatar-wrap">
+                            <div className="profile-avatar-wrap" ref={imgRef}>
                                 <div className="profile-ring" />
                                 <div className="profile-circle">
                                     <img
@@ -129,7 +142,7 @@ export default function Home() {
 
                             <div className="profile-info">
                                 <h2 className="profile-name">
-                                    Hi, I'M TEUKU MAULANA
+                                    Hi, IM TEUKU MAULANA
                                 </h2>
                                 <p className="profile-title">
                                     Penetration Tester · Bug Hunter

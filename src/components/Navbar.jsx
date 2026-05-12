@@ -81,15 +81,6 @@ export default function Navbar({ theme, onToggleTheme }) {
                         <span className="fdock-theme-thumb" />
                     </span>
                 </button>
-
-                <a
-                    href="#contact"
-                    className="fdock-cta"
-                    onClick={() => handleLink("#contact")}
-                >
-                    <i className="fa-solid fa-paper-plane" />
-                    Let's Talk
-                </a>
             </div>
 
             <button
@@ -134,15 +125,6 @@ export default function Navbar({ theme, onToggleTheme }) {
                         <span className="dock-label">{item.label}</span>
                     </a>
                 ))}
-                <span className="dock-divider" />
-                <a
-                    href="#contact"
-                    className="dock-cta"
-                    onClick={() => handleLink("#contact")}
-                >
-                    <i className="fa-solid fa-paper-plane" />
-                    <span className="dock-label">Talk</span>
-                </a>
             </div>
         </>
     );

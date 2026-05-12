@@ -1,103 +1,84 @@
 .loader-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #0b0f1a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    transition:
-        opacity 0.6s ease,
-        visibility 0.6s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0b0f1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .loader-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .loader-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .loader-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--blue-bright);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.8rem;
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
-    animation: loaderPulse 1.2s ease infinite;
+  width: 64px;
+  height: 64px;
+  background: var(--blue-bright);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.8rem;
+  box-shadow: 0 0 40px rgba(59,130,246,0.5);
+  animation: loaderPulse 1.2s ease infinite;
 }
 
 .loader-name {
-    font-family: "Tourney", sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #e8edf8;
-    letter-spacing: 0.05em;
+  font-family: 'Tourney', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #e8edf8;
+  letter-spacing: 0.05em;
 }
 
-.loader-name span {
-    color: #3b82f6;
-}
+.loader-name span { color: #3b82f6; }
 
 .loader-bar-wrap {
-    width: 200px;
-    height: 3px;
-    background: rgba(59, 130, 246, 0.15);
-    border-radius: 2px;
-    overflow: hidden;
+  width: 200px;
+  height: 3px;
+  background: rgba(59,130,246,0.15);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .loader-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    border-radius: 2px;
-    animation: loaderBar 2s ease forwards;
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  border-radius: 2px;
+  animation: loaderBar 2s ease forwards;
 }
 
 .loader-status {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #3d5070;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #3d5070;
 }
 
 @keyframes loaderPulse {
-    0%,
-    100% {
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
-    }
-    50% {
-        box-shadow:
-            0 0 60px rgba(59, 130, 246, 0.8),
-            0 0 100px rgba(59, 130, 246, 0.3);
-    }
+  0%, 100% { box-shadow: 0 0 40px rgba(59,130,246,0.5); }
+  50%       { box-shadow: 0 0 60px rgba(59,130,246,0.8), 0 0 100px rgba(59,130,246,0.3); }
 }
 
 @keyframes loaderBar {
-    0% {
-        width: 0%;
-    }
-    30% {
-        width: 40%;
-    }
-    70% {
-        width: 75%;
-    }
-    100% {
-        width: 100%;
-    }
+  0%   { width: 0%; }
+  30%  { width: 40%; }
+  70%  { width: 75%; }
+  100% { width: 100%; }
 }

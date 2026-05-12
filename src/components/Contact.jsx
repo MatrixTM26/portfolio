@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useScrollReveal, useParallax } from "../hooks/useScrollReveal";
 import "../styles/Contact.css";
 
 const CHANNELS = [
@@ -31,6 +32,11 @@ export default function Contact() {
     });
     const [status, setStatus] = useState(null);
 
+    const header = useScrollReveal();
+    const leftCol = useScrollReveal();
+    const rightCol = useScrollReveal();
+    const parallaxBg = useParallax(0.1);
+
     const handleChange = e =>
         setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
@@ -52,24 +58,35 @@ export default function Contact() {
 
     return (
         <section className="section" id="contact">
+            <div className="contact-parallax-bg" ref={parallaxBg} />
             <div className="container">
-                <p className="section-label">Get in Touch</p>
-                <h2 className="section-title">Contact Me</h2>
-                <p className="section-desc">
-                    Have a security project, bug bounty collaboration, or just
-                    want to connect? Drop a message and I'll respond promptly.
-                </p>
+                <div
+                    className={`reveal${header.visible ? " visible" : ""}`}
+                    ref={header.ref}
+                >
+                    <p className="section-label">Get in Touch</p>
+                    <h2 className="section-title">Contact Me</h2>
+                    <p className="section-desc">
+                        Have a security project, bug bounty collaboration, or
+                        just want to connect? Drop a message and I'll respond
+                        promptly.
+                    </p>
+                </div>
 
                 <div className="contact-layout">
-                    <div className="contact-left">
+                    <div
+                        className={`contact-left reveal-left${leftCol.visible ? " visible" : ""}`}
+                        ref={leftCol.ref}
+                    >
                         <div className="contact-channels">
-                            {CHANNELS.map(ch => (
+                            {CHANNELS.map((ch, i) => (
                                 <a
                                     key={ch.label}
                                     href={ch.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="contact-channel"
+                                    style={{ transitionDelay: `${i * 100}ms` }}
                                 >
                                     <div className="ch-icon-wrap">
                                         <i className={ch.icon} />
@@ -86,7 +103,6 @@ export default function Contact() {
                                 </a>
                             ))}
                         </div>
-
                         <div className="contact-availability">
                             <span className="avail-dot" />
                             <span className="avail-text">
@@ -97,7 +113,10 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="contact-form">
+                    <div
+                        className={`contact-form reveal-right${rightCol.visible ? " visible" : ""}`}
+                        ref={rightCol.ref}
+                    >
                         <div className="form-row">
                             <div className="form-group">
                                 <label className="form-label">Name</label>
@@ -122,7 +141,6 @@ export default function Contact() {
                                 />
                             </div>
                         </div>
-
                         <div className="form-group">
                             <label className="form-label">Subject</label>
                             <input
@@ -134,7 +152,6 @@ export default function Contact() {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="form-group">
                             <label className="form-label">Message</label>
                             <textarea
@@ -146,12 +163,10 @@ export default function Contact() {
                                 rows={5}
                             />
                         </div>
-
                         {status === "success" && (
                             <div className="form-status success">
                                 <i className="fa-solid fa-circle-check" />{" "}
-                                Message sent successfully. I'll get back to you
-                                soon.
+                                Message sent. I'll get back to you soon.
                             </div>
                         )}
                         {status === "error" && (
@@ -160,13 +175,12 @@ export default function Contact() {
                                 Please fill in all required fields.
                             </div>
                         )}
-
                         <button
                             className="btn-primary form-submit"
                             onClick={handleSubmit}
                         >
-                            <i className="fa-solid fa-paper-plane" />
-                            Send Message
+                            <i className="fa-solid fa-paper-plane" /> Send
+                            Message
                         </button>
                     </div>
                 </div>
