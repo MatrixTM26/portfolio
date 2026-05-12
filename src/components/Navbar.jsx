@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
 import "../styles/Navbar.css";
 
 const NAV_ITEMS = [
@@ -110,6 +110,19 @@ export default function Navbar({ theme, onToggleTheme }) {
             />
 
             <div className={`mobile-dock${mobileOpen ? " open" : ""}`}>
+                <button
+                    className="dock-theme"
+                    onClick={onToggleTheme}
+                    aria-label="Toggle theme"
+                >
+                    <i
+                        className={`fa-solid ${theme === "dark" ? "fa-moon" : "fa-sun"}`}
+                    />
+                    <span className="dock-label">
+                        {theme === "dark" ? "Dark" : "Light"}
+                    </span>
+                </button>
+                <span className="dock-divider" />
                 {NAV_ITEMS.map(item => (
                     <a
                         key={item.href}

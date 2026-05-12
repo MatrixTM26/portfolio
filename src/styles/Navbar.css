@@ -403,3 +403,35 @@
         display: none;
     }
 }
+
+.dock-theme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.15s;
+}
+
+.dock-theme:active {
+    transform: scale(0.92);
+}
+
+.dock-theme i {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.dock-theme:hover,
+.dock-theme:active {
+    background: var(--blue-pale);
+    color: var(--blue-bright);
+}
