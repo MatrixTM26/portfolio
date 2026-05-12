@@ -8,7 +8,7 @@
     align-items: center;
     gap: 2px;
     padding: 8px 12px;
-    background: rgba(13, 20, 32, 0.4);
+    background: rgba(13, 20, 32, 0.82);
     backdrop-filter: blur(24px) saturate(1.8);
     border: 1px solid rgba(59, 130, 246, 0.18);
     border-radius: 100px;
@@ -19,7 +19,7 @@
 }
 
 [data-theme="light"] .desktop-float-dock {
-    background: rgba(240, 244, 255, 0.4);
+    background: rgba(240, 244, 255, 0.88);
     border-color: rgba(59, 130, 246, 0.22);
     box-shadow:
         0 4px 32px rgba(0, 0, 0, 0.12),
@@ -232,7 +232,7 @@
     align-items: center;
     gap: 4px;
     padding: 10px 14px;
-    background: rgba(13, 20, 32, 0.4);
+    background: rgba(13, 20, 32, 0.95);
     backdrop-filter: blur(28px) saturate(1.6);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 28px;
@@ -247,7 +247,7 @@
 }
 
 [data-theme="light"] .mobile-dock {
-    background: rgba(240, 244, 255, 0.4);
+    background: rgba(240, 244, 255, 0.95);
     border-color: rgba(59, 130, 246, 0.25);
 }
 

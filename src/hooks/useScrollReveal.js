@@ -15,7 +15,7 @@ export function useScrollReveal(options = {}) {
                 }
             },
             {
-                threshold: options.threshold || 0.12,
+                threshold: options.threshold || 0.1,
                 rootMargin: options.rootMargin || "0px"
             }
         );
@@ -32,15 +32,27 @@ export function useParallax(speed = 0.3) {
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
-        const onScroll = () => {
-            const rect = el.parentElement?.getBoundingClientRect();
-            if (!rect) return;
-            const offset =
-                (window.innerHeight / 2 - rect.top - rect.height / 2) * speed;
-            el.style.transform = `translateY(${offset}px)`;
+
+        let ticking = false;
+
+        const update = () => {
+            const parent = el.parentElement;
+            if (!parent) return;
+            const rect = parent.getBoundingClientRect();
+            const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+            el.style.transform = `translateY(${center * speed}px)`;
+            ticking = false;
         };
+
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(update);
+                ticking = true;
+            }
+        };
+
         window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
+        update();
         return () => window.removeEventListener("scroll", onScroll);
     }, [speed]);
 

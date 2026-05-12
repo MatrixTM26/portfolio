@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useScrollReveal, useParallax } from "../hooks/useScrollReveal";
+import { useState } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Contact.css";
 
 const CHANNELS = [
@@ -35,10 +35,9 @@ export default function Contact() {
     const header = useScrollReveal();
     const leftCol = useScrollReveal();
     const rightCol = useScrollReveal();
-    const parallaxBg = useParallax(0.1);
 
     const handleChange = e =>
-        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        setForm(p => ({ ...p, [e.target.name]: e.target.value }));
 
     const handleSubmit = () => {
         if (!form.name || !form.email || !form.message) {
@@ -57,8 +56,13 @@ export default function Contact() {
     };
 
     return (
-        <section className="section" id="contact">
-            <div className="contact-parallax-bg" ref={parallaxBg} />
+        <section className="section contact-section" id="contact">
+            <div className="contact-bg-layer" data-parallax="slow" />
+            <div
+                className="contact-bg-layer contact-bg-layer-2"
+                data-parallax="med"
+            />
+
             <div className="container">
                 <div
                     className={`reveal${header.visible ? " visible" : ""}`}

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useScrollReveal, useParallax } from "../hooks/useScrollReveal";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Skills.css";
 
 const PROFICIENCY = [
@@ -12,7 +12,7 @@ const PROFICIENCY = [
     { icon: "fa-solid fa-flag", name: "CTF Competitions", pct: 85 },
     { icon: "fa-solid fa-bug", name: "Bug Bounty Hunting", pct: 78 },
     {
-        icon: "fa-brands fa-python",
+        icon: "fa-solid fa-terminal",
         name: "Low-Level And High-Level Language Scripting",
         pct: 75
     },
@@ -111,7 +111,6 @@ function SkillBar({ icon, name, pct, visible, delay }) {
 export default function Skills() {
     const [barsVisible, setBarsVisible] = useState(false);
     const barsRef = useRef(null);
-    const parallaxBg = useParallax(0.15);
     const header = useScrollReveal();
     const leftCol = useScrollReveal();
     const rightCol = useScrollReveal();
@@ -130,7 +129,12 @@ export default function Skills() {
 
     return (
         <section className="section skills" id="skills">
-            <div className="skills-parallax-bg" ref={parallaxBg} />
+            <div className="skills-bg-layer" data-parallax="slow" />
+            <div
+                className="skills-bg-layer skills-bg-layer-2"
+                data-parallax="med"
+            />
+
             <div className="container">
                 <div
                     className={`skills-header reveal${header.visible ? " visible" : ""}`}
@@ -158,7 +162,7 @@ export default function Skills() {
                                     name={s.name}
                                     pct={s.pct}
                                     visible={barsVisible}
-                                    delay={i * 80}
+                                    delay={i * 100}
                                 />
                             ))}
                         </div>
@@ -171,7 +175,8 @@ export default function Skills() {
                         {CATEGORIES.map((cat, i) => (
                             <div
                                 key={cat.name}
-                                className={`skill-cat-card delay-${(i + 1) * 100}`}
+                                className="skill-cat-card"
+                                style={{ transitionDelay: `${i * 120}ms` }}
                             >
                                 <div className="skill-cat-top">
                                     <div className="skill-cat-icon">
@@ -206,7 +211,7 @@ export default function Skills() {
                             <span
                                 key={tool.name}
                                 className="tool-pill"
-                                style={{ transitionDelay: `${i * 40}ms` }}
+                                style={{ transitionDelay: `${i * 50}ms` }}
                             >
                                 <i className={tool.icon} />
                                 {tool.name}

@@ -1,5 +1,44 @@
 .projects {
-    background: var(--bg-mid);
+    background: var(--bg-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-bg-layer {
+    position: absolute;
+    inset: -120px;
+    pointer-events: none;
+    will-change: transform;
+    background:
+        radial-gradient(
+            ellipse 55% 50% at 20% 40%,
+            rgba(37, 99, 235, 0.08) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse 40% 50% at 85% 70%,
+            rgba(59, 130, 246, 0.06) 0%,
+            transparent 55%
+        );
+}
+
+.projects-bg-layer-2 {
+    background:
+        radial-gradient(
+            ellipse 30% 35% at 60% 10%,
+            rgba(96, 165, 250, 0.05) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse 25% 30% at 10% 95%,
+            rgba(37, 99, 235, 0.04) 0%,
+            transparent 45%
+        );
+}
+
+.projects .container {
+    position: relative;
+    z-index: 1;
 }
 
 .projects-header {
@@ -34,6 +73,24 @@
     color: var(--blue-bright);
 }
 
+.projects-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    background: rgba(59, 130, 246, 0.04);
+    margin-bottom: 2rem;
+}
+
+.projects-notice i {
+    color: var(--blue-bright);
+}
+
 .projects-loading {
     text-align: center;
     padding: 4rem 0;
@@ -49,13 +106,6 @@
     color: var(--blue-bright);
     margin-bottom: 1rem;
     animation: spin 1s linear infinite;
-}
-
-.projects-error {
-    text-align: center;
-    padding: 4rem 0;
-    color: var(--text-muted);
-    font-size: 0.9rem;
 }
 
 .projects-grid {
@@ -75,8 +125,9 @@
     gap: 0.85rem;
     transition:
         border-color 0.25s,
-        transform 0.25s,
-        box-shadow 0.25s;
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s,
+        opacity 0.6s ease;
     position: relative;
     overflow: hidden;
 }
@@ -91,15 +142,19 @@
     background: linear-gradient(90deg, var(--blue-glow), var(--blue-light));
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s ease;
+}
+
+[data-theme="light"] .project-card {
+    border-color: rgba(0, 0, 0, 0.06);
 }
 
 .project-card:hover {
     border-color: var(--blue-border);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow:
         var(--neo-shadow-up),
-        0 12px 40px rgba(37, 99, 235, 0.12);
+        0 16px 48px rgba(37, 99, 235, 0.15);
 }
 
 .project-card:hover::before {
@@ -204,7 +259,6 @@
     font-size: 0.7rem;
     color: var(--text-muted);
 }
-
 .project-stars i {
     color: #f59e0b;
     font-size: 0.65rem;
@@ -219,6 +273,12 @@
     color: var(--text-muted);
 }
 
+.project-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
 .project-tag {
     font-family: var(--font-mono);
     font-size: 0.65rem;
@@ -227,6 +287,10 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
     color: var(--text-secondary);
     background: var(--bg-neo-inset);
+}
+
+[data-theme="light"] .project-tag {
+    border-color: rgba(0, 0, 0, 0.07);
 }
 
 .projects-show-more {
@@ -247,41 +311,4 @@
     .projects-grid {
         grid-template-columns: 1fr;
     }
-}
-
-.projects {
-    position: relative;
-    overflow: hidden;
-}
-
-.projects-parallax-bg {
-    position: absolute;
-    inset: -80px;
-    background:
-        radial-gradient(
-            ellipse 55% 50% at 20% 40%,
-            rgba(37, 99, 235, 0.06) 0%,
-            transparent 60%
-        ),
-        radial-gradient(
-            ellipse 40% 50% at 85% 70%,
-            rgba(59, 130, 246, 0.05) 0%,
-            transparent 55%
-        );
-    pointer-events: none;
-    will-change: transform;
-    z-index: 0;
-}
-
-.projects .container {
-    position: relative;
-    z-index: 1;
-}
-
-.project-card {
-    transition:
-        border-color 0.25s,
-        transform 0.25s,
-        box-shadow 0.25s,
-        opacity 0.6s ease;
 }

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Home.css";
 
@@ -27,34 +26,23 @@ const STATS = [
 ];
 
 export default function Home() {
-    const bgRef = useRef(null);
-    const imgRef = useRef(null);
-
-    const leftReveal = useScrollReveal();
-    const rightReveal = useScrollReveal();
-
-    useEffect(() => {
-        const onScroll = () => {
-            const y = window.scrollY;
-            if (bgRef.current)
-                bgRef.current.style.transform = `translateY(${y * 0.35}px)`;
-            if (imgRef.current)
-                imgRef.current.style.transform = `translateY(${y * 0.15}px)`;
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    const left = useScrollReveal({ threshold: 0.05 });
+    const right = useScrollReveal({ threshold: 0.05 });
 
     return (
         <section className="home" id="home">
-            <div className="home-parallax-bg" ref={bgRef} />
-            <div className="home-grid-lines" />
+            <div className="home-parallax-layer" data-parallax="slow" />
+            <div
+                className="home-parallax-layer home-parallax-layer-2"
+                data-parallax="med"
+            />
+            <div className="home-grid-lines" data-parallax="slow" />
 
             <div className="container">
                 <div className="home-inner">
                     <div
-                        className={`home-left reveal-left${leftReveal.visible ? " visible" : ""}`}
-                        ref={leftReveal.ref}
+                        className={`home-left reveal-left${left.visible ? " visible" : ""}`}
+                        ref={left.ref}
                     >
                         <div className="home-headline-block">
                             <p className="home-role-label">
@@ -121,15 +109,18 @@ export default function Home() {
                     </div>
 
                     <div
-                        className={`home-right reveal-right${rightReveal.visible ? " visible" : ""}`}
-                        ref={rightReveal.ref}
+                        className={`home-right reveal-right${right.visible ? " visible" : ""}`}
+                        ref={right.ref}
                     >
                         <div className="profile-section">
-                            <div className="profile-avatar-wrap" ref={imgRef}>
+                            <div
+                                className="profile-avatar-wrap"
+                                data-parallax="reverse"
+                            >
                                 <div className="profile-ring" />
                                 <div className="profile-circle">
                                     <img
-                                        src="https://images.unsplash.com/photo-1674049404913-2005c02245fa?q=80&w=762&auto=format&fit=crop"
+                                        src="https://c.top4top.io/p_37840sw0t0.png"
                                         alt="MatrixTM26"
                                         className="profile-img"
                                         onError={e => {
@@ -142,10 +133,11 @@ export default function Home() {
 
                             <div className="profile-info">
                                 <h2 className="profile-name">
-                                    Hi, IM TEUKU MAULANA
+                                    HI, IM TEUKU MAULANA
                                 </h2>
                                 <p className="profile-title">
-                                    Penetration Tester · Bug Hunter
+                                    Cyber Security | Penetration Tester | Bug
+                                    Hunter
                                 </p>
                                 <div className="profile-badges">
                                     <div className="profile-badge">

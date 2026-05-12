@@ -8,24 +8,19 @@ Dark neon aesthetic with Matrix rain animation, terminal UI, and smooth scroll s
 ## Quick Start
 
 ### Prerequisites
-
 - Node.js v18+ — https://nodejs.org
 
 ### Install & run locally
-
 ```bash
 npm install
 npm run dev
 ```
-
 Opens at `http://localhost:5173`
 
 ### Build for production
-
 ```bash
 npm run build
 ```
-
 Output → `dist/` folder
 
 ---
@@ -33,7 +28,6 @@ Output → `dist/` folder
 ## Deploy to Vercel
 
 ### Option A — Vercel CLI
-
 ```bash
 npm install -g vercel
 vercel login
@@ -41,15 +35,14 @@ vercel --prod
 ```
 
 ### Option B — GitHub auto-deploy
-
 1. Push to GitHub:
-    ```bash
-    git init
-    git add .
-    git commit -m "init"
-    git remote add origin https://github.com/MatrixTM26/portfolio.git
-    git push -u origin main
-    ```
+   ```bash
+   git init
+   git add .
+   git commit -m "init"
+   git remote add origin https://github.com/MatrixTM26/portfolio.git
+   git push -u origin main
+   ```
 2. Go to vercel.com → New Project → Import repo → Deploy
 
 Every `git push` triggers an automatic redeploy.
@@ -88,22 +81,20 @@ matrixtm26-portfolio/
 
 ## Customization
 
-| What             | File           |
-| ---------------- | -------------- |
-| Name, bio, links | `About.jsx`    |
-| Terminal content | `Hero.jsx`     |
-| Skills & tools   | `Skills.jsx`   |
-| Projects         | `Projects.jsx` |
-| Contact channels | `Contact.jsx`  |
-| Colors & fonts   | `global.css`   |
+| What               | File             |
+|--------------------|------------------|
+| Name, bio, links   | `About.jsx`      |
+| Terminal content   | `Hero.jsx`       |
+| Skills & tools     | `Skills.jsx`     |
+| Projects           | `Projects.jsx`   |
+| Contact channels   | `Contact.jsx`    |
+| Colors & fonts     | `global.css`     |
 
 ### Change accent color
-
 Edit `:root` in `global.css`:
-
 ```css
 --neon-green: #00ff88;
---neon-cyan: #00ccff;
+--neon-cyan:  #00ccff;
 ```
 
 ---

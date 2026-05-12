@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import { useScrollManager } from "./hooks/useScrollManager";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -9,6 +10,8 @@ import Footer from "./components/Footer";
 
 export default function App() {
     const [theme, setTheme] = useState("dark");
+
+    useScrollManager();
 
     useEffect(() => {
         const saved = localStorage.getItem("theme") || "dark";
