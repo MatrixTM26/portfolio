@@ -1,4 +1,4 @@
-# MatrixTM26 — Cybersecurity Portfolio
+# MatrixTM26 Portfolio
 
 A professional, responsive cybersecurity portfolio built with **React + Vite**.
 Dark neon aesthetic with Matrix rain animation, terminal UI, and smooth scroll sections.

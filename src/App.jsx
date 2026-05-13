@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from 'react';
 import { useScrollManager } from "./hooks/useScrollManager";
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";

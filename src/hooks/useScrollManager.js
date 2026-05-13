@@ -3,17 +3,25 @@ import { useEffect } from "react";
 export function useScrollManager() {
     useEffect(() => {
         const SPEEDS = { slow: 0.05, med: 0.1, reverse: -0.07 };
+        const cache = new Map();
 
-        const update = () => {
+        const collect = () => {
+            cache.clear();
             Object.entries(SPEEDS).forEach(([key, speed]) => {
                 document
                     .querySelectorAll(`[data-parallax="${key}"]`)
                     .forEach(el => {
-                        const rect = el.getBoundingClientRect();
-                        const center =
-                            rect.top + rect.height / 2 - window.innerHeight / 2;
-                        el.style.transform = `translateY(${center * speed}px)`;
+                        cache.set(el, speed);
                     });
+            });
+        };
+
+        const update = () => {
+            cache.forEach((speed, el) => {
+                const rect = el.getBoundingClientRect();
+                const center =
+                    rect.top + rect.height / 2 - window.innerHeight / 2;
+                el.style.transform = `translateY(${center * speed}px)`;
             });
         };
 
@@ -28,8 +36,14 @@ export function useScrollManager() {
             }
         };
 
+        collect();
         window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", collect, { passive: true });
         update();
-        return () => window.removeEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", collect);
+        };
     }, []);
 }

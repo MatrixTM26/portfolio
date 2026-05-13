@@ -116,9 +116,6 @@ export default function Home() {
                                         src="/profile.png"
                                         alt="MatrixTM26"
                                         className="profile-img"
-                                        onError={e => {
-                                            e.target.src = "/profile.png";
-                                        }}
                                     />
                                 </div>
                             </div>

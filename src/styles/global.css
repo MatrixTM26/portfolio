@@ -270,4 +270,5 @@ body {
 
 [data-parallax] {
     will-change: transform;
+    pointer-events: none;
 }

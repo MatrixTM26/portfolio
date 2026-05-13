@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Contact.css";
 

@@ -13,7 +13,7 @@ const PROFICIENCY = [
     { icon: "fa-solid fa-bug", name: "Bug Bounty Hunting", pct: 78 },
     {
         icon: "fa-solid fa-terminal",
-        name: "Low-Level And High Level Language Scripting",
+        name: "Low-Level & High-Level Language Scripting",
         pct: 75
     },
     {
