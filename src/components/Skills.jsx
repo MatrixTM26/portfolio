@@ -121,7 +121,7 @@ export default function Skills() {
             ([entry]) => {
                 if (entry.isIntersecting) setBarsVisible(true);
             },
-            { threshold: 0.15 }
+            { threshold: 0.1 }
         );
         if (barsRef.current) observer.observe(barsRef.current);
         return () => observer.disconnect();
@@ -130,10 +130,7 @@ export default function Skills() {
     return (
         <section className="section skills" id="skills">
             <div className="skills-bg-layer" data-parallax="slow" />
-            <div
-                className="skills-bg-layer skills-bg-layer-2"
-                data-parallax="med"
-            />
+            <div className="skills-bg-layer-2" data-parallax="med" />
 
             <div className="container">
                 <div

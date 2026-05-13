@@ -193,54 +193,38 @@ body {
 
 .reveal {
     opacity: 0;
-    transform: translateY(48px);
-    transition:
-        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .reveal-left {
     opacity: 0;
-    transform: translateX(-56px);
-    transition:
-        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-left.visible {
     opacity: 1;
-    transform: translateX(0);
 }
 
 .reveal-right {
     opacity: 0;
-    transform: translateX(56px);
-    transition:
-        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-right.visible {
     opacity: 1;
-    transform: translateX(0);
 }
 
 .reveal-scale {
     opacity: 0;
-    transform: scale(0.88);
-    transition:
-        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-scale.visible {
     opacity: 1;
-    transform: scale(1);
 }
 
 .delay-100 {
@@ -266,4 +250,8 @@ body {
     :root {
         --nav-h: 60px;
     }
+}
+
+[data-parallax] {
+    will-change: transform;
 }

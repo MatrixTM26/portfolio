@@ -2,54 +2,35 @@ import { useEffect } from "react";
 
 export function useScrollManager() {
     useEffect(() => {
-        let lastY = window.scrollY;
-        let ticking = false;
-
-        const elements = {
-            parallaxSlow: '[data-parallax="slow"]',
-            parallaxMed: '[data-parallax="med"]',
-            parallaxFast: '[data-parallax="fast"]',
-            parallaxReverse: '[data-parallax="reverse"]',
-            floatY: "[data-float]"
+        const SPEEDS = {
+            slow: 0.05,
+            med: 0.1,
+            reverse: -0.07
         };
 
-        const SPEEDS = { slow: 0.08, med: 0.18, fast: 0.32, reverse: -0.14 };
+        const state = new Map();
+        let rafId = null;
 
-        const update = () => {
-            const y = window.scrollY;
-
+        const tick = () => {
             Object.entries(SPEEDS).forEach(([key, speed]) => {
-                const selector = `[data-parallax="${key}"]`;
-                document.querySelectorAll(selector).forEach(el => {
-                    const rect =
-                        el.closest("section")?.getBoundingClientRect() ||
-                        el.getBoundingClientRect();
-                    const center =
-                        rect.top + rect.height / 2 - window.innerHeight / 2;
-                    el.style.transform = `translateY(${center * speed}px)`;
-                });
-            });
+                document
+                    .querySelectorAll(`[data-parallax="${key}"]`)
+                    .forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        const center =
+                            rect.top + rect.height / 2 - window.innerHeight / 2;
+                        const target = center * speed;
+                        const cur = state.get(el) ?? target;
+                        const next = cur + (target - cur) * 0.09;
 
-            document.querySelectorAll("[data-float]").forEach(el => {
-                const speed = parseFloat(
-                    el.getAttribute("data-float") || "0.05"
-                );
-                el.style.transform = `translateY(${y * speed}px)`;
+                        state.set(el, next);
+                        el.style.transform = `translateY(${next}px)`;
+                    });
             });
-
-            lastY = y;
-            ticking = false;
+            rafId = requestAnimationFrame(tick);
         };
 
-        const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(update);
-                ticking = true;
-            }
-        };
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        update();
-        return () => window.removeEventListener("scroll", onScroll);
+        rafId = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafId);
     }, []);
 }

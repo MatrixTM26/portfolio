@@ -58,10 +58,7 @@ export default function Contact() {
     return (
         <section className="section contact-section" id="contact">
             <div className="contact-bg-layer" data-parallax="slow" />
-            <div
-                className="contact-bg-layer contact-bg-layer-2"
-                data-parallax="med"
-            />
+            <div className="contact-bg-layer-2" data-parallax="med" />
 
             <div className="container">
                 <div

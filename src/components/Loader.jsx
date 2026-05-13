@@ -5,7 +5,7 @@ export default function Loader() {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        const t = setTimeout(() => setHidden(true), 6000);
+        const t = setTimeout(() => setHidden(true), 2600);
         return () => clearTimeout(t);
     }, []);
 
@@ -21,7 +21,7 @@ export default function Loader() {
                         <div className="loader-bar" />
                     </div>
                     <p className="loader-status">
-                        Initializing secure connection...
+                        LOADING...
                     </p>
                 </div>
             </div>

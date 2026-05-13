@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Projects.css";
 
@@ -120,7 +120,7 @@ function getIcon(name, lang) {
 }
 
 function Card({ repo, index }) {
-    const { ref, visible } = useScrollReveal({ threshold: 0.08 });
+    const { ref, visible } = useScrollReveal({ threshold: 0.06 });
     return (
         <div
             ref={ref}
@@ -211,7 +211,7 @@ export default function Projects() {
         )
             .then(r => {
                 clearTimeout(timer);
-                if (!r.ok) throw new Error(`${r.status}`);
+                if (!r.ok) throw new Error();
                 return r.json();
             })
             .then(data => {
@@ -286,7 +286,6 @@ export default function Projects() {
                                 <Card key={repo.id} repo={repo} index={i} />
                             ))}
                         </div>
-
                         {repos.length > 6 && (
                             <div className="projects-show-more">
                                 <button
