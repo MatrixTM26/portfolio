@@ -113,12 +113,11 @@ export default function Home() {
                                 <div className="profile-ring" />
                                 <div className="profile-circle">
                                     <img
-                                        src="https://images.unsplash.com/photo-1674049404913-2005c02245fa?q=80&w=762&auto=format&fit=crop"
+                                        src="/profile.png"
                                         alt="MatrixTM26"
                                         className="profile-img"
                                         onError={e => {
-                                            e.target.src =
-                                                "https://images.unsplash.com/photo-1555066931-4365d14431b9?w=600&q=80&fit=crop";
+                                            e.target.src = "/profile.png";
                                         }}
                                     />
                                 </div>
