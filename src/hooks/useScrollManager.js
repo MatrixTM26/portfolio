@@ -2,8 +2,6 @@ import { useEffect } from "react";
 
 export function useScrollManager() {
     useEffect(() => {
-        let ticking = false;
-
         const SPEEDS = {
             slow: 0.06,
             med: 0.12,
@@ -14,34 +12,65 @@ export function useScrollManager() {
             subtle: 0.03
         };
 
-        const getOffset = (el, speed) => {
-            const rect = el.getBoundingClientRect();
-            const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-            return center * speed;
-        };
+        const state = new Map();
+        const targets = new Map();
+        let rafId = null;
 
-        const update = () => {
+        const LERP = 0.08;
+
+        const lerp = (a, b, t) => a + (b - a) * t;
+
+        const collect = () => {
             Object.entries(SPEEDS).forEach(([key, speed]) => {
                 document
                     .querySelectorAll(`[data-parallax="${key}"]`)
                     .forEach(el => {
-                        const offset = getOffset(el, speed);
-                        el.style.transform = `translateY(${offset}px)`;
-                        el.style.willChange = "transform";
+                        if (!targets.has(el)) {
+                            targets.set(el, speed);
+                            state.set(el, 0);
+                        }
                     });
             });
-            ticking = false;
         };
 
+        const tick = () => {
+            let anyMoving = false;
+
+            targets.forEach((speed, el) => {
+                const rect = el.getBoundingClientRect();
+                const center =
+                    rect.top + rect.height / 2 - window.innerHeight / 2;
+                const target = center * speed;
+
+                const current = state.get(el) ?? 0;
+                const next = lerp(current, target, LERP);
+
+                if (Math.abs(next - current) > 0.01) {
+                    anyMoving = true;
+                }
+
+                state.set(el, next);
+                el.style.transform = `translateY(${next}px)`;
+            });
+
+            rafId = requestAnimationFrame(tick);
+        };
+
+        collect();
+
         const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(update);
-                ticking = true;
-            }
+            collect();
         };
 
         window.addEventListener("scroll", onScroll, { passive: true });
-        update();
-        return () => window.removeEventListener("scroll", onScroll);
+        window.addEventListener("resize", collect, { passive: true });
+
+        rafId = requestAnimationFrame(tick);
+
+        return () => {
+            cancelAnimationFrame(rafId);
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", collect);
+        };
     }, []);
 }
