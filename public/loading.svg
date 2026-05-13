@@ -1,248 +1,233 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
   <defs>
 
-    <!-- GRADIENTS -->
-    <radialGradient id="gNucleus" cx="35%" cy="28%" r="72%">
-      <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="18%"  stop-color="#e0c3ff"/>
-      <stop offset="50%"  stop-color="#7c3aed"/>
-      <stop offset="80%"  stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#060420"/>
-    </radialGradient>
+    <!-- ══ GRADIENTS ══ -->
 
-    <radialGradient id="gHalo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.55"/>
-      <stop offset="60%"  stop-color="#3b82f6" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-    </radialGradient>
-
-    <linearGradient id="gO1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#c084fc" stop-opacity="0"/>
-      <stop offset="22%"  stop-color="#a855f7"/>
-      <stop offset="50%"  stop-color="#38bdf8"/>
-      <stop offset="78%"  stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    <!-- Fuselage top -->
+    <linearGradient id="gBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#e0f2fe"/>
+      <stop offset="30%"  stop-color="#7dd3fc"/>
+      <stop offset="70%"  stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
 
-    <linearGradient id="gO2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#818cf8" stop-opacity="0"/>
-      <stop offset="22%"  stop-color="#6366f1"/>
-      <stop offset="50%"  stop-color="#22d3ee"/>
-      <stop offset="78%"  stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    <!-- Cockpit canopy -->
+    <linearGradient id="gCanopy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#bae6fd"/>
+      <stop offset="40%"  stop-color="#38bdf8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#075985" stop-opacity="0.9"/>
     </linearGradient>
 
-    <linearGradient id="gO3" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#7c3aed" stop-opacity="0"/>
-      <stop offset="22%"  stop-color="#8b5cf6"/>
-      <stop offset="50%"  stop-color="#2dd4bf"/>
-      <stop offset="78%"  stop-color="#0891b2"/>
-      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    <!-- Wing -->
+    <linearGradient id="gWing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#93c5fd"/>
+      <stop offset="50%"  stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#0c1a4e"/>
     </linearGradient>
 
-    <radialGradient id="gE1" cx="40%" cy="35%" r="60%">
+    <!-- Engine nozzle -->
+    <linearGradient id="gNozzle" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Afterburner inner core -->
+    <radialGradient id="gFlame1" cx="0%" cy="50%" r="100%">
       <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="45%"  stop-color="#93c5fd"/>
-      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gE2" cx="40%" cy="35%" r="60%">
-      <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="45%"  stop-color="#d8b4fe"/>
-      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="gE3" cx="40%" cy="35%" r="60%">
-      <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="45%"  stop-color="#67e8f9"/>
-      <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
+      <stop offset="20%"  stop-color="#bfdbfe"/>
+      <stop offset="55%"  stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- FILTERS -->
-    <filter id="fNuc" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="13" result="b1"/>
-      <feGaussianBlur stdDeviation="4"  result="b2" in="SourceGraphic"/>
-      <feMerge><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="fOrb" x="-12%" y="-12%" width="124%" height="124%">
-      <feGaussianBlur stdDeviation="2" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="fE" x="-500%" y="-500%" width="1100%" height="1100%">
-      <feGaussianBlur stdDeviation="7" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="fTrail" x="-300%" y="-300%" width="700%" height="700%">
-      <feGaussianBlur stdDeviation="12"/>
-    </filter>
-    <filter id="fCloud" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="22"/>
-    </filter>
-    <filter id="fRim" x="-8%" y="-8%" width="116%" height="116%">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <!-- Afterburner outer -->
+    <radialGradient id="gFlame2" cx="0%" cy="50%" r="100%">
+      <stop offset="0%"   stop-color="#93c5fd" stop-opacity="0.8"/>
+      <stop offset="50%"  stop-color="#2563eb" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Contrail -->
+    <linearGradient id="gTrail1" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%"   stop-color="#bae6fd" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#bae6fd" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gTrail2" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%"   stop-color="#7dd3fc" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Missile body -->
+    <linearGradient id="gMissile" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Panel shading -->
+    <linearGradient id="gPanel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#e0f2fe" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.1"/>
+    </linearGradient>
 
   </defs>
 
-  <!-- ══════════════════════════════════════
-       PROBABILITY CLOUD (quantum orbitals)
-  ══════════════════════════════════════ -->
-  <g transform="translate(300,300)" opacity="0.10">
-    <circle r="92"  fill="#a855f7" filter="url(#fCloud)"/>
-    <circle r="148" fill="#3b82f6" filter="url(#fCloud)"/>
-    <circle r="200" fill="#06b6d4" filter="url(#fCloud)"/>
-  </g>
+  <!-- ══════════════════════════════════════════════
+       WHOLE JET — flies left→right, loops back
+  ══════════════════════════════════════════════ -->
+  <g>
+    <!-- Fly from off-left to off-right, looping -->
+    <animateTransform attributeName="transform" type="translate"
+      values="-350,0; 850,0; -350,0"
+      keyTimes="0; 0.72; 1"
+      dur="6s" repeatCount="indefinite"/>
 
-  <!-- ══════════════════════════════════════
-       ORBIT 1 — equatorial plane
-       Ellipse: rx=215, ry=60
-       Electron: CW 7s
-  ══════════════════════════════════════ -->
-  <g transform="translate(300,300)">
-    <!-- back arc (dimmer, behind nucleus) -->
-    <path d="M -215,0 A 215,60 0 0,0 215,0"
-      fill="none" stroke="url(#gO1)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
-    <!-- front arc -->
-    <path d="M -215,0 A 215,60 0 0,1 215,0"
-      fill="none" stroke="url(#gO1)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
+    <g transform="translate(0,250)">
 
-    <!-- electron 1 -->
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
-      <!-- trail glow -->
-      <circle cx="215" cy="0" r="18" fill="#3b82f6" opacity="0.2" filter="url(#fTrail)"/>
-      <!-- electron body -->
-      <circle cx="215" cy="0" r="7"  fill="url(#gE1)" filter="url(#fE)"/>
-      <circle cx="215" cy="0" r="2.8" fill="#ffffff"/>
-    </g>
-  </g>
+      <!-- ══ CONTRAILS (behind engine) ══ -->
+      <g>
+        <!-- Top contrail -->
+        <rect x="-520" y="-7" width="510" height="4" rx="2" fill="url(#gTrail1)" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="0.8s" repeatCount="indefinite"/>
+          <animate attributeName="width"   values="480;530;480"  dur="0.8s" repeatCount="indefinite"/>
+        </rect>
+        <!-- Bottom contrail -->
+        <rect x="-520" y="3"  width="510" height="4" rx="2" fill="url(#gTrail2)" opacity="0.6">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="0.8s" begin="0.15s" repeatCount="indefinite"/>
+          <animate attributeName="width"   values="480;530;480"  dur="0.8s" begin="0.15s" repeatCount="indefinite"/>
+        </rect>
+        <!-- Center fine trail -->
+        <rect x="-520" y="-1.5" width="510" height="3" rx="1.5" fill="url(#gTrail1)" opacity="0.4">
+          <animate attributeName="width" values="500;560;500" dur="1.1s" repeatCount="indefinite"/>
+        </rect>
+      </g>
 
-  <!-- ══════════════════════════════════════
-       ORBIT 2 — tilted 60°
-       Ellipse: rx=200, ry=56
-       Electron: CCW 11s
-  ══════════════════════════════════════ -->
-  <g transform="translate(300,300) rotate(60)">
-    <path d="M -200,0 A 200,56 0 0,0 200,0"
-      fill="none" stroke="url(#gO2)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
-    <path d="M -200,0 A 200,56 0 0,1 200,0"
-      fill="none" stroke="url(#gO2)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
+      <!-- ══ AFTERBURNER FLAMES ══ -->
+      <!-- outer bloom -->
+      <ellipse cx="-88" cy="0" rx="52" ry="18" fill="url(#gFlame2)">
+        <animate attributeName="rx" values="48;60;50;56;48" dur="0.12s" repeatCount="indefinite"/>
+        <animate attributeName="ry" values="16;20;15;19;16" dur="0.12s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;1;0.6;0.9;0.7" dur="0.12s" repeatCount="indefinite"/>
+      </ellipse>
+      <!-- inner core -->
+      <ellipse cx="-76" cy="0" rx="30" ry="10" fill="url(#gFlame1)">
+        <animate attributeName="rx" values="28;36;30;33;28" dur="0.09s" repeatCount="indefinite"/>
+        <animate attributeName="ry" values="8;12;9;11;8"   dur="0.09s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.9;1;0.8;1;0.9" dur="0.09s" repeatCount="indefinite"/>
+      </ellipse>
+      <!-- hot white tip -->
+      <ellipse cx="-64" cy="0" rx="10" ry="4" fill="#ffffff" opacity="0.95">
+        <animate attributeName="rx" values="9;13;10;12;9" dur="0.07s" repeatCount="indefinite"/>
+      </ellipse>
 
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="11s" repeatCount="indefinite"/>
-      <circle cx="200" cy="0" r="17" fill="#6366f1" opacity="0.2" filter="url(#fTrail)"/>
-      <circle cx="200" cy="0" r="7"  fill="url(#gE2)" filter="url(#fE)"/>
-      <circle cx="200" cy="0" r="2.8" fill="#ffffff"/>
-    </g>
-  </g>
+      <!-- ══ ENGINE / NOZZLE ══ -->
+      <rect x="-72" y="-10" width="38" height="20" rx="3" fill="url(#gNozzle)"/>
+      <!-- nozzle petals -->
+      <polygon points="-34,-10 -26,-7 -34,-4" fill="#0f172a"/>
+      <polygon points="-34,-4  -26,-1 -34,2"  fill="#1e293b"/>
+      <polygon points="-34,2   -26,5  -34,8"  fill="#0f172a"/>
+      <polygon points="-34,8   -26,11 -34,12" fill="#1e293b"/>
 
-  <!-- ══════════════════════════════════════
-       ORBIT 3 — tilted 120°
-       Ellipse: rx=188, ry=52
-       Electron: CW 15s
-  ══════════════════════════════════════ -->
-  <g transform="translate(300,300) rotate(120)">
-    <path d="M -188,0 A 188,52 0 0,0 188,0"
-      fill="none" stroke="url(#gO3)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
-    <path d="M -188,0 A 188,52 0 0,1 188,0"
-      fill="none" stroke="url(#gO3)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
+      <!-- ══ TAIL FINS (vertical stabilizers) ══ -->
+      <!-- right tail fin -->
+      <polygon points="-60,-12 -20,-40 -20,-14 -60,-10"
+        fill="url(#gWing)" stroke="#38bdf8" stroke-width="0.5" opacity="0.9"/>
+      <!-- left tail fin (below) -->
+      <polygon points="-60,12 -20,40 -20,14 -60,10"
+        fill="url(#gWing)" stroke="#38bdf8" stroke-width="0.5" opacity="0.9"/>
 
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="15s" repeatCount="indefinite"/>
-      <circle cx="188" cy="0" r="16" fill="#0891b2" opacity="0.2" filter="url(#fTrail)"/>
-      <circle cx="188" cy="0" r="7"  fill="url(#gE3)" filter="url(#fE)"/>
-      <circle cx="188" cy="0" r="2.8" fill="#ffffff"/>
-    </g>
-  </g>
+      <!-- ══ HORIZONTAL STABILIZERS ══ -->
+      <polygon points="-55,-10 -18,-28 -15,-10 -55,-10"
+        fill="url(#gWing)" opacity="0.85"/>
+      <polygon points="-55,10  -18,28  -15,10  -55,10"
+        fill="url(#gWing)" opacity="0.85"/>
 
-  <!-- ══════════════════════════════════════
-       NUCLEUS
-  ══════════════════════════════════════ -->
+      <!-- ══ MAIN DELTA WINGS ══ -->
+      <!-- right main wing -->
+      <polygon points="30,-12 -60,-12 -42,-68 55,-18"
+        fill="url(#gWing)" stroke="#93c5fd" stroke-width="0.7" opacity="0.95"/>
+      <!-- left main wing -->
+      <polygon points="30,12  -60,12  -42,68  55,18"
+        fill="url(#gWing)" stroke="#93c5fd" stroke-width="0.7" opacity="0.95"/>
 
-  <!-- outer energy halo pulses -->
-  <circle cx="300" cy="300" r="60" fill="url(#gHalo)" filter="url(#fCloud)">
-    <animate attributeName="r"       values="50;72;50"     dur="4s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.7;0.15;0.7" dur="4s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="300" cy="300" r="40" fill="url(#gHalo)" filter="url(#fCloud)">
-    <animate attributeName="r"       values="32;50;32"       dur="2.9s" begin="0.4s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.9;0.2;0.9"    dur="2.9s" begin="0.4s" repeatCount="indefinite"/>
-  </circle>
+      <!-- Wing leading edge highlight -->
+      <line x1="55" y1="-18" x2="-42" y2="-68" stroke="#bae6fd" stroke-width="1" opacity="0.5"/>
+      <line x1="55" y1="18"  x2="-42" y2="68"  stroke="#bae6fd" stroke-width="1" opacity="0.5"/>
 
-  <!-- nucleus sphere -->
-  <g transform="translate(300,300)" filter="url(#fNuc)">
-    <!-- rim glow ring -->
-    <circle r="43" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0.7" filter="url(#fRim)"/>
-    <circle r="43" fill="none" stroke="#22d3ee" stroke-width="1"   opacity="0.4"/>
+      <!-- ══ MISSILES (under wing) ══ -->
+      <!-- right missile -->
+      <g transform="translate(-10,-40)">
+        <rect x="-22" y="-3" width="38" height="6" rx="3" fill="url(#gMissile)"/>
+        <polygon points="16,-3 22,0 16,3" fill="#94a3b8"/>
+        <polygon points="-22,-3 -30,-8 -28,-3" fill="#475569"/>
+        <polygon points="-22,3  -30,8  -28,3"  fill="#475569"/>
+      </g>
+      <!-- left missile -->
+      <g transform="translate(-10,40)">
+        <rect x="-22" y="-3" width="38" height="6" rx="3" fill="url(#gMissile)"/>
+        <polygon points="16,-3 22,0 16,3" fill="#94a3b8"/>
+        <polygon points="-22,-3 -30,-8 -28,-3" fill="#475569"/>
+        <polygon points="-22,3  -30,8  -28,3"  fill="#475569"/>
+      </g>
 
-    <!-- main sphere -->
-    <circle r="38" fill="url(#gNucleus)">
-      <animate attributeName="r" values="36;41;36" dur="4s" repeatCount="indefinite"/>
-    </circle>
+      <!-- ══ FUSELAGE ══ -->
+      <!-- main body -->
+      <path d="M 175,0 C 160,-4 120,-10 60,-12 L -70,-12 C -70,-10 -70,10 -70,12 L 60,12 C 120,10 160,4 175,0 Z"
+        fill="url(#gBody)" stroke="#38bdf8" stroke-width="0.5"/>
 
-    <!-- equatorial band — gives 3D depth -->
-    <ellipse cx="0" cy="3" rx="38" ry="9"
-      fill="none" stroke="#818cf8" stroke-width="1.2" opacity="0.45"/>
+      <!-- fuselage panel lines -->
+      <line x1="-40" y1="-11" x2="100" y2="-8" stroke="#bae6fd" stroke-width="0.4" opacity="0.3"/>
+      <line x1="-40" y1="11"  x2="100" y2="8"  stroke="#bae6fd" stroke-width="0.4" opacity="0.3"/>
+      <line x1="20"  y1="-10" x2="20"  y2="10" stroke="#93c5fd" stroke-width="0.4" opacity="0.25"/>
+      <line x1="60"  y1="-12" x2="60"  y2="12" stroke="#93c5fd" stroke-width="0.4" opacity="0.25"/>
+      <line x1="100" y1="-9"  x2="100" y2="9"  stroke="#93c5fd" stroke-width="0.4" opacity="0.25"/>
 
-    <!-- sub-rings -->
-    <circle r="26" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.3"/>
-    <circle r="15" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.35"/>
+      <!-- ══ NOSE CONE ══ -->
+      <path d="M 175,0 C 190,-1 220,0 260,0" fill="none" stroke="url(#gBody)" stroke-width="1"/>
+      <path d="M 175,-3 L 265,0 L 175,3 Z" fill="url(#gBody)"/>
+      <!-- nose tip -->
+      <line x1="240" y1="0" x2="268" y2="0" stroke="#e0f2fe" stroke-width="1.5"/>
 
-    <!-- specular highlight -->
-    <ellipse cx="-11" cy="-14" rx="12" ry="8" fill="white" opacity="0.22"/>
-    <ellipse cx="-13" cy="-16" rx="5.5" ry="3.5" fill="white" opacity="0.38"/>
+      <!-- ══ AIR INTAKES ══ -->
+      <!-- right intake -->
+      <path d="M 60,-12 C 70,-16 90,-18 110,-17 L 110,-12 L 60,-12 Z"
+        fill="#0c1a4e" stroke="#38bdf8" stroke-width="0.5"/>
+      <ellipse cx="85" cy="-15" rx="12" ry="2.5" fill="#1e3a8a"/>
+      <!-- left intake -->
+      <path d="M 60,12 C 70,16 90,18 110,17 L 110,12 L 60,12 Z"
+        fill="#0c1a4e" stroke="#38bdf8" stroke-width="0.5"/>
+      <ellipse cx="85" cy="15" rx="12" ry="2.5" fill="#1e3a8a"/>
 
-    <!-- nucleus core bright point -->
-    <circle r="6.5" fill="white" opacity="0.95">
-      <animate attributeName="opacity" values="0.75;1;0.75" dur="4s" repeatCount="indefinite"/>
-    </circle>
-    <circle r="2.5" fill="white"/>
-  </g>
+      <!-- ══ COCKPIT CANOPY ══ -->
+      <path d="M 100,-10 C 118,-22 148,-20 165,-8 L 165,8 C 148,20 118,22 100,10 Z"
+        fill="url(#gCanopy)" stroke="#7dd3fc" stroke-width="0.8" opacity="0.92"/>
+      <!-- canopy frame -->
+      <line x1="100" y1="-10" x2="165" y2="-6"  stroke="#bae6fd" stroke-width="0.7" opacity="0.6"/>
+      <line x1="132" y1="-18" x2="132" y2="18"   stroke="#bae6fd" stroke-width="0.5" opacity="0.4"/>
+      <!-- canopy highlight -->
+      <path d="M 108,-14 C 120,-20 148,-18 158,-10" fill="none" stroke="white" stroke-width="1.2" opacity="0.3"/>
 
-  <!-- ══════════════════════════════════════
-       OUTER BOUNDARY — quantum shell hint
-  ══════════════════════════════════════ -->
-  <circle cx="300" cy="300" r="250"
-    fill="none" stroke="#4f46e5"
-    stroke-width="0.7" stroke-dasharray="4 20" opacity="0.28"/>
+      <!-- ══ PITOT TUBE ══ -->
+      <rect x="240" y="-1" width="22" height="2" rx="1" fill="#94a3b8"/>
 
-  <!-- 12 node dots -->
-  <g transform="translate(300,300)">
-    <circle cy="-250" r="1.8" fill="#c4b5fd">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="0s"    repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(30)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="0.5s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(60)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="1.0s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(90)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="1.5s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(120)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="2.0s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(150)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="2.5s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(180)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="3.0s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(210)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="3.5s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(240)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="4.0s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(270)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="4.5s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(300)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="5.0s"  repeatCount="indefinite"/>
-    </circle>
-    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(330)">
-      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="5.5s"  repeatCount="indefinite"/>
-    </circle>
+      <!-- ══ FORMATION LIGHT (wingtip) — blinking ══ -->
+      <circle cx="-42" cy="-68" r="2.5" fill="#38bdf8">
+        <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="-42" cy="68" r="2.5" fill="#22d3ee">
+        <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite"/>
+      </circle>
+
+    </g><!-- end translate(0,250) -->
+  </g><!-- end translate animation -->
+
+  <!-- ══════════════════════════════════════════════
+       SPEED LINES (fixed in scene, fade as jet passes)
+  ══════════════════════════════════════════════ -->
+  <g opacity="0.18">
+    <line x1="0" y1="180" x2="800" y2="180" stroke="#38bdf8" stroke-width="0.7" stroke-dasharray="40 60"/>
+    <line x1="0" y1="220" x2="800" y2="220" stroke="#7dd3fc" stroke-width="0.5" stroke-dasharray="30 80"/>
+    <line x1="0" y1="250" x2="800" y2="250" stroke="#38bdf8" stroke-width="0.6" stroke-dasharray="50 50"/>
+    <line x1="0" y1="280" x2="800" y2="280" stroke="#7dd3fc" stroke-width="0.5" stroke-dasharray="30 80"/>
+    <line x1="0" y1="320" x2="800" y2="320" stroke="#38bdf8" stroke-width="0.7" stroke-dasharray="40 60"/>
   </g>
 
 </svg>
