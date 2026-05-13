@@ -15,7 +15,7 @@ export default function Loader() {
                 <img src="/loading.svg" alt="Loading" className="loader-svg" />
                 <div className="loader-text-block">
                     <div className="loader-name">
-                        Matrix<span>TM26</span>
+                        MATRIXTM<span>26</span>
                     </div>
                     <div className="loader-bar-wrap">
                         <div className="loader-bar" />
