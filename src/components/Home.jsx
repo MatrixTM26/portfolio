@@ -128,7 +128,7 @@ export default function Home() {
                                     HI, IM TEUKU MAULANA
                                 </h2>
                                 <p className="profile-title">
-                                    Penetration Tester · Bug Hunter
+                                    CYBER SECURITY | PENETRATION TESTER
                                 </p>
                                 <div className="profile-badges">
                                     <div className="profile-badge">
