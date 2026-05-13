@@ -1,250 +1,247 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="50" height="50">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
   <defs>
 
-    <!-- ══ GRADIENTS ══ -->
-
-    <radialGradient id="gCore" cx="38%" cy="32%" r="68%">
-      <stop offset="0%"   stop-color="#050a1a"/>
-      <stop offset="30%"  stop-color="#0d2a6e"/>
-      <stop offset="70%"  stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#0ea5e9"/>
+    <!-- GRADIENTS -->
+    <radialGradient id="gNucleus" cx="35%" cy="28%" r="72%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="18%"  stop-color="#e0c3ff"/>
+      <stop offset="50%"  stop-color="#7c3aed"/>
+      <stop offset="80%"  stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#060420"/>
     </radialGradient>
 
-    <radialGradient id="gCorePulse" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#60a5fa" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
-    </radialGradient>
-
-    <linearGradient id="gArc1a" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#60a5fa" stop-opacity="0"/>
-      <stop offset="30%"  stop-color="#3b82f6"/>
-      <stop offset="70%"  stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </linearGradient>
-
-    <linearGradient id="gArc1b" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#1d4ed8" stop-opacity="0"/>
-      <stop offset="50%"  stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
-    </linearGradient>
-
-    <linearGradient id="gArc2a" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#1e3a8a" stop-opacity="0"/>
-      <stop offset="40%"  stop-color="#2563eb"/>
-      <stop offset="60%"  stop-color="#2dd4bf"/>
+    <radialGradient id="gHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.55"/>
+      <stop offset="60%"  stop-color="#3b82f6" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-    </linearGradient>
-
-    <linearGradient id="gArc3a" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#0f2560" stop-opacity="0"/>
-      <stop offset="35%"  stop-color="#1d4ed8"/>
-      <stop offset="65%"  stop-color="#0284c7"/>
-      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- Diamond/star spike fill -->
-    <radialGradient id="gSpike" cx="50%" cy="0%" r="100%">
-      <stop offset="0%"   stop-color="#e0f2fe"/>
-      <stop offset="60%"  stop-color="#60a5fa"/>
-      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- ══ FILTERS ══ -->
+    <linearGradient id="gO1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#c084fc" stop-opacity="0"/>
+      <stop offset="22%"  stop-color="#a855f7"/>
+      <stop offset="50%"  stop-color="#38bdf8"/>
+      <stop offset="78%"  stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
 
-    <filter id="fCore" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="12" result="b1"/>
+    <linearGradient id="gO2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#818cf8" stop-opacity="0"/>
+      <stop offset="22%"  stop-color="#6366f1"/>
+      <stop offset="50%"  stop-color="#22d3ee"/>
+      <stop offset="78%"  stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="gO3" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#7c3aed" stop-opacity="0"/>
+      <stop offset="22%"  stop-color="#8b5cf6"/>
+      <stop offset="50%"  stop-color="#2dd4bf"/>
+      <stop offset="78%"  stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </linearGradient>
+
+    <radialGradient id="gE1" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="45%"  stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gE2" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="45%"  stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gE3" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="45%"  stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- FILTERS -->
+    <filter id="fNuc" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="13" result="b1"/>
       <feGaussianBlur stdDeviation="4"  result="b2" in="SourceGraphic"/>
-      <feMerge>
-        <feMergeNode in="b1"/>
-        <feMergeNode in="b2"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feMerge><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-
-    <filter id="fArc" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3.5" result="b"/>
+    <filter id="fOrb" x="-12%" y="-12%" width="124%" height="124%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-
-    <filter id="fArcFat" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
+    <filter id="fE" x="-500%" y="-500%" width="1100%" height="1100%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-
-    <filter id="fDot" x="-300%" y="-300%" width="700%" height="700%">
-      <feGaussianBlur stdDeviation="4" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="fTrail" x="-300%" y="-300%" width="700%" height="700%">
+      <feGaussianBlur stdDeviation="12"/>
     </filter>
-
-    <filter id="fSpike" x="-50%" y="-100%" width="200%" height="300%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
+    <filter id="fCloud" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="fRim" x="-8%" y="-8%" width="116%" height="116%">
+      <feGaussianBlur stdDeviation="1.5" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
   </defs>
 
-  <!-- ════════════════════════════════════════════
-       RING 3 — OUTER TILTED RING
-  ════════════════════════════════════════════ -->
-  <g transform="translate(300,300) rotate(-10)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="-10" to="350" dur="7s" repeatCount="indefinite" additive="sum"/>
-
-    <path d="M 0,-210 A 210,210 0 0,1 179.5,105"
-      fill="none" stroke="url(#gArc3a)" stroke-width="12"
-      stroke-linecap="round" filter="url(#fArcFat)" opacity="0.85"/>
-    <path d="M 0,210 A 210,210 0 0,1 -179.5,-105"
-      fill="none" stroke="url(#gArc3a)" stroke-width="12"
-      stroke-linecap="round" filter="url(#fArcFat)" opacity="0.85"/>
-
-    <path d="M 0,-210 A 210,210 0 0,1 179.5,105"
-      fill="none" stroke="#93c5fd" stroke-width="1.5"
-      stroke-linecap="round" opacity="0.4"/>
-    <path d="M 0,210 A 210,210 0 0,1 -179.5,-105"
-      fill="none" stroke="#67e8f9" stroke-width="1.5"
-      stroke-linecap="round" opacity="0.4"/>
-
-    <circle cx="0" cy="-210" r="5" fill="#bfdbfe" filter="url(#fDot)"/>
-    <circle cx="179.5" cy="105" r="5" fill="#67e8f9" filter="url(#fDot)"/>
-    <circle cx="0" cy="210"  r="5" fill="#bfdbfe" filter="url(#fDot)"/>
-    <circle cx="-179.5" cy="-105" r="5" fill="#67e8f9" filter="url(#fDot)"/>
+  <!-- ══════════════════════════════════════
+       PROBABILITY CLOUD (quantum orbitals)
+  ══════════════════════════════════════ -->
+  <g transform="translate(300,300)" opacity="0.10">
+    <circle r="92"  fill="#a855f7" filter="url(#fCloud)"/>
+    <circle r="148" fill="#3b82f6" filter="url(#fCloud)"/>
+    <circle r="200" fill="#06b6d4" filter="url(#fCloud)"/>
   </g>
 
-  <!-- ════════════════════════════════════════════
-       RING 2 — MIDDLE RING
-  ════════════════════════════════════════════ -->
-  <g transform="translate(300,300) rotate(45)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="45" to="-315" dur="5s" repeatCount="indefinite" additive="sum"/>
-
-    <g transform="scale(1, 0.42)">
-      <path d="M -148,0 A 148,148 0 0,1 74,-128.2"
-        fill="none" stroke="url(#gArc2a)" stroke-width="14"
-        stroke-linecap="round" filter="url(#fArcFat)" opacity="0.90"/>
-      <path d="M 148,0 A 148,148 0 0,1 -74,128.2"
-        fill="none" stroke="url(#gArc2a)" stroke-width="14"
-        stroke-linecap="round" filter="url(#fArcFat)" opacity="0.90"/>
-
-      <path d="M -148,0 A 148,148 0 0,1 74,-128.2"
-        fill="none" stroke="#3b82f6" stroke-width="1.5"
-        stroke-linecap="round" opacity="0.5"/>
-      <path d="M 148,0 A 148,148 0 0,1 -74,128.2"
-        fill="none" stroke="#38bdf8" stroke-width="1.5"
-        stroke-linecap="round" opacity="0.5"/>
-
-      <circle cx="-148" cy="0"    r="5" fill="#60a5fa" filter="url(#fDot)"/>
-      <circle cx="74"   cy="-128.2" r="5" fill="#38bdf8" filter="url(#fDot)"/>
-      <circle cx="148"  cy="0"    r="5" fill="#60a5fa" filter="url(#fDot)"/>
-      <circle cx="-74"  cy="128.2" r="5" fill="#38bdf8" filter="url(#fDot)"/>
-    </g>
-  </g>
-
-  <!-- ════════════════════════════════════════════
-       RING 1 — INNER RING
-  ════════════════════════════════════════════ -->
-  <g transform="translate(300,300) rotate(-30)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="-30" to="330" dur="5s" repeatCount="indefinite" additive="sum"/>
-
-    <g transform="scale(0.45, 1)">
-      <path d="M 0,-88 A 88,88 0 0,1 76.2,44"
-        fill="none" stroke="url(#gArc1a)" stroke-width="13"
-        stroke-linecap="round" filter="url(#fArc)" opacity="1"/>
-      <path d="M 0,88 A 88,88 0 0,1 -76.2,-44"
-        fill="none" stroke="url(#gArc1b)" stroke-width="13"
-        stroke-linecap="round" filter="url(#fArc)" opacity="1"/>
-
-      <path d="M 0,-88 A 88,88 0 0,1 76.2,44"
-        fill="none" stroke="#7dd3fc" stroke-width="2"
-        stroke-linecap="round" opacity="0.55"/>
-      <path d="M 0,88 A 88,88 0 0,1 -76.2,-44"
-        fill="none" stroke="#7dd3fc" stroke-width="2"
-        stroke-linecap="round" opacity="0.55"/>
-
-      <circle cx="0"     cy="-88" r="5" fill="#7dd3fc" filter="url(#fDot)"/>
-      <circle cx="76.2"  cy="44"  r="5" fill="#7dd3fc" filter="url(#fDot)"/>
-      <circle cx="0"     cy="88"  r="5" fill="#7dd3fc" filter="url(#fDot)"/>
-      <circle cx="-76.2" cy="-44" r="5" fill="#7dd3fc" filter="url(#fDot)"/>
-    </g>
-  </g>
-
-  <!-- ════════════════════════════════════════════
-       CORE — 8-point star / diamond
-  ════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════
+       ORBIT 1 — equatorial plane
+       Ellipse: rx=215, ry=60
+       Electron: CW 7s
+  ══════════════════════════════════════ -->
   <g transform="translate(300,300)">
+    <!-- back arc (dimmer, behind nucleus) -->
+    <path d="M -215,0 A 215,60 0 0,0 215,0"
+      fill="none" stroke="url(#gO1)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
+    <!-- front arc -->
+    <path d="M -215,0 A 215,60 0 0,1 215,0"
+      fill="none" stroke="url(#gO1)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
 
-    <circle cx="0" cy="0" r="52" fill="url(#gCorePulse)">
-      <animate attributeName="r"       values="42;60;42" dur="2s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2s" repeatCount="indefinite"/>
-    </circle>
-
-    <g filter="url(#fCore)">
-      <polygon points="0,-44 12,-12 44,0 12,12 0,44 -12,12 -44,0 -12,-12"
-        fill="url(#gCore)">
-        <animate attributeName="opacity" values="0.88;1;0.88" dur="2s" repeatCount="indefinite"/>
-      </polygon>
-      <polygon points="0,-36 9.4,-9.4 36,0 9.4,9.4 0,36 -9.4,9.4 -36,0 -9.4,-9.4"
-        fill="url(#gCoreShine)" opacity="0.35">
-        <animateTransform attributeName="transform" type="rotate"
-          from="22.5" to="382.5" dur="5s" repeatCount="indefinite"/>
-      </polygon>
+    <!-- electron 1 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="7s" repeatCount="indefinite"/>
+      <!-- trail glow -->
+      <circle cx="215" cy="0" r="18" fill="#3b82f6" opacity="0.2" filter="url(#fTrail)"/>
+      <!-- electron body -->
+      <circle cx="215" cy="0" r="7"  fill="url(#gE1)" filter="url(#fE)"/>
+      <circle cx="215" cy="0" r="2.8" fill="#ffffff"/>
     </g>
-
-    <polygon points="0,-18 10,0 0,18 -10,0" fill="#f0f9ff" opacity="0.9" filter="url(#fCore)">
-      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-    </polygon>
-
-    <g opacity="0.55" filter="url(#fSpike)">
-      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)"/>
-      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(90)"/>
-      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(180)"/>
-      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(270)"/>
-    </g>
-
-    <g opacity="0.30" filter="url(#fSpike)">
-      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#93c5fd" transform="rotate(45)"/>
-      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#67e8f9" transform="rotate(135)"/>
-      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#93c5fd" transform="rotate(225)"/>
-      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#67e8f9" transform="rotate(315)"/>
-    </g>
-
   </g>
 
-  <!-- ════════════════════════════════════════════
-       OUTER CIRCULAR FRAME
-  ════════════════════════════════════════════ -->
-  <circle cx="300" cy="300" r="248"
-    fill="none"
-    stroke="url(#gArc3a)"
-    stroke-width="1"
-    stroke-dasharray="60 25"
-    opacity="0.35"/>
+  <!-- ══════════════════════════════════════
+       ORBIT 2 — tilted 60°
+       Ellipse: rx=200, ry=56
+       Electron: CCW 11s
+  ══════════════════════════════════════ -->
+  <g transform="translate(300,300) rotate(60)">
+    <path d="M -200,0 A 200,56 0 0,0 200,0"
+      fill="none" stroke="url(#gO2)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
+    <path d="M -200,0 A 200,56 0 0,1 200,0"
+      fill="none" stroke="url(#gO2)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
 
-  <!-- 8 tiny orbs on frame -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="11s" repeatCount="indefinite"/>
+      <circle cx="200" cy="0" r="17" fill="#6366f1" opacity="0.2" filter="url(#fTrail)"/>
+      <circle cx="200" cy="0" r="7"  fill="url(#gE2)" filter="url(#fE)"/>
+      <circle cx="200" cy="0" r="2.8" fill="#ffffff"/>
+    </g>
+  </g>
+
+  <!-- ══════════════════════════════════════
+       ORBIT 3 — tilted 120°
+       Ellipse: rx=188, ry=52
+       Electron: CW 15s
+  ══════════════════════════════════════ -->
+  <g transform="translate(300,300) rotate(120)">
+    <path d="M -188,0 A 188,52 0 0,0 188,0"
+      fill="none" stroke="url(#gO3)" stroke-width="1.8" opacity="0.22" filter="url(#fOrb)"/>
+    <path d="M -188,0 A 188,52 0 0,1 188,0"
+      fill="none" stroke="url(#gO3)" stroke-width="2.5" opacity="0.9" filter="url(#fOrb)"/>
+
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="15s" repeatCount="indefinite"/>
+      <circle cx="188" cy="0" r="16" fill="#0891b2" opacity="0.2" filter="url(#fTrail)"/>
+      <circle cx="188" cy="0" r="7"  fill="url(#gE3)" filter="url(#fE)"/>
+      <circle cx="188" cy="0" r="2.8" fill="#ffffff"/>
+    </g>
+  </g>
+
+  <!-- ══════════════════════════════════════
+       NUCLEUS
+  ══════════════════════════════════════ -->
+
+  <!-- outer energy halo pulses -->
+  <circle cx="300" cy="300" r="60" fill="url(#gHalo)" filter="url(#fCloud)">
+    <animate attributeName="r"       values="50;72;50"     dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0.15;0.7" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="300" r="40" fill="url(#gHalo)" filter="url(#fCloud)">
+    <animate attributeName="r"       values="32;50;32"       dur="2.9s" begin="0.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.2;0.9"    dur="2.9s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- nucleus sphere -->
+  <g transform="translate(300,300)" filter="url(#fNuc)">
+    <!-- rim glow ring -->
+    <circle r="43" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity="0.7" filter="url(#fRim)"/>
+    <circle r="43" fill="none" stroke="#22d3ee" stroke-width="1"   opacity="0.4"/>
+
+    <!-- main sphere -->
+    <circle r="38" fill="url(#gNucleus)">
+      <animate attributeName="r" values="36;41;36" dur="4s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- equatorial band — gives 3D depth -->
+    <ellipse cx="0" cy="3" rx="38" ry="9"
+      fill="none" stroke="#818cf8" stroke-width="1.2" opacity="0.45"/>
+
+    <!-- sub-rings -->
+    <circle r="26" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.3"/>
+    <circle r="15" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.35"/>
+
+    <!-- specular highlight -->
+    <ellipse cx="-11" cy="-14" rx="12" ry="8" fill="white" opacity="0.22"/>
+    <ellipse cx="-13" cy="-16" rx="5.5" ry="3.5" fill="white" opacity="0.38"/>
+
+    <!-- nucleus core bright point -->
+    <circle r="6.5" fill="white" opacity="0.95">
+      <animate attributeName="opacity" values="0.75;1;0.75" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2.5" fill="white"/>
+  </g>
+
+  <!-- ══════════════════════════════════════
+       OUTER BOUNDARY — quantum shell hint
+  ══════════════════════════════════════ -->
+  <circle cx="300" cy="300" r="250"
+    fill="none" stroke="#4f46e5"
+    stroke-width="0.7" stroke-dasharray="4 20" opacity="0.28"/>
+
+  <!-- 12 node dots -->
   <g transform="translate(300,300)">
-    <circle cy="-248" r="2.5" fill="#93c5fd" filter="url(#fDot)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="0s"    repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#c4b5fd">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="0s"    repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(45)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="0.625s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(30)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="0.5s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#93c5fd" filter="url(#fDot)" transform="rotate(90)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="1.25s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(60)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="1.0s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(135)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="1.875s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(90)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="1.5s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#93c5fd" filter="url(#fDot)" transform="rotate(180)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="2.5s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(120)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="2.0s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(225)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="3.125s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(150)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="2.5s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#93c5fd" filter="url(#fDot)" transform="rotate(270)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="3.75s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(180)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="3.0s"  repeatCount="indefinite"/>
     </circle>
-    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(315)">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="4.375s" repeatCount="indefinite"/>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(210)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="3.5s"  repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(240)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="4.0s"  repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(270)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="4.5s"  repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-250" r="1.8" fill="#c4b5fd" transform="rotate(300)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="5.0s"  repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-250" r="1.8" fill="#67e8f9" transform="rotate(330)">
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" begin="5.5s"  repeatCount="indefinite"/>
     </circle>
   </g>
 
