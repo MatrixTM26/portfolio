@@ -1,1 +1,186 @@
-<svg width="60" height="60" viewBox="0 0 50 50"><g><circle cx="40" cy="25" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0s" repeatCount="indefinite"></animate></circle><line x1="40" y1="25" x2="38.703181864639014" y2="31.101049646137003" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0s" repeatCount="indefinite"></animate></line><line x1="40" y1="25" x2="35.03695909538287" y2="36.14717238216092" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.1s" repeatCount="indefinite"></animate></line><line x1="40" y1="25" x2="29.635254915624213" y2="39.265847744427305" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.2s" repeatCount="indefinite"></animate></line></g><g><circle cx="38.703181864639014" cy="31.101049646137003" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.1s" repeatCount="indefinite"></animate></circle><line x1="38.703181864639014" y1="31.101049646137003" x2="35.03695909538287" y2="36.14717238216092" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.1s" repeatCount="indefinite"></animate></line><line x1="38.703181864639014" y1="31.101049646137003" x2="29.635254915624213" y2="39.265847744427305" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.2s" repeatCount="indefinite"></animate></line><line x1="38.703181864639014" y1="31.101049646137003" x2="23.4320730509852" y2="39.917828430524104" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"></animate></line></g><g><circle cx="35.03695909538287" cy="36.14717238216092" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.2s" repeatCount="indefinite"></animate></circle><line x1="35.03695909538287" y1="36.14717238216092" x2="29.635254915624213" y2="39.265847744427305" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.2s" repeatCount="indefinite"></animate></line><line x1="35.03695909538287" y1="36.14717238216092" x2="23.4320730509852" y2="39.917828430524104" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"></animate></line><line x1="35.03695909538287" y1="36.14717238216092" x2="17.500000000000004" y2="37.99038105676658" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.4s" repeatCount="indefinite"></animate></line></g><g><circle cx="29.635254915624213" cy="39.265847744427305" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"></animate></circle><line x1="29.635254915624213" y1="39.265847744427305" x2="23.4320730509852" y2="39.917828430524104" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.30000000000000004s" repeatCount="indefinite"></animate></line><line x1="29.635254915624213" y1="39.265847744427305" x2="17.500000000000004" y2="37.99038105676658" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.4s" repeatCount="indefinite"></animate></line><line x1="29.635254915624213" y1="39.265847744427305" x2="12.86474508437579" y2="33.8167787843871" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"></animate></line></g><g><circle cx="23.4320730509852" cy="39.917828430524104" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.4s" repeatCount="indefinite"></animate></circle><line x1="23.4320730509852" y1="39.917828430524104" x2="17.500000000000004" y2="37.99038105676658" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.4s" repeatCount="indefinite"></animate></line><line x1="23.4320730509852" y1="39.917828430524104" x2="12.86474508437579" y2="33.8167787843871" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"></animate></line><line x1="23.4320730509852" y1="39.917828430524104" x2="10.327785988992915" y2="28.11867536226639" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"></animate></line></g><g><circle cx="17.500000000000004" cy="37.99038105676658" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.5s" repeatCount="indefinite"></animate></circle><line x1="17.500000000000004" y1="37.99038105676658" x2="12.86474508437579" y2="33.8167787843871" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"></animate></line><line x1="17.500000000000004" y1="37.99038105676658" x2="10.327785988992915" y2="28.11867536226639" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"></animate></line><line x1="17.500000000000004" y1="37.99038105676658" x2="10.327785988992915" y2="21.881324637733613" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"></animate></line></g><g><circle cx="12.86474508437579" cy="33.8167787843871" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"></animate></circle><line x1="12.86474508437579" y1="33.8167787843871" x2="10.327785988992915" y2="28.11867536226639" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.6000000000000001s" repeatCount="indefinite"></animate></line><line x1="12.86474508437579" y1="33.8167787843871" x2="10.327785988992915" y2="21.881324637733613" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"></animate></line><line x1="12.86474508437579" y1="33.8167787843871" x2="12.864745084375787" y2="16.183221215612903" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"></animate></line></g><g><circle cx="10.327785988992915" cy="28.11867536226639" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"></animate></circle><line x1="10.327785988992915" y1="28.11867536226639" x2="10.327785988992915" y2="21.881324637733613" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.7000000000000001s" repeatCount="indefinite"></animate></line><line x1="10.327785988992915" y1="28.11867536226639" x2="12.864745084375787" y2="16.183221215612903" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"></animate></line><line x1="10.327785988992915" y1="28.11867536226639" x2="17.499999999999993" y2="12.009618943233423" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.9s" repeatCount="indefinite"></animate></line></g><g><circle cx="10.327785988992915" cy="21.881324637733613" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.8s" repeatCount="indefinite"></animate></circle><line x1="10.327785988992915" y1="21.881324637733613" x2="12.864745084375787" y2="16.183221215612903" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"></animate></line><line x1="10.327785988992915" y1="21.881324637733613" x2="17.499999999999993" y2="12.009618943233423" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.9s" repeatCount="indefinite"></animate></line><line x1="10.327785988992915" y1="21.881324637733613" x2="23.432073050985185" y2="10.0821715694759" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1s" repeatCount="indefinite"></animate></line></g><g><circle cx="12.864745084375787" cy="16.183221215612903" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="0.9s" repeatCount="indefinite"></animate></circle><line x1="12.864745084375787" y1="16.183221215612903" x2="17.499999999999993" y2="12.009618943233423" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="0.9s" repeatCount="indefinite"></animate></line><line x1="12.864745084375787" y1="16.183221215612903" x2="23.432073050985185" y2="10.0821715694759" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1s" repeatCount="indefinite"></animate></line><line x1="12.864745084375787" y1="16.183221215612903" x2="29.63525491562421" y2="10.734152255572695" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.1s" repeatCount="indefinite"></animate></line></g><g><circle cx="17.499999999999993" cy="12.009618943233423" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="1s" repeatCount="indefinite"></animate></circle><line x1="17.499999999999993" y1="12.009618943233423" x2="23.432073050985185" y2="10.0821715694759" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1s" repeatCount="indefinite"></animate></line><line x1="17.499999999999993" y1="12.009618943233423" x2="29.63525491562421" y2="10.734152255572695" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.1s" repeatCount="indefinite"></animate></line><line x1="17.499999999999993" y1="12.009618943233423" x2="35.036959095382876" y2="13.85282761783909" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.2000000000000002s" repeatCount="indefinite"></animate></line></g><g><circle cx="23.432073050985185" cy="10.0821715694759" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="1.1s" repeatCount="indefinite"></animate></circle><line x1="23.432073050985185" y1="10.0821715694759" x2="29.63525491562421" y2="10.734152255572695" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.1s" repeatCount="indefinite"></animate></line><line x1="23.432073050985185" y1="10.0821715694759" x2="35.036959095382876" y2="13.85282761783909" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.2000000000000002s" repeatCount="indefinite"></animate></line><line x1="23.432073050985185" y1="10.0821715694759" x2="38.703181864639014" y2="18.898950353862997" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.3s" repeatCount="indefinite"></animate></line></g><g><circle cx="29.63525491562421" cy="10.734152255572695" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="1.2000000000000002s" repeatCount="indefinite"></animate></circle><line x1="29.63525491562421" y1="10.734152255572695" x2="35.036959095382876" y2="13.85282761783909" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.2000000000000002s" repeatCount="indefinite"></animate></line><line x1="29.63525491562421" y1="10.734152255572695" x2="38.703181864639014" y2="18.898950353862997" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.3s" repeatCount="indefinite"></animate></line><line x1="29.63525491562421" y1="10.734152255572695" x2="40" y2="24.999999999999982" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.4000000000000001s" repeatCount="indefinite"></animate></line></g><g><circle cx="35.036959095382876" cy="13.85282761783909" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="1.3s" repeatCount="indefinite"></animate></circle><line x1="35.036959095382876" y1="13.85282761783909" x2="38.703181864639014" y2="18.898950353862997" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.3s" repeatCount="indefinite"></animate></line><line x1="35.036959095382876" y1="13.85282761783909" x2="40" y2="24.999999999999982" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.4000000000000001s" repeatCount="indefinite"></animate></line><line x1="35.036959095382876" y1="13.85282761783909" x2="38.70318186463902" y2="31.101049646136996" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"></animate></line></g><g><circle cx="38.703181864639014" cy="18.898950353862997" r="1.5" fill="#60A5FA"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" begin="1.4000000000000001s" repeatCount="indefinite"></animate></circle><line x1="38.703181864639014" y1="18.898950353862997" x2="40" y2="24.999999999999982" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.4000000000000001s" repeatCount="indefinite"></animate></line><line x1="38.703181864639014" y1="18.898950353862997" x2="38.70318186463902" y2="31.101049646136996" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"></animate></line><line x1="38.703181864639014" y1="18.898950353862997" x2="35.03695909538287" y2="36.14717238216092" stroke="#60A5FA" stroke-width="0.5" opacity="0.3"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" begin="1.6s" repeatCount="indefinite"></animate></line></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+
+    <!-- Spinner arc gradients -->
+    <linearGradient id="gArc1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0ea5e9" stop-opacity="0"/>
+      <stop offset="40%"  stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="gArc2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#1d4ed8" stop-opacity="0"/>
+      <stop offset="45%"  stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="gArc3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#0c1a5e" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Leading dot -->
+    <radialGradient id="gDot" cx="40%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="45%"  stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gear: pure navy shades only -->
+    <radialGradient id="gGearBody" cx="35%" cy="30%" r="70%">
+      <stop offset="0%"   stop-color="#1e3a8a"/>
+      <stop offset="55%"  stop-color="#0f2056"/>
+      <stop offset="100%" stop-color="#060d2e"/>
+    </radialGradient>
+
+    <radialGradient id="gGearFace" cx="38%" cy="33%" r="65%">
+      <stop offset="0%"   stop-color="#1e40af"/>
+      <stop offset="50%"  stop-color="#0d1b5e"/>
+      <stop offset="100%" stop-color="#060d2e"/>
+    </radialGradient>
+
+    <radialGradient id="gGearHub" cx="38%" cy="32%" r="65%">
+      <stop offset="0%"   stop-color="#2563eb"/>
+      <stop offset="55%"  stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0c1445"/>
+    </radialGradient>
+
+    <!-- Gear tooth edge highlight: subtle navy-light -->
+    <linearGradient id="gToothEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#3b82f6" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.1"/>
+    </linearGradient>
+
+  </defs>
+
+  <!-- ══ TRACK RINGS ══ -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.2"/>
+  <circle cx="100" cy="100" r="68" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.2"/>
+  <circle cx="100" cy="100" r="48" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.2"/>
+
+  <!-- ══ RING 1 — outer CW 2.4s ══ -->
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="2.4s" repeatCount="indefinite" additive="sum"/>
+    <circle r="88" fill="none" stroke="url(#gArc1)" stroke-width="5"
+      stroke-dasharray="387 166" stroke-linecap="round" transform="rotate(-126)"/>
+  </g>
+
+  <!-- ══ RING 2 — middle CCW 1.8s ══ -->
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="-360 0 0" dur="1.8s" repeatCount="indefinite" additive="sum"/>
+    <circle r="68" fill="none" stroke="url(#gArc2)" stroke-width="5"
+      stroke-dasharray="320 107" stroke-linecap="round" transform="rotate(-100)"/>
+  </g>
+
+  <!-- ══ RING 3 — inner CW 1.2s ══ -->
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/>
+    <circle r="48" fill="none" stroke="url(#gArc3)" stroke-width="5"
+      stroke-dasharray="196 106" stroke-linecap="round" transform="rotate(-80)"/>
+  </g>
+
+  <!-- ══ LEADING DOTS ══ -->
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="2.4s" repeatCount="indefinite" additive="sum"/>
+    <circle cx="0" cy="-88" r="5.5" fill="url(#gDot)"/>
+    <circle cx="0" cy="-88" r="2"   fill="#ffffff"/>
+  </g>
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="-360 0 0" dur="1.8s" repeatCount="indefinite" additive="sum"/>
+    <circle cx="0" cy="-68" r="5"   fill="url(#gDot)"/>
+    <circle cx="0" cy="-68" r="1.8" fill="#ffffff"/>
+  </g>
+  <g transform="translate(100,100)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/>
+    <circle cx="0" cy="-48" r="4.5" fill="url(#gDot)"/>
+    <circle cx="0" cy="-48" r="1.5" fill="#ffffff"/>
+  </g>
+
+  <!-- ══ GEAR CORE — mathematically precise 8-tooth ══
+       r_root=18, r_tip=26, 8 teeth × 45°
+       tooth width=14° (±7°), root arc=31°
+       Computed with Python sin/cos — exact coordinates
+  ══ -->
+  <g transform="translate(100,100)">
+    <!-- Gear slowly rotates CW -->
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite" additive="sum"/>
+
+    <!-- GEAR BODY — full shape with teeth -->
+    <path d="
+      M -2.816,-17.778
+      L -3.169,-25.806
+      A 26,26 0 0,1 3.169,-25.806
+      L 2.816,-17.778
+      A 18,18 0 0,1 10.58,-14.562
+      L 16.007,-20.488
+      A 26,26 0 0,1 20.488,-16.007
+      L 14.562,-10.58
+      A 18,18 0 0,1 17.778,-2.816
+      L 25.806,-3.169
+      A 26,26 0 0,1 25.806,3.169
+      L 17.778,2.816
+      A 18,18 0 0,1 14.562,10.58
+      L 20.488,16.007
+      A 26,26 0 0,1 16.007,20.488
+      L 10.58,14.562
+      A 18,18 0 0,1 2.816,17.778
+      L 3.169,25.806
+      A 26,26 0 0,1 -3.169,25.806
+      L -2.816,17.778
+      A 18,18 0 0,1 -10.58,14.562
+      L -16.007,20.488
+      A 26,26 0 0,1 -20.488,16.007
+      L -14.562,10.58
+      A 18,18 0 0,1 -17.778,2.816
+      L -25.806,3.169
+      A 26,26 0 0,1 -25.806,-3.169
+      L -17.778,-2.816
+      A 18,18 0 0,1 -14.562,-10.58
+      L -20.488,-16.007
+      A 26,26 0 0,1 -16.007,-20.488
+      L -10.58,-14.562
+      A 18,18 0 0,1 -2.816,-17.778
+      Z"
+      fill="url(#gGearBody)"
+      stroke="#1e40af" stroke-width="0.7" stroke-linejoin="round"/>
+
+    <!-- Gear face disc (inner flat face) -->
+    <circle r="17" fill="url(#gGearFace)"/>
+
+    <!-- Inner ring detail -->
+    <circle r="17" fill="none" stroke="#1e3a8a" stroke-width="1" opacity="0.7"/>
+    <circle r="12" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.5"/>
+
+    <!-- 8 spokes -->
+    <g stroke="#1e40af" stroke-width="0.8" opacity="0.6">
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(45)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(90)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(135)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(180)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(225)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(270)"/>
+      <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(315)"/>
+    </g>
+
+    <!-- Hub center circle -->
+    <circle r="5.5" fill="url(#gGearHub)"/>
+    <circle r="5.5" fill="none" stroke="#2563eb" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Specular highlight top-left -->
+    <ellipse cx="-1.5" cy="-2" rx="2.5" ry="1.5" fill="#3b82f6" opacity="0.35"/>
+
+    <!-- Center axle dot -->
+    <circle r="1.8" fill="#1e40af">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+  </g>
+
+</svg>
