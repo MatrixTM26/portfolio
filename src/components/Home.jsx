@@ -32,10 +32,7 @@ export default function Home() {
     return (
         <section className="home" id="home">
             <div className="home-parallax-layer" data-parallax="slow" />
-            <div
-                className="home-parallax-layer home-parallax-layer-2"
-                data-parallax="med"
-            />
+            <div className="home-parallax-layer-2" data-parallax="med" />
             <div className="home-grid-lines" data-parallax="slow" />
 
             <div className="container">
@@ -43,6 +40,7 @@ export default function Home() {
                     <div
                         className={`home-left reveal-left${left.visible ? " visible" : ""}`}
                         ref={left.ref}
+                        data-parallax="subtle"
                     >
                         <div className="home-headline-block">
                             <p className="home-role-label">
@@ -65,7 +63,7 @@ export default function Home() {
                             systems one step ahead of threats.
                         </p>
 
-                        <div className="home-stats">
+                        <div className="home-stats" data-parallax="subtle">
                             {STATS.map((s, i) => (
                                 <div key={s.label} className="home-stat">
                                     <span className="home-stat-number">
@@ -121,7 +119,7 @@ export default function Home() {
                                 <div className="profile-circle">
                                     <img
                                         src="/profile.png"
-                                        alt="TEUKU MAULANA A.K.A. MATRIXTM26"
+                                        alt="MatrixTM26"
                                         className="profile-img"
                                         onError={e => {
                                             e.target.src = "/profile.png";
@@ -130,13 +128,15 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="profile-info">
+                            <div
+                                className="profile-info"
+                                data-parallax="subtle"
+                            >
                                 <h2 className="profile-name">
-                                    HI, IM TEUKU MAULANA
+                                    HI,IM TEUKU MAULANA
                                 </h2>
                                 <p className="profile-title">
-                                    Cyber Security | Penetration Tester | Bug
-                                    Hunter
+                                    Penetration Tester · Bug Hunter
                                 </p>
                                 <div className="profile-badges">
                                     <div className="profile-badge">

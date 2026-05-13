@@ -267,3 +267,8 @@ body {
         --nav-h: 60px;
     }
 }
+
+[data-parallax] {
+    will-change: transform;
+    transition: transform 0.05s linear;
+}

@@ -2,42 +2,34 @@ import { useEffect } from "react";
 
 export function useScrollManager() {
     useEffect(() => {
-        let lastY = window.scrollY;
         let ticking = false;
 
-        const elements = {
-            parallaxSlow: '[data-parallax="slow"]',
-            parallaxMed: '[data-parallax="med"]',
-            parallaxFast: '[data-parallax="fast"]',
-            parallaxReverse: '[data-parallax="reverse"]',
-            floatY: "[data-float]"
+        const SPEEDS = {
+            slow: 0.06,
+            med: 0.12,
+            fast: 0.22,
+            reverse: -0.09,
+            card: 0.05,
+            "card-alt": -0.04,
+            subtle: 0.03
         };
 
-        const SPEEDS = { slow: 0.08, med: 0.18, fast: 0.32, reverse: -0.14 };
+        const getOffset = (el, speed) => {
+            const rect = el.getBoundingClientRect();
+            const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+            return center * speed;
+        };
 
         const update = () => {
-            const y = window.scrollY;
-
             Object.entries(SPEEDS).forEach(([key, speed]) => {
-                const selector = `[data-parallax="${key}"]`;
-                document.querySelectorAll(selector).forEach(el => {
-                    const rect =
-                        el.closest("section")?.getBoundingClientRect() ||
-                        el.getBoundingClientRect();
-                    const center =
-                        rect.top + rect.height / 2 - window.innerHeight / 2;
-                    el.style.transform = `translateY(${center * speed}px)`;
-                });
+                document
+                    .querySelectorAll(`[data-parallax="${key}"]`)
+                    .forEach(el => {
+                        const offset = getOffset(el, speed);
+                        el.style.transform = `translateY(${offset}px)`;
+                        el.style.willChange = "transform";
+                    });
             });
-
-            document.querySelectorAll("[data-float]").forEach(el => {
-                const speed = parseFloat(
-                    el.getAttribute("data-float") || "0.05"
-                );
-                el.style.transform = `translateY(${y * speed}px)`;
-            });
-
-            lastY = y;
             ticking = false;
         };
 
