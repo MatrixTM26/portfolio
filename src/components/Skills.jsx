@@ -85,8 +85,6 @@ const TOOLS = [
     { icon: "fa-brands fa-linux", name: "Kali Linux" }
 ];
 
-const ALT = ["card", "card-alt", "card", "card-alt"];
-
 function SkillBar({ icon, name, pct, visible, delay }) {
     return (
         <div
@@ -123,7 +121,7 @@ export default function Skills() {
             ([entry]) => {
                 if (entry.isIntersecting) setBarsVisible(true);
             },
-            { threshold: 0.1 }
+            { threshold: 0.15 }
         );
         if (barsRef.current) observer.observe(barsRef.current);
         return () => observer.disconnect();
@@ -132,13 +130,15 @@ export default function Skills() {
     return (
         <section className="section skills" id="skills">
             <div className="skills-bg-layer" data-parallax="slow" />
-            <div className="skills-bg-layer-2" data-parallax="med" />
+            <div
+                className="skills-bg-layer skills-bg-layer-2"
+                data-parallax="med"
+            />
 
             <div className="container">
                 <div
                     className={`skills-header reveal${header.visible ? " visible" : ""}`}
                     ref={header.ref}
-                    data-parallax="subtle"
                 >
                     <p className="section-label">What I Do</p>
                     <h2 className="section-title">Skills & Expertise</h2>
@@ -153,7 +153,6 @@ export default function Skills() {
                     <div
                         className={`skills-proficiency reveal-left${leftCol.visible ? " visible" : ""}`}
                         ref={leftCol.ref}
-                        data-parallax="card"
                     >
                         <div ref={barsRef}>
                             {PROFICIENCY.map((s, i) => (
@@ -177,7 +176,6 @@ export default function Skills() {
                             <div
                                 key={cat.name}
                                 className="skill-cat-card"
-                                data-parallax={ALT[i]}
                                 style={{ transitionDelay: `${i * 120}ms` }}
                             >
                                 <div className="skill-cat-top">
@@ -203,7 +201,6 @@ export default function Skills() {
                 <div
                     className={`tools-block reveal${toolsRow.visible ? " visible" : ""}`}
                     ref={toolsRow.ref}
-                    data-parallax="card"
                 >
                     <p className="tools-block-title">
                         <i className="fa-solid fa-screwdriver-wrench" /> Tools &
@@ -214,9 +211,6 @@ export default function Skills() {
                             <span
                                 key={tool.name}
                                 className="tool-pill"
-                                data-parallax={
-                                    i % 2 === 0 ? "card" : "card-alt"
-                                }
                                 style={{ transitionDelay: `${i * 50}ms` }}
                             >
                                 <i className={tool.icon} />

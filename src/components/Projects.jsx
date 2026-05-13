@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Projects.css";
 
@@ -95,15 +95,6 @@ const FALLBACK = [
     }
 ];
 
-const PARALLAX_CYCLE = [
-    "card",
-    "card-alt",
-    "card",
-    "card-alt",
-    "card",
-    "card-alt"
-];
-
 function getIcon(name, lang) {
     const n = (name || "").toLowerCase();
     if (n.includes("ctf") || n.includes("hack") || n.includes("pwn"))
@@ -129,13 +120,11 @@ function getIcon(name, lang) {
 }
 
 function Card({ repo, index }) {
-    const { ref, visible } = useScrollReveal({ threshold: 0.06 });
-    const pKey = PARALLAX_CYCLE[index % PARALLAX_CYCLE.length];
+    const { ref, visible } = useScrollReveal({ threshold: 0.08 });
     return (
         <div
             ref={ref}
             className={`project-card reveal${visible ? " visible" : ""}`}
-            data-parallax={pKey}
             style={{ transitionDelay: `${(index % 3) * 100}ms` }}
         >
             <div className="project-card-top">
@@ -222,7 +211,7 @@ export default function Projects() {
         )
             .then(r => {
                 clearTimeout(timer);
-                if (!r.ok) throw new Error();
+                if (!r.ok) throw new Error(`${r.status}`);
                 return r.json();
             })
             .then(data => {
@@ -262,7 +251,6 @@ export default function Projects() {
                 <div
                     className={`projects-header reveal${header.visible ? " visible" : ""}`}
                     ref={header.ref}
-                    data-parallax="subtle"
                 >
                     <div>
                         <p className="section-label">Open Source</p>
@@ -298,6 +286,7 @@ export default function Projects() {
                                 <Card key={repo.id} repo={repo} index={i} />
                             ))}
                         </div>
+
                         {repos.length > 6 && (
                             <div className="projects-show-more">
                                 <button

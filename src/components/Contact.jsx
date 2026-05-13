@@ -23,8 +23,6 @@ const CHANNELS = [
     }
 ];
 
-const CH_PARALLAX = ["card", "card-alt", "card"];
-
 export default function Contact() {
     const [form, setForm] = useState({
         name: "",
@@ -60,13 +58,15 @@ export default function Contact() {
     return (
         <section className="section contact-section" id="contact">
             <div className="contact-bg-layer" data-parallax="slow" />
-            <div className="contact-bg-layer-2" data-parallax="med" />
+            <div
+                className="contact-bg-layer contact-bg-layer-2"
+                data-parallax="med"
+            />
 
             <div className="container">
                 <div
                     className={`reveal${header.visible ? " visible" : ""}`}
                     ref={header.ref}
-                    data-parallax="subtle"
                 >
                     <p className="section-label">Get in Touch</p>
                     <h2 className="section-title">Contact Me</h2>
@@ -90,7 +90,6 @@ export default function Contact() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="contact-channel"
-                                    data-parallax={CH_PARALLAX[i]}
                                     style={{ transitionDelay: `${i * 100}ms` }}
                                 >
                                     <div className="ch-icon-wrap">
@@ -108,10 +107,7 @@ export default function Contact() {
                                 </a>
                             ))}
                         </div>
-                        <div
-                            className="contact-availability"
-                            data-parallax="card-alt"
-                        >
+                        <div className="contact-availability">
                             <span className="avail-dot" />
                             <span className="avail-text">
                                 Currently <strong>available</strong> for
@@ -124,7 +120,6 @@ export default function Contact() {
                     <div
                         className={`contact-form reveal-right${rightCol.visible ? " visible" : ""}`}
                         ref={rightCol.ref}
-                        data-parallax="card"
                     >
                         <div className="form-row">
                             <div className="form-group">

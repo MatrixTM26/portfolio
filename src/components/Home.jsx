@@ -32,7 +32,10 @@ export default function Home() {
     return (
         <section className="home" id="home">
             <div className="home-parallax-layer" data-parallax="slow" />
-            <div className="home-parallax-layer-2" data-parallax="med" />
+            <div
+                className="home-parallax-layer home-parallax-layer-2"
+                data-parallax="med"
+            />
             <div className="home-grid-lines" data-parallax="slow" />
 
             <div className="container">
@@ -40,7 +43,6 @@ export default function Home() {
                     <div
                         className={`home-left reveal-left${left.visible ? " visible" : ""}`}
                         ref={left.ref}
-                        data-parallax="subtle"
                     >
                         <div className="home-headline-block">
                             <p className="home-role-label">
@@ -63,7 +65,7 @@ export default function Home() {
                             systems one step ahead of threats.
                         </p>
 
-                        <div className="home-stats" data-parallax="subtle">
+                        <div className="home-stats">
                             {STATS.map((s, i) => (
                                 <div key={s.label} className="home-stat">
                                     <span className="home-stat-number">
@@ -128,16 +130,13 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div
-                                className="profile-info"
-                                data-parallax="subtle"
-                            >
+                            <div className="profile-info">
                                 <h2 className="profile-name">
-                                    HI,IM TEUKU MAULANA
+                                    HI, IM TEUKU MAULANA
                                 </h2>
                                 <p className="profile-title">
-                                    CYBER SECURITY | BUG HUNTER | PENETRATION
-                                    TESTER
+                                    Cyber Security | Penetration Tester | Bug
+                                    Hunter
                                 </p>
                                 <div className="profile-badges">
                                     <div className="profile-badge">
