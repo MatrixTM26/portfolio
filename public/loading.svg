@@ -1,129 +1,280 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="80" height="80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="90" height="90">
   <defs>
 
-    <linearGradient id="gradCore" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f5ff"/>
-      <stop offset="100%" stop-color="#0050ff"/>
+    <!-- ══ GRADIENTS ══ -->
+
+    <radialGradient id="gCore" cx="38%" cy="32%" r="68%">
+      <stop offset="0%"   stop-color="#100000"/>
+      <stop offset="30%"  stop-color="#4a029e"/>
+      <stop offset="70%"  stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </radialGradient>
+
+    <radialGradient id="gCorePulse" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#c084fc" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="gArc1a" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#c084fc" stop-opacity="0"/>
+      <stop offset="30%"  stop-color="#a78bfa"/>
+      <stop offset="70%"  stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
     </linearGradient>
 
-    <linearGradient id="gradRing1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00cfff"/>
-      <stop offset="50%" stop-color="#0080ff"/>
-      <stop offset="100%" stop-color="#003bcc"/>
+    <linearGradient id="gArc1b" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#7c3aed" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
     </linearGradient>
 
-    <linearGradient id="gradRing2" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00e8ff"/>
-      <stop offset="50%" stop-color="#0055cc"/>
-      <stop offset="100%" stop-color="#00b4ff"/>
+    <linearGradient id="gArc2a" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#9333ea" stop-opacity="0"/>
+      <stop offset="40%"  stop-color="#8b5cf6"/>
+      <stop offset="60%"  stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
     </linearGradient>
 
-    <linearGradient id="gradRing3" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#00ffee"/>
-      <stop offset="50%" stop-color="#0033aa"/>
-      <stop offset="100%" stop-color="#00aaff"/>
+    <linearGradient id="gArc3a" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#6d28d9" stop-opacity="0"/>
+      <stop offset="35%"  stop-color="#7c3aed"/>
+      <stop offset="65%"  stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
     </linearGradient>
 
-    <filter id="glowCore" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <!-- Diamond/star spike fill -->
+    <radialGradient id="gSpike" cx="50%" cy="0%" r="100%">
+      <stop offset="0%"   stop-color="#e0f2fe"/>
+      <stop offset="60%"  stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ══ FILTERS ══ -->
+
+    <filter id="fCore" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12" result="b1"/>
+      <feGaussianBlur stdDeviation="4"  result="b2" in="SourceGraphic"/>
+      <feMerge>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
-    <filter id="glowRing1" x="-40%" y="-40%" width="180%" height="180%">
+    <filter id="fArc" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="fArcFat" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="fDot" x="-300%" y="-300%" width="700%" height="700%">
       <feGaussianBlur stdDeviation="4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <filter id="glowRing2" x="-30%" y="-30%" width="160%" height="160%">
+    <filter id="fSpike" x="-50%" y="-100%" width="200%" height="300%">
       <feGaussianBlur stdDeviation="3" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <filter id="glowRing3" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <!-- ══ CLIP for ring arcs (avoid full circles) ══ -->
+    <!-- Ring 1 tilted plane: clip to show only arc portions -->
 
   </defs>
 
-  <!-- RING 3 — CW, 14s, no delay -->
-  <g transform="translate(250,250)">
+  <!-- ════════════════════════════════════════════
+       RING 3 — OUTER TILTED RING (tilted 20°)
+       Circular arc strokes, two arcs CW, gaps between
+       r = 210, stroke = 14
+       arc 1: 0°→140°, arc 2: 180°→320°
+  ════════════════════════════════════════════ -->
+  <g transform="translate(300,300) rotate(-10)">
     <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="14s" begin="0s"
-      repeatCount="indefinite" additive="sum"/>
-    <g transform="translate(-250,-250)">
-      <g transform="translate(250,250)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
-      <g transform="translate(250,250) rotate(60)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
-      <g transform="translate(250,250) rotate(120)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
-      <g transform="translate(250,250) rotate(180)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
-      <g transform="translate(250,250) rotate(240)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
-      <g transform="translate(250,250) rotate(300)"><polygon points="0,-190 55,-160 55,-105 0,-135" fill="url(#gradRing3)" opacity="0.9" filter="url(#glowRing3)"/></g>
+      from="-10" to="350" dur="20s" repeatCount="indefinite" additive="sum"/>
+
+    <!-- Arc A: ~140° span -->
+    <path d="M 0,-210 A 210,210 0 0,1 179.5,105"
+      fill="none" stroke="url(#gArc3a)" stroke-width="12"
+      stroke-linecap="round" filter="url(#fArcFat)" opacity="0.85"/>
+
+    <!-- Arc B: ~140° span (opposite side) -->
+    <path d="M 0,210 A 210,210 0 0,1 -179.5,-105"
+      fill="none" stroke="url(#gArc3a)" stroke-width="12"
+      stroke-linecap="round" filter="url(#fArcFat)" opacity="0.85"/>
+
+    <!-- Thin accent arc A -->
+    <path d="M 0,-210 A 210,210 0 0,1 179.5,105"
+      fill="none" stroke="#c4b5fd" stroke-width="1.5"
+      stroke-linecap="round" opacity="0.4"/>
+    <path d="M 0,210 A 210,210 0 0,1 -179.5,-105"
+      fill="none" stroke="#67e8f9" stroke-width="1.5"
+      stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Endpoint orbs -->
+    <circle cx="0" cy="-210" r="5" fill="#e9d5ff" filter="url(#fDot)"/>
+    <circle cx="179.5" cy="105" r="5" fill="#67e8f9" filter="url(#fDot)"/>
+    <circle cx="0" cy="210"  r="5" fill="#e9d5ff" filter="url(#fDot)"/>
+    <circle cx="-179.5" cy="-105" r="5" fill="#67e8f9" filter="url(#fDot)"/>
+  </g>
+
+  <!-- ════════════════════════════════════════════
+       RING 2 — MIDDLE RING (tilted 60° plane)
+       CCW, r = 148
+  ════════════════════════════════════════════ -->
+  <g transform="translate(300,300) rotate(45)">
+    <animateTransform attributeName="transform" type="rotate"
+      from="45" to="-315" dur="13s" repeatCount="indefinite" additive="sum"/>
+
+    <!-- Ellipse effect: ring on tilted plane via scaleY -->
+    <g transform="scale(1, 0.42)">
+      <!-- Arc A: 160° -->
+      <path d="M -148,0 A 148,148 0 0,1 74,-128.2"
+        fill="none" stroke="url(#gArc2a)" stroke-width="14"
+        stroke-linecap="round" filter="url(#fArcFat)" opacity="0.90"/>
+      <!-- Arc B: 160° -->
+      <path d="M 148,0 A 148,148 0 0,1 -74,128.2"
+        fill="none" stroke="url(#gArc2a)" stroke-width="14"
+        stroke-linecap="round" filter="url(#fArcFat)" opacity="0.90"/>
+
+      <!-- Thin accent -->
+      <path d="M -148,0 A 148,148 0 0,1 74,-128.2"
+        fill="none" stroke="#a78bfa" stroke-width="1.5"
+        stroke-linecap="round" opacity="0.5"/>
+      <path d="M 148,0 A 148,148 0 0,1 -74,128.2"
+        fill="none" stroke="#38bdf8" stroke-width="1.5"
+        stroke-linecap="round" opacity="0.5"/>
+
+      <!-- Endpoint orbs -->
+      <circle cx="-148" cy="0"    r="5" fill="#c084fc" filter="url(#fDot)"/>
+      <circle cx="74"   cy="-128.2" r="5" fill="#38bdf8" filter="url(#fDot)"/>
+      <circle cx="148"  cy="0"    r="5" fill="#c084fc" filter="url(#fDot)"/>
+      <circle cx="-74"  cy="128.2" r="5" fill="#38bdf8" filter="url(#fDot)"/>
     </g>
   </g>
 
-  <!-- RING 2 — CW, 9s, delay 2s -->
-  <g transform="translate(250,250)">
+  <!-- ════════════════════════════════════════════
+       RING 1 — INNER RING (tilted different plane)
+       CW, r = 88
+  ════════════════════════════════════════════ -->
+  <g transform="translate(300,300) rotate(-30)">
     <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="9s" begin="2s"
-      repeatCount="indefinite" additive="sum"/>
-    <g transform="translate(-250,-250)">
-      <g transform="translate(250,250)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
-      <g transform="translate(250,250) rotate(60)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
-      <g transform="translate(250,250) rotate(120)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
-      <g transform="translate(250,250) rotate(180)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
-      <g transform="translate(250,250) rotate(240)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
-      <g transform="translate(250,250) rotate(300)"><polygon points="0,-135 40,-112 40,-72 0,-90" fill="url(#gradRing2)" opacity="0.95" filter="url(#glowRing2)"/></g>
+      from="-30" to="330" dur="7s" repeatCount="indefinite" additive="sum"/>
+
+    <g transform="scale(0.45, 1)">
+      <!-- Arc A -->
+      <path d="M 0,-88 A 88,88 0 0,1 76.2,44"
+        fill="none" stroke="url(#gArc1a)" stroke-width="13"
+        stroke-linecap="round" filter="url(#fArc)" opacity="1"/>
+      <!-- Arc B -->
+      <path d="M 0,88 A 88,88 0 0,1 -76.2,-44"
+        fill="none" stroke="url(#gArc1b)" stroke-width="13"
+        stroke-linecap="round" filter="url(#fArc)" opacity="1"/>
+
+      <!-- Thin accent -->
+      <path d="M 0,-88 A 88,88 0 0,1 76.2,44"
+        fill="none" stroke="#f0abfc" stroke-width="2"
+        stroke-linecap="round" opacity="0.55"/>
+      <path d="M 0,88 A 88,88 0 0,1 -76.2,-44"
+        fill="none" stroke="#7dd3fc" stroke-width="2"
+        stroke-linecap="round" opacity="0.55"/>
+
+      <!-- Endpoint orbs -->
+      <circle cx="0"     cy="-88" r="5" fill="#f0abfc" filter="url(#fDot)"/>
+      <circle cx="76.2"  cy="44"  r="5" fill="#7dd3fc" filter="url(#fDot)"/>
+      <circle cx="0"     cy="88"  r="5" fill="#f0abfc" filter="url(#fDot)"/>
+      <circle cx="-76.2" cy="-44" r="5" fill="#7dd3fc" filter="url(#fDot)"/>
     </g>
   </g>
 
-  <!-- RING 1 — CW, 5s, delay 4s -->
-  <g transform="translate(250,250)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="5s" begin="4s"
-      repeatCount="indefinite" additive="sum"/>
-    <g transform="translate(-250,-250)">
-      <g transform="translate(250,250)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-      <g transform="translate(250,250) rotate(60)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-      <g transform="translate(250,250) rotate(120)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-      <g transform="translate(250,250) rotate(180)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-      <g transform="translate(250,250) rotate(240)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-      <g transform="translate(250,250) rotate(300)"><polygon points="0,-88 28,-70 28,-45 0,-60" fill="url(#gradRing1)" opacity="1" filter="url(#glowRing1)"/></g>
-    </g>
-  </g>
+  <!-- ════════════════════════════════════════════
+       CORE — 8-point star / diamond
+  ════════════════════════════════════════════ -->
+  <g transform="translate(300,300)">
 
-  <!-- CORE — pulsing, no stroke -->
-  <g transform="translate(250,250)">
-    <polygon points="0,-55 47.6,-27.5 47.6,27.5 0,55 -47.6,27.5 -47.6,-27.5"
-      fill="#0080ff" filter="url(#glowCore)">
-      <animate attributeName="opacity" values="0.1;0.25;0.1" dur="2.5s" repeatCount="indefinite"/>
+    <!-- Pulse aura -->
+    <circle cx="0" cy="0" r="52" fill="url(#gCorePulse)">
+      <animate attributeName="r"       values="42;60;42" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- 8-point star (two rotated squares) -->
+    <g filter="url(#fCore)">
+      <!-- Square 1 -->
+      <polygon points="0,-44 12,-12 44,0 12,12 0,44 -12,12 -44,0 -12,-12"
+        fill="url(#gCore)">
+        <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" repeatCount="indefinite"/>
+      </polygon>
+      <!-- Square 2 rotated 22.5° — slightly smaller for star depth -->
+      <polygon points="0,-36 9.4,-9.4 36,0 9.4,9.4 0,36 -9.4,9.4 -36,0 -9.4,-9.4"
+        fill="url(#gCoreShine)" opacity="0.35">
+        <animateTransform attributeName="transform" type="rotate"
+          from="22.5" to="382.5" dur="8s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <!-- Inner bright diamond -->
+    <polygon points="0,-18 10,0 0,18 -10,0" fill="#f8faff" opacity="0.9" filter="url(#fCore)">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
     </polygon>
-    <polygon points="0,-45 39,-22.5 39,22.5 0,45 -39,22.5 -39,-22.5"
-      fill="url(#gradCore)" filter="url(#glowCore)">
-      <animate attributeName="opacity" values="0.85;1;0.85" dur="2.5s" repeatCount="indefinite"/>
-    </polygon>
-    <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
-      fill="#00f0ff" opacity="0.2"/>
-    <circle cx="0" cy="0" r="8" fill="#ffffff" filter="url(#glowCore)">
-      <animate attributeName="r" values="6;10;6" dur="2.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+
+    <!-- 4 long spike rays -->
+    <g opacity="0.55" filter="url(#fSpike)">
+      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)"/>
+      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(90)"/>
+      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(180)"/>
+      <polygon points="0,-62 2.5,-20 0,-8 -2.5,-20" fill="url(#gSpike)" transform="rotate(270)"/>
+    </g>
+
+    <!-- 4 short diagonal spike rays -->
+    <g opacity="0.30" filter="url(#fSpike)">
+      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#c4b5fd" transform="rotate(45)"/>
+      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#67e8f9" transform="rotate(135)"/>
+      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#c4b5fd" transform="rotate(225)"/>
+      <polygon points="0,-44 2,-16 0,-8 -2,-16" fill="#67e8f9" transform="rotate(315)"/>
+    </g>
+
+  </g>
+
+  <!-- ════════════════════════════════════════════
+       OUTER CIRCULAR FRAME — single thin ring
+  ════════════════════════════════════════════ -->
+  <circle cx="300" cy="300" r="248"
+    fill="none"
+    stroke="url(#gArc3a)"
+    stroke-width="1"
+    stroke-dasharray="60 25"
+    opacity="0.35"/>
+
+  <!-- 8 tiny orbs on frame -->
+  <g transform="translate(300,300)">
+    <circle cy="-248" r="2.5" fill="#c4b5fd" filter="url(#fDot)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="0s"    repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(45)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="0.625s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#c4b5fd" filter="url(#fDot)" transform="rotate(90)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="1.25s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(135)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="1.875s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#c4b5fd" filter="url(#fDot)" transform="rotate(180)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(225)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="3.125s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#c4b5fd" filter="url(#fDot)" transform="rotate(270)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="3.75s" repeatCount="indefinite"/>
+    </circle>
+    <circle cy="-248" r="2.5" fill="#38bdf8" filter="url(#fDot)" transform="rotate(315)">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="5s" begin="4.375s" repeatCount="indefinite"/>
     </circle>
   </g>
-
-  <!-- OUTER HEX FRAME -->
-  <polygon
-    points="250,28 445,133 445,367 250,472 55,367 55,133"
-    fill="none"
-    stroke="#0066cc"
-    stroke-width="1.2"
-    opacity="0.5"
-    stroke-dasharray="80 20"/>
-
-  <!-- Titik sudut -->
-  <circle cx="250" cy="28"  r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="0s"   repeatCount="indefinite"/></circle>
-  <circle cx="445" cy="133" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="0.5s" repeatCount="indefinite"/></circle>
-  <circle cx="445" cy="367" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="1s"   repeatCount="indefinite"/></circle>
-  <circle cx="250" cy="472" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/></circle>
-  <circle cx="55"  cy="367" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="2s"   repeatCount="indefinite"/></circle>
-  <circle cx="55"  cy="133" r="3" fill="#00f5ff"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" begin="2.5s" repeatCount="indefinite"/></circle>
 
 </svg>
