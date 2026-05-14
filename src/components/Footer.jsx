@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className="footer">
             <div className="footer-inner">
                 <p className="footer-copy">
-                    &copy; {year} <span>MatrixTM26</span>. All rights reserved.
+                    &copy; {year} <span>MATRIXTM26</span>. All rights reserved.
                 </p>
                 <div className="footer-links">
                     <a

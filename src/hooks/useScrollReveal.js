@@ -15,7 +15,7 @@ export function useScrollReveal(options = {}) {
                 }
             },
             {
-                threshold: options.threshold || 0.1,
+                threshold: options.threshold || 0.4,
                 rootMargin: options.rootMargin || "0px"
             }
         );

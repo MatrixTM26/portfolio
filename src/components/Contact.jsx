@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import "../styles/Contact.css";
 
@@ -12,7 +12,7 @@ const CHANNELS = [
     {
         icon: "fa-brands fa-github",
         label: "GitHub",
-        value: "github.com/MatrixTM26",
+        value: "@MatrixTM26",
         href: "https://github.com/MatrixTM26"
     },
     {

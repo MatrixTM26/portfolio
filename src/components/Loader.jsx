@@ -5,7 +5,7 @@ export default function Loader() {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        const t = setTimeout(() => setHidden(true), 2400);
+        const t = setTimeout(() => setHidden(true), 6000);
         return () => clearTimeout(t);
     }, []);
 
@@ -16,7 +16,7 @@ export default function Loader() {
                 <div className="loader-name">
                     MATRIXTM<span>26</span>
                 </div>
-                <p className="loader-status">LOADING ...</p>
+                <p className="loader-status">LOADING</p>
             </div>
         </div>
     );
