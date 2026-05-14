@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <defs>
 
-    <!-- Spinner arc gradients -->
     <linearGradient id="gArc1" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%"   stop-color="#0ea5e9" stop-opacity="0"/>
       <stop offset="40%"  stop-color="#38bdf8"/>
@@ -18,37 +17,27 @@
       <stop offset="100%" stop-color="#06b6d4"/>
     </linearGradient>
 
-    <!-- Leading dot -->
     <radialGradient id="gDot" cx="40%" cy="35%" r="60%">
       <stop offset="0%"   stop-color="#ffffff"/>
       <stop offset="45%"  stop-color="#7dd3fc"/>
       <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Gear: pure navy shades only -->
     <radialGradient id="gGearBody" cx="35%" cy="30%" r="70%">
       <stop offset="0%"   stop-color="#1e3a8a"/>
       <stop offset="55%"  stop-color="#0f2056"/>
       <stop offset="100%" stop-color="#060d2e"/>
     </radialGradient>
-
     <radialGradient id="gGearFace" cx="38%" cy="33%" r="65%">
       <stop offset="0%"   stop-color="#1e40af"/>
       <stop offset="50%"  stop-color="#0d1b5e"/>
       <stop offset="100%" stop-color="#060d2e"/>
     </radialGradient>
-
     <radialGradient id="gGearHub" cx="38%" cy="32%" r="65%">
       <stop offset="0%"   stop-color="#2563eb"/>
       <stop offset="55%"  stop-color="#1e3a8a"/>
       <stop offset="100%" stop-color="#0c1445"/>
     </radialGradient>
-
-    <!-- Gear tooth edge highlight: subtle navy-light -->
-    <linearGradient id="gToothEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#3b82f6" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.1"/>
-    </linearGradient>
 
   </defs>
 
@@ -57,61 +46,63 @@
   <circle cx="100" cy="100" r="68" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.2"/>
   <circle cx="100" cy="100" r="48" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.2"/>
 
-  <!-- ══ RING 1 — outer CW 2.4s ══ -->
+  <!-- ══════════════════════════════════════════════════
+       RING 1 — outer, CW, 2.4s
+       SVG circle stroke starts at (r,0) = 3-o'clock, draws CW.
+       For CW rotation, leading edge = START of stroke = local (88, 0).
+       Group rotates from -126° → 234° (CW = +360°).
+  ══════════════════════════════════════════════════ -->
   <g transform="translate(100,100)">
     <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="2.4s" repeatCount="indefinite" additive="sum"/>
+      from="-126 0 0" to="234 0 0" dur="2.4s" repeatCount="indefinite" additive="sum"/>
     <circle r="88" fill="none" stroke="url(#gArc1)" stroke-width="5"
-      stroke-dasharray="387 166" stroke-linecap="round" transform="rotate(-126)"/>
+      stroke-dasharray="387 166" stroke-linecap="round"/>
+    <!-- Leading dot at (88,0) = 3-o'clock = start of stroke -->
+    <circle cx="88" cy="0" r="5.5" fill="url(#gDot)"/>
+    <circle cx="88" cy="0" r="2"   fill="#ffffff"/>
   </g>
 
-  <!-- ══ RING 2 — middle CCW 1.8s ══ -->
+  <!-- ══════════════════════════════════════════════════
+       RING 2 — middle, CCW, 1.8s
+       Stroke draws CW from (68,0) spanning 269.63°.
+       For CCW rotation, leading edge = END of stroke.
+       End of stroke at 269.63° CW from (68,0):
+         x = 68×cos(269.63°) = -0.44  ≈ 0
+         y = 68×sin(269.63°) = -68.0  ≈ -68  (top)
+       So dot at (−0.4, −68) ≈ (0, −68).
+       Group rotates from -100° → -460° (CCW = −360°).
+  ══════════════════════════════════════════════════ -->
   <g transform="translate(100,100)">
     <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="-360 0 0" dur="1.8s" repeatCount="indefinite" additive="sum"/>
+      from="-100 0 0" to="-460 0 0" dur="1.8s" repeatCount="indefinite" additive="sum"/>
     <circle r="68" fill="none" stroke="url(#gArc2)" stroke-width="5"
-      stroke-dasharray="320 107" stroke-linecap="round" transform="rotate(-100)"/>
+      stroke-dasharray="320 107" stroke-linecap="round"/>
+    <!-- Leading dot at end of stroke ≈ (−0.4, −68) -->
+    <circle cx="-0.4" cy="-68" r="5"   fill="url(#gDot)"/>
+    <circle cx="-0.4" cy="-68" r="1.8" fill="#ffffff"/>
   </g>
 
-  <!-- ══ RING 3 — inner CW 1.2s ══ -->
+  <!-- ══════════════════════════════════════════════════
+       RING 3 — inner, CW, 1.2s
+       Stroke draws CW from (48,0) spanning 233.96°.
+       For CW rotation, leading edge = START of stroke = local (48, 0).
+       Group rotates from -80° → 280° (CW = +360°).
+  ══════════════════════════════════════════════════ -->
   <g transform="translate(100,100)">
     <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/>
+      from="-80 0 0" to="280 0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/>
     <circle r="48" fill="none" stroke="url(#gArc3)" stroke-width="5"
-      stroke-dasharray="196 106" stroke-linecap="round" transform="rotate(-80)"/>
+      stroke-dasharray="196 106" stroke-linecap="round"/>
+    <!-- Leading dot at (48,0) = 3-o'clock = start of stroke -->
+    <circle cx="48" cy="0" r="4.5" fill="url(#gDot)"/>
+    <circle cx="48" cy="0" r="1.5" fill="#ffffff"/>
   </g>
 
-  <!-- ══ LEADING DOTS ══ -->
+  <!-- ══ GEAR CORE ══ -->
   <g transform="translate(100,100)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="2.4s" repeatCount="indefinite" additive="sum"/>
-    <circle cx="0" cy="-88" r="5.5" fill="url(#gDot)"/>
-    <circle cx="0" cy="-88" r="2"   fill="#ffffff"/>
-  </g>
-  <g transform="translate(100,100)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="-360 0 0" dur="1.8s" repeatCount="indefinite" additive="sum"/>
-    <circle cx="0" cy="-68" r="5"   fill="url(#gDot)"/>
-    <circle cx="0" cy="-68" r="1.8" fill="#ffffff"/>
-  </g>
-  <g transform="translate(100,100)">
-    <animateTransform attributeName="transform" type="rotate"
-      from="0 0 0" to="360 0 0" dur="1.2s" repeatCount="indefinite" additive="sum"/>
-    <circle cx="0" cy="-48" r="4.5" fill="url(#gDot)"/>
-    <circle cx="0" cy="-48" r="1.5" fill="#ffffff"/>
-  </g>
-
-  <!-- ══ GEAR CORE — mathematically precise 8-tooth ══
-       r_root=18, r_tip=26, 8 teeth × 45°
-       tooth width=14° (±7°), root arc=31°
-       Computed with Python sin/cos — exact coordinates
-  ══ -->
-  <g transform="translate(100,100)">
-    <!-- Gear slowly rotates CW -->
     <animateTransform attributeName="transform" type="rotate"
       from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite" additive="sum"/>
 
-    <!-- GEAR BODY — full shape with teeth -->
     <path d="
       M -2.816,-17.778
       L -3.169,-25.806
@@ -150,14 +141,10 @@
       fill="url(#gGearBody)"
       stroke="#1e40af" stroke-width="0.7" stroke-linejoin="round"/>
 
-    <!-- Gear face disc (inner flat face) -->
     <circle r="17" fill="url(#gGearFace)"/>
-
-    <!-- Inner ring detail -->
     <circle r="17" fill="none" stroke="#1e3a8a" stroke-width="1" opacity="0.7"/>
     <circle r="12" fill="none" stroke="#1e3a8a" stroke-width="0.6" opacity="0.5"/>
 
-    <!-- 8 spokes -->
     <g stroke="#1e40af" stroke-width="0.8" opacity="0.6">
       <line x1="0" y1="-5.5" x2="0" y2="-11.5"/>
       <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(45)"/>
@@ -169,18 +156,12 @@
       <line x1="0" y1="-5.5" x2="0" y2="-11.5" transform="rotate(315)"/>
     </g>
 
-    <!-- Hub center circle -->
     <circle r="5.5" fill="url(#gGearHub)"/>
     <circle r="5.5" fill="none" stroke="#2563eb" stroke-width="0.8" opacity="0.6"/>
-
-    <!-- Specular highlight top-left -->
     <ellipse cx="-1.5" cy="-2" rx="2.5" ry="1.5" fill="#3b82f6" opacity="0.35"/>
-
-    <!-- Center axle dot -->
     <circle r="1.8" fill="#1e40af">
       <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
     </circle>
-
   </g>
 
 </svg>
