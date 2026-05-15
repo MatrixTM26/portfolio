@@ -49,7 +49,7 @@ export default function Navbar({ theme, onToggleTheme }) {
                 >
                     <i className="fa-solid fa-shield-halved" />
                     <span>
-                        Matrix<span className="fdock-logo-accent">TM26</span>
+                        MATRIXTM<span className="fdock-logo-accent">26</span>
                     </span>
                 </a>
 
