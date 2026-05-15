@@ -6,20 +6,20 @@ const CHANNELS = [
     {
         icon: "fa-brands fa-telegram",
         label: "Telegram",
-        value: "@MatrixTM26",
+        value: "MatrixTM26",
         href: "https://t.me/MatrixTM26"
     },
     {
         icon: "fa-brands fa-github",
         label: "GitHub",
-        value: "@MatrixTM26",
+        value: "MatrixTM26",
         href: "https://github.com/MatrixTM26"
     },
     {
         icon: "fa-brands fa-instagram",
         label: "Instagram",
-        value: "@matrix.tm26",
-        href: "https://instagram.com/matrix.tm26"
+        value: "matrix.tm26",
+        href: "https://instagram.com/matrixtm26.xp"
     }
 ];
 
