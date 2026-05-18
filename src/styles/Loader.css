@@ -1,61 +1,54 @@
 .loader-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #0b0f1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition:
-        opacity 0.6s ease,
-        visibility 0.6s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0b0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .loader-overlay.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .loader-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .loader-svg {
-    width: 120px;
-    height: 120px;
+  width: 120px;
+  height: 120px;
 }
 
 .loader-name {
-    font-family: "Tourney", sans-serif;
-    font-size: 1.7rem;
-    font-weight: 800;
-    color: #e8edf8;
-    letter-spacing: 0.06em;
+  font-family: 'Tourney', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #e8edf8;
+  letter-spacing: 0.06em;
 }
 
 .loader-name span {
-    color: #3b82f6;
+  color: #3b82f6;
 }
 
 .loader-status {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #3d5070;
-    animation: loaderBlink 1.2s ease infinite;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #3d5070;
+  animation: loaderBlink 1.2s ease infinite;
 }
 
 @keyframes loaderBlink {
-    0%,
-    100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
 }

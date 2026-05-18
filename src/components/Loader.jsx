@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import "../styles/Loader.css";
+import { useEffect, useState } from 'react'
+import '../styles/Loader.css'
 
 export default function Loader() {
-    const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(false)
 
-    useEffect(() => {
-        const t = setTimeout(() => setHidden(true), 5000);
-        return () => clearTimeout(t);
-    }, []);
+  useEffect(() => {
+    const t = setTimeout(() => setHidden(true), 2400)
+    return () => clearTimeout(t)
+  }, [])
 
-    return (
-        <div className={`loader-overlay${hidden ? " hidden" : ""}`}>
-            <div className="loader-body">
-                <img src="/loading.svg" alt="Loading" className="loader-svg" />
-                <div className="loader-name">
-                    MATRIXTM<span>26</span>
-                </div>
-                <p className="loader-status">LOADING</p>
-            </div>
-        </div>
-    );
+  return (
+    <div className={`loader-overlay${hidden ? ' hidden' : ''}`}>
+      <div className="loader-body">
+        <img src="/loading.svg" alt="Loading" className="loader-svg" />
+        <div className="loader-name">Matrix<span>TM26</span></div>
+        <p className="loader-status">LOADING ...</p>
+      </div>
+    </div>
+  )
 }

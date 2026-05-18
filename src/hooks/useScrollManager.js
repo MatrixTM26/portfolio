@@ -1,49 +1,43 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
 export function useScrollManager() {
-    useEffect(() => {
-        const SPEEDS = { slow: 0.05, med: 0.1, reverse: -0.07 };
-        const cache = new Map();
+  useEffect(() => {
+    const SPEEDS = { slow: 0.05, med: 0.10, reverse: -0.07 }
+    const cache  = new Map()
 
-        const collect = () => {
-            cache.clear();
-            Object.entries(SPEEDS).forEach(([key, speed]) => {
-                document
-                    .querySelectorAll(`[data-parallax="${key}"]`)
-                    .forEach(el => {
-                        cache.set(el, speed);
-                    });
-            });
-        };
+    const collect = () => {
+      cache.clear()
+      Object.entries(SPEEDS).forEach(([key, speed]) => {
+        document.querySelectorAll(`[data-parallax="${key}"]`).forEach(el => {
+          cache.set(el, speed)
+        })
+      })
+    }
 
-        const update = () => {
-            cache.forEach((speed, el) => {
-                const rect = el.getBoundingClientRect();
-                const center =
-                    rect.top + rect.height / 2 - window.innerHeight / 2;
-                el.style.transform = `translateY(${center * speed}px)`;
-            });
-        };
+    const update = () => {
+      cache.forEach((speed, el) => {
+        const rect   = el.getBoundingClientRect()
+        const center = rect.top + rect.height / 2 - window.innerHeight / 2
+        el.style.transform = `translateY(${center * speed}px)`
+      })
+    }
 
-        let ticking = false;
-        const onScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    update();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { update(); ticking = false })
+        ticking = true
+      }
+    }
 
-        collect();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", collect, { passive: true });
-        update();
+    collect()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', () => { collect(); update() }, { passive: true })
+    update()
 
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            window.removeEventListener("resize", collect);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', collect)
+    }
+  }, [])
 }
