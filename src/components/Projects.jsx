@@ -82,7 +82,7 @@ function Card({ repo, index }) {
 }
 
 const CYBER_IMG = {
-  src: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=70&fit=crop',
+  src: '/project.jpg',
   alt: 'Cybersecurity hacker workspace',
 }
 
