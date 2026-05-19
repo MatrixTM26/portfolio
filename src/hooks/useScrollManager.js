@@ -2,8 +2,13 @@ import { useEffect } from 'react'
 
 export function useScrollManager() {
   useEffect(() => {
-    const SPEEDS = { slow: 0.05, med: 0.10, reverse: -0.07 }
-    const cache  = new Map()
+    const SPEEDS = {
+      slow:    0.12,
+      med:     0.22,
+      reverse: -0.10,
+    }
+
+    const cache = new Map()
 
     const collect = () => {
       cache.clear()
@@ -31,9 +36,9 @@ export function useScrollManager() {
     }
 
     collect()
+    update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', () => { collect(); update() }, { passive: true })
-    update()
 
     return () => {
       window.removeEventListener('scroll', onScroll)

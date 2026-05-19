@@ -5,7 +5,7 @@ export default function Loader() {
   const [hidden, setHidden] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setHidden(true), 2400)
+    const t = setTimeout(() => setHidden(true), 2200)
     return () => clearTimeout(t)
   }, [])
 
@@ -14,7 +14,6 @@ export default function Loader() {
       <div className="loader-body">
         <img src="/loading.svg" alt="Loading" className="loader-svg" />
         <div className="loader-name">Matrix<span>TM26</span></div>
-        <p className="loader-status">LOADING ...</p>
       </div>
     </div>
   )
