@@ -3,18 +3,19 @@ import { useEffect } from 'react'
 export function useScrollManager() {
   useEffect(() => {
     const SPEEDS = {
-      slow:    0.12,
-      med:     0.22,
-      reverse: -0.10,
+      'depth-1': 0.06,
+      'depth-2': 0.14,
+      'depth-3': 0.24,
+      reverse:  -0.10,
     }
 
     const cache = new Map()
 
     const collect = () => {
       cache.clear()
-      Object.entries(SPEEDS).forEach(([key, speed]) => {
+      Object.keys(SPEEDS).forEach(key => {
         document.querySelectorAll(`[data-parallax="${key}"]`).forEach(el => {
-          cache.set(el, speed)
+          cache.set(el, SPEEDS[key])
         })
       })
     }
@@ -39,7 +40,6 @@ export function useScrollManager() {
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', () => { collect(); update() }, { passive: true })
-
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', collect)

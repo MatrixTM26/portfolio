@@ -2,15 +2,15 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Home.css'
 
 const SOCIALS = [
-  { icon: 'fa-brands fa-github',    href: 'https://github.com/MatrixTM26',     label: 'GitHub'    },
-  { icon: 'fa-brands fa-instagram', href: 'https://instagram.com/matrix.tm26', label: 'Instagram' },
-  { icon: 'fa-brands fa-telegram',  href: 'https://t.me/MatrixTM26',           label: 'Telegram'  },
+  { icon:'fa-brands fa-github',    href:'https://github.com/MatrixTM26',     label:'GitHub'    },
+  { icon:'fa-brands fa-instagram', href:'https://instagram.com/matrix.tm26', label:'Instagram' },
+  { icon:'fa-brands fa-telegram',  href:'https://t.me/MatrixTM26',           label:'Telegram'  },
 ]
 
 const STATS = [
-  { number: '50+', label: 'CTF Solved'    },
-  { number: '10+', label: 'Bugs Reported' },
-  { number: '2+',  label: 'Years Active'  },
+  { number:'50+', label:'CTF Solved'    },
+  { number:'10+', label:'Bugs Reported' },
+  { number:'2+',  label:'Years Active'  },
 ]
 
 export default function Home() {
@@ -19,33 +19,28 @@ export default function Home() {
 
   return (
     <section className="home" id="home">
-      <div className="home-parallax-layer"   data-parallax="slow" />
-      <div className="home-parallax-layer-2" data-parallax="med"  />
-      <div className="home-grid-lines"       data-parallax="slow" />
+      <div className="home-layer home-layer-1" data-parallax="depth-1" />
+      <div className="home-layer home-layer-2" data-parallax="depth-2" />
+      <div className="home-layer home-layer-3" data-parallax="depth-3" />
 
       <div className="container">
         <div className="home-inner">
-
           <div className={`home-left reveal-left${left.visible ? ' visible' : ''}`} ref={left.ref}>
-            <div className="home-headline-block">
-              <p className="home-role-label">Cybersecurity Specialist</p>
-              <h1 className="home-headline">
-                Providing the Best<br />
-                <span className="blue-word">Cyber</span> Solutions<br />
-                for Your Security
-              </h1>
-            </div>
+            <p className="home-role-label">Cybersecurity Specialist</p>
+            <h1 className="home-headline">
+              Providing the Best<br />
+              <span className="blue-word">Cyber</span> Solutions<br />
+              for Your Security
+            </h1>
             <p className="home-desc">
-              I'm ready to protect your data from hackers. Specialized in penetration testing,
-              vulnerability research, and bug bounty hunting — keeping your systems
-              one step ahead of threats.
+              Specialized in penetration testing, vulnerability research, and bug bounty
+              hunting — keeping your systems one step ahead of threats.
             </p>
             <div className="home-stats">
               {STATS.map((s, i) => (
                 <div key={s.label} className="home-stat">
                   <span className="home-stat-number">{s.number}</span>
                   <span className="home-stat-label">{s.label}</span>
-                  {i < STATS.length - 1 && <span className="stat-divider" />}
                 </div>
               ))}
             </div>
@@ -88,7 +83,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

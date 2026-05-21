@@ -3,24 +3,19 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Contact.css'
 
 const CHANNELS = [
-  { icon:'fa-brands fa-telegram',  label:'Telegram',  value:'@MatrixTM26',          href:'https://t.me/MatrixTM26'            },
-  { icon:'fa-brands fa-github',    label:'GitHub',    value:'github.com/MatrixTM26', href:'https://github.com/MatrixTM26'    },
-  { icon:'fa-brands fa-instagram', label:'Instagram', value:'@matrix.tm26',          href:'https://instagram.com/matrix.tm26' },
+  { icon:'fa-brands fa-telegram',  label:'Telegram',  value:'@MatrixTM26',           href:'https://t.me/MatrixTM26'            },
+  { icon:'fa-brands fa-github',    label:'GitHub',    value:'github.com/MatrixTM26',  href:'https://github.com/MatrixTM26'    },
+  { icon:'fa-brands fa-instagram', label:'Instagram', value:'@matrix.tm26',           href:'https://instagram.com/matrix.tm26' },
 ]
-
-const CYBER_IMG = {
-  src: 'https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?w=800&q=70&fit=crop',
-  alt: 'Hacker at terminal',
-}
 
 export default function Contact() {
   const [form,   setForm]   = useState({ name:'', email:'', subject:'', message:'' })
   const [status, setStatus] = useState(null)
 
-  const header    = useScrollReveal()
-  const imgReveal = useScrollReveal({ threshold: 0.15 })
-  const leftCol   = useScrollReveal()
-  const rightCol  = useScrollReveal()
+  const header   = useScrollReveal()
+  const imgRef   = useScrollReveal({ threshold: 0.15 })
+  const leftCol  = useScrollReveal()
+  const rightCol = useScrollReveal()
 
   const handleChange = e => setForm(p => ({ ...p, [e.target.name]: e.target.value }))
 
@@ -34,9 +29,12 @@ export default function Contact() {
   }
 
   return (
-    <section className="section contact-section" id="contact">
-      <div className="contact-bg-layer"   data-parallax="slow" />
-      <div className="contact-bg-layer-2" data-parallax="med"  />
+    <section className="contact-section" id="contact">
+      <div className="contact-layer contact-layer-1" data-parallax="depth-1" />
+      <div className="contact-layer contact-layer-2" data-parallax="depth-2" />
+      <div className="contact-layer-img"             data-parallax="depth-3">
+        <img src="/contact.jpg" alt="" />
+      </div>
 
       <div className="container">
         <div className="contact-top">
@@ -49,8 +47,8 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className={`contact-img-accent reveal-right${imgReveal.visible ? ' visible' : ''}`} ref={imgReveal.ref}>
-            <img src={CYBER_IMG.src} alt={CYBER_IMG.alt} />
+          <div className={`contact-img-accent reveal-right${imgRef.visible ? ' visible' : ''}`} ref={imgRef.ref}>
+            <img src="/contact.jpg" alt="Cybersecurity workspace" />
             <div className="img-overlay" />
           </div>
         </div>
@@ -60,7 +58,7 @@ export default function Contact() {
             <div className="contact-channels">
               {CHANNELS.map((ch, i) => (
                 <a key={ch.label} href={ch.href} target="_blank" rel="noopener noreferrer"
-                  className="contact-channel" style={{ transitionDelay: `${i * 120}ms` }}>
+                  className="contact-channel" style={{ transitionDelay:`${i*120}ms` }}>
                   <div className="ch-icon-wrap"><i className={ch.icon} /></div>
                   <div className="ch-info">
                     <div className="ch-label">{ch.label}</div>
@@ -95,10 +93,10 @@ export default function Contact() {
             </div>
             <div className="form-group">
               <label className="form-label">Message</label>
-              <textarea className="form-textarea" name="message" placeholder="Describe your project or question..." value={form.message} onChange={handleChange} rows={5} />
+              <textarea className="form-textarea" name="message" placeholder="Describe your project or question..." value={form.message} onChange={handleChange} rows={4} />
             </div>
-            {status === 'success' && <div className="form-status success"><i className="fa-solid fa-circle-check" /> Message sent. I'll get back to you soon.</div>}
-            {status === 'error'   && <div className="form-status error"><i className="fa-solid fa-circle-exclamation" /> Please fill in all required fields.</div>}
+            {status==='success' && <div className="form-status success"><i className="fa-solid fa-circle-check" /> Message sent. I'll get back to you soon.</div>}
+            {status==='error'   && <div className="form-status error"><i className="fa-solid fa-circle-exclamation" /> Please fill in all required fields.</div>}
             <button className="btn-primary form-submit" onClick={handleSubmit}>
               <i className="fa-solid fa-paper-plane" /> Send Message
             </button>

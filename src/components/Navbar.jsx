@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import '../styles/Navbar.css'
 
 const NAV_ITEMS = [
-  { label: 'Home',     href: '#home',     icon: 'fa-solid fa-house'         },
-  { label: 'Skills',   href: '#skills',   icon: 'fa-solid fa-shield-halved' },
-  { label: 'Projects', href: '#projects', icon: 'fa-solid fa-code-branch'   },
-  { label: 'Contact',  href: '#contact',  icon: 'fa-solid fa-envelope'      },
+  { label:'Home',     href:'#home',     icon:'fa-solid fa-house'         },
+  { label:'Skills',   href:'#skills',   icon:'fa-solid fa-shield-halved' },
+  { label:'Projects', href:'#projects', icon:'fa-solid fa-code-branch'   },
+  { label:'Contact',  href:'#contact',  icon:'fa-solid fa-envelope'      },
 ]
 
 export default function Navbar({ theme, onToggleTheme }) {
@@ -14,13 +14,10 @@ export default function Navbar({ theme, onToggleTheme }) {
 
   useEffect(() => {
     const onScroll = () => {
-      const ids = ['contact', 'projects', 'skills', 'home']
+      const ids = ['contact','projects','skills','home']
       for (const id of ids) {
         const el = document.getElementById(id)
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActive(`#${id}`)
-          break
-        }
+        if (el && window.scrollY >= el.offsetTop - 140) { setActive(`#${id}`); break }
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -32,10 +29,7 @@ export default function Navbar({ theme, onToggleTheme }) {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const handleLink = (href) => {
-    setActive(href)
-    setMobileOpen(false)
-  }
+  const handleLink = href => { setActive(href); setMobileOpen(false) }
 
   return (
     <>
@@ -74,9 +68,7 @@ export default function Navbar({ theme, onToggleTheme }) {
         onClick={() => setMobileOpen(v => !v)}
         aria-label="Toggle menu"
       >
-        <span className="hamburger-lines">
-          <span /><span /><span />
-        </span>
+        <span className="hamburger-lines"><span /><span /><span /></span>
       </button>
 
       <div className={`mobile-menu-overlay${mobileOpen ? ' open' : ''}`} onClick={() => setMobileOpen(false)} />
