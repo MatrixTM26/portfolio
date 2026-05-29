@@ -9,6 +9,7 @@
     inset: -120px;
     pointer-events: none;
     will-change: transform;
+    backface-visibility: hidden;
     background:
         radial-gradient(
             ellipse 50% 55% at 90% 20%,
@@ -38,10 +39,12 @@
 
 .contact-bg-img {
     position: absolute;
-    inset: -15%;
+    inset: -20%;
     pointer-events: none;
     will-change: transform;
+    backface-visibility: hidden;
     z-index: 0;
+    backface-visibility: hidden;
 }
 
 .contact-bg-img img {

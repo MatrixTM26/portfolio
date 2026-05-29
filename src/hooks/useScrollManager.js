@@ -6,8 +6,15 @@ export function useScrollManager() {
 
         let entries = [];
         let rafId = null;
-        let isScrolling = false;
-        let scrollTimer = null;
+
+        const getDocTop = el => {
+            let top = 0;
+            while (el) {
+                top += el.offsetTop;
+                el = el.offsetParent;
+            }
+            return top;
+        };
 
         const collect = () => {
             entries = [];
@@ -20,50 +27,45 @@ export function useScrollManager() {
                         entries.push({ el, speed, section });
                     });
             });
+            remeasure();
+        };
+
+        const remeasure = () => {
+            entries.forEach(e => {
+                e.top = getDocTop(e.section);
+                e.height = e.section.offsetHeight;
+            });
         };
 
         const apply = () => {
+            const sy = window.scrollY;
             const vh = window.innerHeight * 0.5;
-            entries.forEach(({ el, speed, section }) => {
-                if (!section) return;
-                const rect = section.getBoundingClientRect();
-                const offset = (rect.top + rect.height * 0.5 - vh) * speed;
+            entries.forEach(({ el, speed, top, height }) => {
+                const mid = top + height * 0.5;
+                const offset = (mid - sy - vh) * speed;
                 el.style.transform = `translateY(${offset}px) translateZ(0)`;
             });
         };
 
         const loop = () => {
             apply();
-            if (isScrolling) rafId = requestAnimationFrame(loop);
-            else rafId = null;
-        };
-
-        const onScroll = () => {
-            isScrolling = true;
-            clearTimeout(scrollTimer);
-            if (!rafId) rafId = requestAnimationFrame(loop);
-            scrollTimer = setTimeout(() => {
-                isScrolling = false;
-                apply();
-            }, 120);
+            rafId = requestAnimationFrame(loop);
         };
 
         const onResize = () => {
-            collect();
+            remeasure();
             apply();
         };
 
         collect();
         apply();
+        rafId = requestAnimationFrame(loop);
 
-        window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onResize, { passive: true });
 
         return () => {
-            window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", onResize);
-            clearTimeout(scrollTimer);
-            if (rafId) cancelAnimationFrame(rafId);
+            cancelAnimationFrame(rafId);
         };
     }, []);
 }

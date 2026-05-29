@@ -9,6 +9,7 @@
     inset: -120px;
     pointer-events: none;
     will-change: transform;
+    backface-visibility: hidden;
     background:
         radial-gradient(
             ellipse 55% 50% at 20% 40%,
@@ -38,10 +39,12 @@
 
 .projects-bg-img {
     position: absolute;
-    inset: -15%;
+    inset: -20%;
     pointer-events: none;
     will-change: transform;
+    backface-visibility: hidden;
     z-index: 0;
+    backface-visibility: hidden;
 }
 
 .projects-bg-img img {
