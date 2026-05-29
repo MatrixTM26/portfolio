@@ -20,6 +20,25 @@
     radial-gradient(ellipse 25% 30% at 80% 90%, rgba(37,99,235,0.04) 0%, transparent 45%);
 }
 
+/* Background parallax image — contact.jpg */
+.contact-bg-img {
+  position: absolute;
+  inset: -15%;
+  pointer-events: none;
+  will-change: transform;
+  z-index: 0;
+}
+
+.contact-bg-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.05;
+  filter: saturate(0.3) brightness(0.55);
+  display: block;
+}
+
 .contact-section > .container { position: relative; z-index: 1; }
 
 .contact-layout {
