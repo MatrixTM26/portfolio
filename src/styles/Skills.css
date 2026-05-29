@@ -39,12 +39,14 @@
 
 .skills-bg-img {
     position: absolute;
-    inset: -20%;
+    top: -200px;
+    bottom: -200px;
+    left: 0;
+    right: 0;
     pointer-events: none;
     will-change: transform;
     backface-visibility: hidden;
     z-index: 0;
-    backface-visibility: hidden;
 }
 
 .skills-bg-img img {
@@ -55,6 +57,20 @@
     opacity: 0.13;
     filter: saturate(0.45) brightness(0.75);
     display: block;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
 }
 
 .skills .container {
