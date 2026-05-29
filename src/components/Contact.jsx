@@ -3,9 +3,9 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Contact.css'
 
 const CHANNELS = [
-  { icon:'fa-brands fa-telegram',  label:'Telegram',  value:'@MatrixTM26',           href:'https://t.me/MatrixTM26'            },
-  { icon:'fa-brands fa-github',    label:'GitHub',    value:'github.com/MatrixTM26',  href:'https://github.com/MatrixTM26'    },
-  { icon:'fa-brands fa-instagram', label:'Instagram', value:'@matrix.tm26',           href:'https://instagram.com/matrix.tm26' },
+  { icon:'fa-brands fa-telegram',  label:'Telegram',  value:'@MatrixTM26',          href:'https://t.me/MatrixTM26'            },
+  { icon:'fa-brands fa-github',    label:'GitHub',    value:'github.com/MatrixTM26', href:'https://github.com/MatrixTM26'    },
+  { icon:'fa-brands fa-instagram', label:'Instagram', value:'@matrix.tm26',          href:'https://instagram.com/matrix.tm26' },
 ]
 
 export default function Contact() {
@@ -13,7 +13,6 @@ export default function Contact() {
   const [status, setStatus] = useState(null)
 
   const header   = useScrollReveal()
-  const imgRef   = useScrollReveal({ threshold: 0.15 })
   const leftCol  = useScrollReveal()
   const rightCol = useScrollReveal()
 
@@ -29,28 +28,18 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-layer contact-layer-1" data-parallax="depth-1" />
-      <div className="contact-layer contact-layer-2" data-parallax="depth-2" />
-      <div className="contact-layer-img"             data-parallax="depth-3">
-        <img src="/contact.jpg" alt="" />
-      </div>
+    <section className="section contact-section" id="contact">
+      <div className="contact-bg-layer"   data-parallax="slow" />
+      <div className="contact-bg-layer-2" data-parallax="med"  />
 
       <div className="container">
-        <div className="contact-top">
-          <div className={`reveal${header.visible ? ' visible' : ''}`} ref={header.ref}>
-            <p className="section-label">Get in Touch</p>
-            <h2 className="section-title">Contact Me</h2>
-            <p className="section-desc">
-              Have a security project, bug bounty collaboration, or just want to connect?
-              Drop a message and I'll respond promptly.
-            </p>
-          </div>
-
-          <div className={`contact-img-accent reveal-right${imgRef.visible ? ' visible' : ''}`} ref={imgRef.ref}>
-            <img src="/contact.jpg" alt="Cybersecurity workspace" />
-            <div className="img-overlay" />
-          </div>
+        <div className={`reveal${header.visible ? ' visible' : ''}`} ref={header.ref}>
+          <p className="section-label">Get in Touch</p>
+          <h2 className="section-title">Contact Me</h2>
+          <p className="section-desc">
+            Have a security project, bug bounty collaboration, or just want to connect?
+            Drop a message and I'll respond promptly.
+          </p>
         </div>
 
         <div className="contact-layout">
@@ -58,7 +47,7 @@ export default function Contact() {
             <div className="contact-channels">
               {CHANNELS.map((ch, i) => (
                 <a key={ch.label} href={ch.href} target="_blank" rel="noopener noreferrer"
-                  className="contact-channel" style={{ transitionDelay:`${i*120}ms` }}>
+                  className="contact-channel" style={{ transitionDelay: `${i * 100}ms` }}>
                   <div className="ch-icon-wrap"><i className={ch.icon} /></div>
                   <div className="ch-info">
                     <div className="ch-label">{ch.label}</div>
@@ -93,10 +82,10 @@ export default function Contact() {
             </div>
             <div className="form-group">
               <label className="form-label">Message</label>
-              <textarea className="form-textarea" name="message" placeholder="Describe your project or question..." value={form.message} onChange={handleChange} rows={4} />
+              <textarea className="form-textarea" name="message" placeholder="Describe your project or question..." value={form.message} onChange={handleChange} rows={5} />
             </div>
-            {status==='success' && <div className="form-status success"><i className="fa-solid fa-circle-check" /> Message sent. I'll get back to you soon.</div>}
-            {status==='error'   && <div className="form-status error"><i className="fa-solid fa-circle-exclamation" /> Please fill in all required fields.</div>}
+            {status === 'success' && <div className="form-status success"><i className="fa-solid fa-circle-check" /> Message sent. I'll get back to you soon.</div>}
+            {status === 'error'   && <div className="form-status error"><i className="fa-solid fa-circle-exclamation" /> Please fill in all required fields.</div>}
             <button className="btn-primary form-submit" onClick={handleSubmit}>
               <i className="fa-solid fa-paper-plane" /> Send Message
             </button>
