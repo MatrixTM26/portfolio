@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export function useScrollManager() {
     useEffect(() => {
-        const SPEEDS = { slow: 0.06, med: 0.13, reverse: -0.08 };
+        const SPEEDS = { slow: 0.04, med: 0.1, fast: 0.22, reverse: -0.08 };
 
         let entries = [];
         let rafId = null;

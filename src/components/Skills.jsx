@@ -131,7 +131,7 @@ export default function Skills() {
         <section className="section skills" id="skills">
             <div className="skills-bg-layer" data-parallax="slow" />
             <div className="skills-bg-layer-2" data-parallax="med" />
-            <div className="skills-bg-img" data-parallax="slow">
+            <div className="skills-bg-img" data-parallax="fast">
                 <img src="/skill.jpg" alt="" aria-hidden="true" />
             </div>
 

@@ -246,7 +246,7 @@ export default function Projects() {
         <section className="section projects" id="projects">
             <div className="projects-bg-layer" data-parallax="slow" />
             <div className="projects-bg-layer-2" data-parallax="med" />
-            <div className="projects-bg-img" data-parallax="slow">
+            <div className="projects-bg-img" data-parallax="fast">
                 <img src="/project.jpg" alt="" aria-hidden="true" />
             </div>
 

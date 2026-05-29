@@ -59,7 +59,7 @@ export default function Contact() {
         <section className="section contact-section" id="contact">
             <div className="contact-bg-layer" data-parallax="slow" />
             <div className="contact-bg-layer-2" data-parallax="med" />
-            <div className="contact-bg-img" data-parallax="slow">
+            <div className="contact-bg-img" data-parallax="fast">
                 <img src="/contact.jpg" alt="" aria-hidden="true" />
             </div>
 
