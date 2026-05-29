@@ -99,6 +99,10 @@ body {
 
 /* Padding section: max 80px desktop (was 120px) */
 .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: clamp(56px, 7vw, 80px) 0;
 }
 

@@ -57,6 +57,7 @@
 .skills .container {
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .skills-header {

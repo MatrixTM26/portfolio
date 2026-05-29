@@ -1,66 +1,69 @@
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 export function useScrollManager() {
-  useEffect(() => {
-    const SPEEDS = { slow: 0.05, med: 0.10, reverse: -0.07 }
+    useEffect(() => {
+        const SPEEDS = { slow: 0.06, med: 0.13, reverse: -0.08 };
 
-    let entries = []
-    let rafId   = null
-    let cur     = window.scrollY
-    let tgt     = window.scrollY
+        let entries = [];
+        let rafId = null;
+        let isScrolling = false;
+        let scrollTimer = null;
 
-    const lerp = (a, b, t) => a + (b - a) * t
+        const collect = () => {
+            entries = [];
+            Object.entries(SPEEDS).forEach(([key, speed]) => {
+                document
+                    .querySelectorAll(`[data-parallax="${key}"]`)
+                    .forEach(el => {
+                        const section =
+                            el.closest("section") || el.parentElement;
+                        entries.push({ el, speed, section });
+                    });
+            });
+        };
 
-    const collect = () => {
-      entries = []
-      Object.entries(SPEEDS).forEach(([key, speed]) => {
-        document.querySelectorAll(`[data-parallax="${key}"]`).forEach(el => {
-          entries.push({ el, speed })
-        })
-      })
-    }
+        const apply = () => {
+            const vh = window.innerHeight * 0.5;
+            entries.forEach(({ el, speed, section }) => {
+                if (!section) return;
+                const rect = section.getBoundingClientRect();
+                const offset = (rect.top + rect.height * 0.5 - vh) * speed;
+                el.style.transform = `translateY(${offset}px) translateZ(0)`;
+            });
+        };
 
-    const apply = () => {
-      entries.forEach(({ el, speed }) => {
-        const section = el.closest('section') || el.parentElement
-        const rect    = section ? section.getBoundingClientRect() : { top: 0, height: 0 }
-        const offset  = rect.top + rect.height * 0.5 - window.innerHeight * 0.5
-        el.style.transform = `translateY(${offset * speed}px) translateZ(0)`
-      })
-    }
+        const loop = () => {
+            apply();
+            if (isScrolling) rafId = requestAnimationFrame(loop);
+            else rafId = null;
+        };
 
-    const tick = () => {
-      cur = lerp(cur, tgt, 0.08)
-      apply()
-      if (Math.abs(tgt - cur) > 0.3) {
-        rafId = requestAnimationFrame(tick)
-      } else {
-        cur   = tgt
-        rafId = null
-      }
-    }
+        const onScroll = () => {
+            isScrolling = true;
+            clearTimeout(scrollTimer);
+            if (!rafId) rafId = requestAnimationFrame(loop);
+            scrollTimer = setTimeout(() => {
+                isScrolling = false;
+                apply();
+            }, 120);
+        };
 
-    const onScroll = () => {
-      tgt = window.scrollY
-      if (!rafId) rafId = requestAnimationFrame(tick)
-    }
+        const onResize = () => {
+            collect();
+            apply();
+        };
 
-    const onResize = () => {
-      collect()
-      tgt = cur = window.scrollY
-      apply()
-    }
+        collect();
+        apply();
 
-    collect()
-    apply()
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onResize, { passive: true });
 
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onResize, { passive: true })
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onResize)
-      if (rafId) cancelAnimationFrame(rafId)
-    }
-  }, [])
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onResize);
+            clearTimeout(scrollTimer);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+    }, []);
 }
