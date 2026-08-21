@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch asset paths for GitHub Pages
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          sed -i "s|../../pages/static/css/style.css|/${REPO_NAME}/pages/static/css/style.css|g" pages/template/index.html
+          sed -i "s|../../pages/static/js/main.js|/${REPO_NAME}/pages/static/js/main.js|g" pages/template/index.html
+          sed -i "s|../../public/img/|/${REPO_NAME}/public/img/|g" pages/template/index.html
+
+      - name: Copy index to root
+        run: cp pages/template/index.html index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
