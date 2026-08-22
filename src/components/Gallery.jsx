@@ -7,39 +7,66 @@ const ITEMS = [
   { type: 'video', src: '/img/1.mp4', alt: 'Video 1' },
 ]
 
+function VideoSlide({ src, isActive }) {
+  const videoRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
+
+  useEffect(() => {
+    if (!isActive && videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+      setPlaying(false)
+    }
+  }, [isActive])
+
+  const togglePlay = () => {
+    const v = videoRef.current
+    if (!v) return
+    if (v.paused) {
+      v.play()
+      setPlaying(true)
+    } else {
+      v.pause()
+      setPlaying(false)
+    }
+  }
+
+  const handleEnded = () => setPlaying(false)
+
+  return (
+    <div className="video-slide-wrap">
+      <video
+        ref={videoRef}
+        src={src}
+        playsInline
+        preload="metadata"
+        onEnded={handleEnded}
+        draggable={false}
+      />
+      <button
+        className={`video-play-btn${playing ? ' playing' : ''}`}
+        onClick={togglePlay}
+        aria-label={playing ? 'Pause' : 'Play'}
+      >
+        <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
+      </button>
+    </div>
+  )
+}
+
 export default function Gallery() {
   const [current,   setCurrent]   = useState(0)
   const [flipping,  setFlipping]  = useState(null)
   const [direction, setDirection] = useState('next')
-  const autoRef = useRef(null)
   const header  = useScrollReveal()
   const content = useScrollReveal()
 
-  const clearAuto = () => {
-    if (autoRef.current) clearInterval(autoRef.current)
-  }
-
-  const startAuto = useCallback(() => {
-    clearAuto()
-    autoRef.current = setInterval(() => {
-      setCurrent(c => {
-        const next = (c + 1) % ITEMS.length
-        setFlipping(c)
-        setDirection('next')
-        setTimeout(() => setFlipping(null), 720)
-        return next
-      })
-    }, 4500)
-  }, [])
-
   const goTo = useCallback((idx, dir) => {
-    clearAuto()
     setFlipping(current)
     setDirection(dir)
     setTimeout(() => setFlipping(null), 720)
     setCurrent(idx)
-    startAuto()
-  }, [current, startAuto])
+  }, [current])
 
   const goPrev = useCallback(() => {
     goTo((current - 1 + ITEMS.length) % ITEMS.length, 'prev')
@@ -50,11 +77,6 @@ export default function Gallery() {
   }, [current, goTo])
 
   useEffect(() => {
-    startAuto()
-    return clearAuto
-  }, [startAuto])
-
-  useEffect(() => {
     const onKey = e => {
       if (e.key === 'ArrowLeft')  goPrev()
       if (e.key === 'ArrowRight') goNext()
@@ -63,7 +85,7 @@ export default function Gallery() {
     return () => window.removeEventListener('keydown', onKey)
   }, [goPrev, goNext])
 
-  const getSlideClass = (i) => {
+  const getSlideClass = i => {
     if (i === flipping) return direction === 'next' ? 'flip-out' : 'flip-out-reverse'
     if (i === current)  return 'is-active'
     return 'is-hidden'
@@ -84,14 +106,7 @@ export default function Gallery() {
             {ITEMS.map((item, i) => (
               <div key={i} className={`gallery-slide ${getSlideClass(i)}`}>
                 {item.type === 'video' ? (
-                  <video
-                    src={item.src}
-                    autoPlay={i === current}
-                    loop
-                    muted
-                    playsInline
-                    draggable={false}
-                  />
+                  <VideoSlide src={item.src} isActive={i === current} />
                 ) : (
                   <img src={item.src} alt={item.alt} draggable={false} />
                 )}
