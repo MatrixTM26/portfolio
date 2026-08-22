@@ -2,10 +2,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Home.css'
 
 const SOCIALS = [
-  { icon: 'fa-brands fa-github',    href: 'https://github.com/MatrixTM26',     label: 'GitHub'    },
-  { icon: 'fa-brands fa-instagram', href: 'https://instagram.com/matrix.tm26', label: 'Instagram' },
-  { icon: 'fa-brands fa-x-twitter', href: 'https://x.com/X_MatrixTM26',       label: 'X'         },
-  { icon: 'fa-brands fa-telegram',  href: 'https://t.me/MatrixTM26',           label: 'Telegram'  },
+  { icon: 'fa-brands fa-github',    href: 'https://github.com/MatrixTM26',          label: 'GitHub'    },
+  { icon: 'fa-brands fa-instagram', href: 'https://instagram.com/matrix.tm26',      label: 'Instagram' },
+  { icon: 'fa-brands fa-x-twitter', href: 'https://x.com/X_MatrixTM26',             label: 'X'         },
+  { icon: 'fa-brands fa-telegram',  href: 'https://t.me/MatrixTM26',                label: 'Telegram'  },
 ]
 
 export default function Home() {
@@ -14,19 +14,18 @@ export default function Home() {
 
   return (
     <section className="home" id="home">
-      <div className="home-grid" aria-hidden="true" />
+      <div className="home-parallax-layer" data-parallax="slow" />
+      <div className="home-grid-lines"     data-parallax="slow" />
+
       <div className="container">
         <div className="home-inner">
 
           <div className={`home-left reveal-left${left.visible ? ' visible' : ''}`} ref={left.ref}>
             <p className="home-role-label">Offensive Security / Red Team</p>
-            <h1 className="home-headline">
-              Teuku<br />Maulana
-            </h1>
+            <h1 className="home-headline">Teuku<br />Maulana</h1>
             <p className="home-desc">
-              CEH Certified penetration tester and red team operator affiliated with
-              Emperor Security Research. Specialized in adversarial simulation,
-              vulnerability research, and offensive tooling development.
+              Penetration tester and red team operator affiliated with Emperor Security Research.
+              Specialized in adversarial simulation, vulnerability research, and offensive tooling development.
             </p>
             <div className="home-cta">
               <a href="#projects" className="btn-primary">
@@ -47,26 +46,14 @@ export default function Home() {
 
           <div className={`home-right reveal-right${right.visible ? ' visible' : ''}`} ref={right.ref}>
             <div className="profile-section">
-              <div className="profile-avatar-wrap">
+              <div className="profile-avatar-wrap" data-parallax="reverse">
                 <div className="profile-circle">
-                  <img
-                    src="https://github.com/MatrixTM26.png"
-                    alt="MatrixTM26"
-                    className="profile-img"
-                  />
+                  <img src="https://github.com/MatrixTM26.png" alt="MatrixTM26" className="profile-img" />
                 </div>
               </div>
               <div className="profile-info">
                 <h2 className="profile-name">MatrixTM26</h2>
                 <p className="profile-title">Penetration Tester · Red Team</p>
-                <div className="profile-badges">
-                  <div className="profile-badge">
-                    <i className="fa-solid fa-certificate" /><span>CEH Certified</span>
-                  </div>
-                  <div className="profile-badge">
-                    <i className="fa-solid fa-flag" /><span>HTB Active</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

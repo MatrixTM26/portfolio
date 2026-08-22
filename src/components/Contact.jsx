@@ -3,10 +3,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Contact.css'
 
 const CHANNELS = [
-  { icon: 'fa-brands fa-github',    label: 'GitHub',    value: 'MatrixTM26',     href: 'https://github.com/MatrixTM26'         },
-  { icon: 'fa-brands fa-instagram', label: 'Instagram', value: '@matrix.tm26',   href: 'https://instagram.com/matrix.tm26'     },
-  { icon: 'fa-brands fa-x-twitter', label: 'X',         value: '@X_MatrixTM26',  href: 'https://x.com/X_MatrixTM26'           },
-  { icon: 'fa-brands fa-telegram',  label: 'Telegram',  value: '@MatrixTM26',    href: 'https://t.me/MatrixTM26'              },
+  { icon: 'fa-brands fa-github',    label: 'GitHub',    value: 'MatrixTM26',      href: 'https://github.com/MatrixTM26'         },
+  { icon: 'fa-brands fa-instagram', label: 'Instagram', value: 'matrix.tm26',     href: 'https://instagram.com/matrix.tm26'     },
+  { icon: 'fa-brands fa-x-twitter', label: 'X',         value: 'X_MatrixTM26',    href: 'https://x.com/X_MatrixTM26'           },
+  { icon: 'fa-brands fa-telegram',  label: 'Telegram',  value: 'MatrixTM26',      href: 'https://t.me/MatrixTM26'              },
 ]
 
 export default function Contact() {
@@ -30,6 +30,7 @@ export default function Contact() {
 
   return (
     <section className="section contact-section" id="contact">
+      <div className="contact-bg-layer" data-parallax="slow" />
       <div className="container">
 
         <div className={`reveal${header.visible ? ' visible' : ''}`} ref={header.ref}>
@@ -41,7 +42,7 @@ export default function Contact() {
         </div>
 
         <div className="contact-layout">
-          <div className={`contact-left reveal-left${leftCol.visible ? ' visible' : ''}`} ref={leftCol.ref}>
+          <div className={`reveal-left${leftCol.visible ? ' visible' : ''}`} ref={leftCol.ref}>
             <div className="contact-channels">
               {CHANNELS.map((ch, i) => (
                 <a key={ch.label} href={ch.href} target="_blank" rel="noopener noreferrer"
@@ -54,12 +55,6 @@ export default function Contact() {
                   <i className="fa-solid fa-arrow-right ch-arrow" />
                 </a>
               ))}
-            </div>
-            <div className="contact-availability">
-              <span className="avail-dot" />
-              <span className="avail-text">
-                Currently <strong>available</strong> for freelance security engagements.
-              </span>
             </div>
           </div>
 
@@ -84,8 +79,8 @@ export default function Contact() {
             <div className="form-group">
               <label className="form-label">Message</label>
               <textarea className="form-textarea" name="message"
-                placeholder="Describe your project or question..." value={form.message}
-                onChange={handleChange} rows={5} />
+                placeholder="Describe your project or question..."
+                value={form.message} onChange={handleChange} rows={5} />
             </div>
             {status === 'success' && (
               <div className="form-status success">

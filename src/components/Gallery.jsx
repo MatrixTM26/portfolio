@@ -10,29 +10,39 @@ const IMAGES = [
 ]
 
 export default function Gallery() {
-  const [lbOpen,   setLbOpen]   = useState(false)
-  const [lbIndex,  setLbIndex]  = useState(0)
-  const header = useScrollReveal()
-  const grid   = useScrollReveal()
+  const [current, setCurrent] = useState(0)
+  const [prev,    setPrev]    = useState(null)
+  const header  = useScrollReveal()
+  const content = useScrollReveal()
 
-  const openLb = i => { setLbIndex(i); setLbOpen(true); document.body.style.overflow = 'hidden' }
-  const closeLb = useCallback(() => { setLbOpen(false); document.body.style.overflow = '' }, [])
-  const prev = useCallback(() => setLbIndex(i => (i - 1 + IMAGES.length) % IMAGES.length), [])
-  const next = useCallback(() => setLbIndex(i => (i + 1) % IMAGES.length), [])
+  const goTo = useCallback(idx => {
+    setCurrent(prev => {
+      setPrev(prev)
+      return idx
+    })
+    setTimeout(() => setPrev(null), 800)
+  }, [])
+
+  const goPrev = useCallback(() => goTo((current - 1 + IMAGES.length) % IMAGES.length), [current, goTo])
+  const goNext = useCallback(() => goTo((current + 1) % IMAGES.length),                  [current, goTo])
+
+  useEffect(() => {
+    const t = setInterval(goNext, 5000)
+    return () => clearInterval(t)
+  }, [goNext])
 
   useEffect(() => {
     const onKey = e => {
-      if (!lbOpen) return
-      if (e.key === 'Escape')     closeLb()
-      if (e.key === 'ArrowLeft')  prev()
-      if (e.key === 'ArrowRight') next()
+      if (e.key === 'ArrowLeft')  goPrev()
+      if (e.key === 'ArrowRight') goNext()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [lbOpen, closeLb, prev, next])
+  }, [goPrev, goNext])
 
   return (
     <section className="section gallery" id="gallery">
+      <div className="gallery-bg-layer" data-parallax="slow" />
       <div className="container">
 
         <div className={`gallery-header reveal${header.visible ? ' visible' : ''}`} ref={header.ref}>
@@ -40,32 +50,53 @@ export default function Gallery() {
           <h2 className="section-title">Gallery</h2>
         </div>
 
-        <div className={`gallery-grid reveal${grid.visible ? ' visible' : ''}`} ref={grid.ref}>
-          {IMAGES.map((img, i) => (
-            <div key={i} className="gallery-item" onClick={() => openLb(i)}>
-              <img src={img.src} alt={img.alt} loading="lazy" />
-              <div className="gallery-overlay">
-                <i className="fa-solid fa-expand" />
+        <div className={`reveal${content.visible ? ' visible' : ''}`} ref={content.ref}>
+          <div className="gallery-slider">
+            {IMAGES.map((img, i) => (
+              <div
+                key={i}
+                className={`gallery-slide${i === current ? ' active' : ''}${i === prev ? ' prev' : ''}`}
+              >
+                <img src={img.src} alt={img.alt} draggable={false} />
               </div>
+            ))}
+
+            <button className="slider-btn prev-btn" onClick={goPrev} aria-label="Previous">
+              <i className="fa-solid fa-chevron-left" />
+            </button>
+            <button className="slider-btn next-btn" onClick={goNext} aria-label="Next">
+              <i className="fa-solid fa-chevron-right" />
+            </button>
+
+            <div className="slider-dots">
+              {IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  className={`slider-dot${i === current ? ' active' : ''}`}
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
             </div>
-          ))}
+
+            <div className="slider-counter">
+              {current + 1} / {IMAGES.length}
+            </div>
+          </div>
+
+          <div className="gallery-thumbs">
+            {IMAGES.map((img, i) => (
+              <div
+                key={i}
+                className={`gallery-thumb${i === current ? ' active' : ''}`}
+                onClick={() => goTo(i)}
+              >
+                <img src={img.src} alt={img.alt} draggable={false} />
+              </div>
+            ))}
+          </div>
         </div>
 
-      </div>
-
-      <div className={`lightbox${lbOpen ? ' active' : ''}`} onClick={e => e.target === e.currentTarget && closeLb()}>
-        <button className="lb-btn lb-close" onClick={closeLb} aria-label="Close">
-          <i className="fa-solid fa-xmark" />
-        </button>
-        <button className="lb-btn lb-prev" onClick={prev} aria-label="Previous">
-          <i className="fa-solid fa-chevron-left" />
-        </button>
-        <button className="lb-btn lb-next" onClick={next} aria-label="Next">
-          <i className="fa-solid fa-chevron-right" />
-        </button>
-        <div className="lb-canvas">
-          {lbOpen && <img src={IMAGES[lbIndex].src} alt={IMAGES[lbIndex].alt} />}
-        </div>
       </div>
     </section>
   )

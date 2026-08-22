@@ -7,17 +7,33 @@
   overflow: hidden;
 }
 
-.home-grid {
+.home-parallax-layer {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.4;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+  inset: -120px;
+  background:
+    radial-gradient(ellipse 55% 55% at 65% 45%, rgba(180,180,180,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 45% at 15% 75%, rgba(180,180,180,0.04) 0%, transparent 60%);
   pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.home-grid-lines {
+  position: absolute;
+  inset: -120px;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+[data-theme='light'] .home-grid-lines {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
 }
 
 .home-inner {
@@ -84,7 +100,7 @@
   text-decoration: none;
   transition: opacity 0.2s;
 }
-.btn-primary:hover { opacity: 0.85; }
+.btn-primary:hover { opacity: 0.82; }
 
 .btn-ghost {
   display: inline-flex;
@@ -96,15 +112,16 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.8rem 1.6rem;
-  background: none;
+  background: var(--glass-bg);
   color: var(--text-2);
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-.btn-ghost:hover { border-color: var(--border-2); color: var(--text-1); }
+.btn-ghost:hover { border-color: var(--border-2); color: var(--text-1); background: var(--glass-hover); }
 
 .home-socials {
   display: flex;
@@ -123,14 +140,16 @@
 .social-icon-link {
   width: 32px; height: 32px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   display: flex; align-items: center; justify-content: center;
   color: var(--text-2);
   text-decoration: none;
   font-size: 0.82rem;
-  transition: border-color 0.2s, color 0.2s;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-.social-icon-link:hover { border-color: var(--border-2); color: var(--text-1); }
+.social-icon-link:hover { border-color: var(--border-2); color: var(--text-1); background: var(--glass-hover); }
 
 .home-right {
   display: flex;
@@ -149,6 +168,8 @@
   position: relative;
   width: 280px; height: 280px;
   flex-shrink: 0;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .profile-circle {
@@ -156,14 +177,15 @@
   inset: 0;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 0 1px var(--border), 0 20px 60px rgba(0,0,0,0.5);
 }
 
 .profile-img {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: top center;
-  filter: grayscale(30%);
+  filter: grayscale(20%);
 }
 
 .profile-info {
@@ -189,34 +211,8 @@
   text-transform: uppercase;
 }
 
-.profile-badges {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.4rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.profile-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  padding: 0.35rem 0.8rem;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  color: var(--text-2);
-}
-.profile-badge i { font-size: 0.68rem; color: var(--text-3); }
-
 @media (max-width: 960px) {
-  .home-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 3rem 0 6rem;
-    gap: 3rem;
-  }
+  .home-inner { grid-template-columns: 1fr; text-align: center; padding: 3rem 0 6rem; gap: 3rem; }
   .home-right { order: -1; }
   .home-desc { margin: 0 auto; }
   .home-cta { justify-content: center; }

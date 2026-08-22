@@ -2,6 +2,8 @@
   background: var(--bg-mid);
   border-top: 1px solid var(--border);
   padding: 1.5rem 0;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-inner {
@@ -19,7 +21,6 @@
   font-size: 0.75rem;
   color: var(--text-3);
 }
-
 .footer-copy span { color: var(--text-2); }
 
 .footer-links { display: flex; gap: 1rem; }
