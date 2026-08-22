@@ -8,33 +8,56 @@ const ITEMS = [
 ]
 
 function VideoSlide({ src, isActive }) {
-  const videoRef = useRef(null)
+  const videoRef  = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const hideTimer = useRef(null)
 
   useEffect(() => {
     if (!isActive && videoRef.current) {
       videoRef.current.pause()
       videoRef.current.currentTime = 0
       setPlaying(false)
+      setVisible(true)
     }
   }, [isActive])
 
-  const togglePlay = () => {
+  const scheduleHide = () => {
+    clearTimeout(hideTimer.current)
+    hideTimer.current = setTimeout(() => setVisible(false), 2200)
+  }
+
+  const handleMouseMove = () => {
+    setVisible(true)
+    if (playing) scheduleHide()
+  }
+
+  const togglePlay = e => {
+    e.stopPropagation()
     const v = videoRef.current
     if (!v) return
     if (v.paused) {
       v.play()
       setPlaying(true)
+      scheduleHide()
     } else {
       v.pause()
       setPlaying(false)
+      clearTimeout(hideTimer.current)
+      setVisible(true)
     }
   }
 
-  const handleEnded = () => setPlaying(false)
+  const handleEnded = () => {
+    setPlaying(false)
+    clearTimeout(hideTimer.current)
+    setVisible(true)
+  }
+
+  useEffect(() => () => clearTimeout(hideTimer.current), [])
 
   return (
-    <div className="video-slide-wrap">
+    <div className="video-slide-wrap" onMouseMove={handleMouseMove} onTouchStart={handleMouseMove}>
       <video
         ref={videoRef}
         src={src}
@@ -43,13 +66,38 @@ function VideoSlide({ src, isActive }) {
         onEnded={handleEnded}
         draggable={false}
       />
-      <button
-        className={`video-play-btn${playing ? ' playing' : ''}`}
-        onClick={togglePlay}
-        aria-label={playing ? 'Pause' : 'Play'}
-      >
-        <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
+      <div className={`video-controls${visible ? ' visible' : ''}`}>
+        <button className="video-play-btn" onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'}>
+          <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function Lightbox({ item, onClose }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    const onKey = e => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [onClose])
+
+  return (
+    <div className="lb-overlay" onClick={onClose}>
+      <button className="lb-close-btn" onClick={onClose} aria-label="Close">
+        <i className="fa-solid fa-xmark" />
       </button>
+      <div className="lb-content" onClick={e => e.stopPropagation()}>
+        {item.type === 'video' ? (
+          <video src={item.src} controls autoPlay playsInline />
+        ) : (
+          <img src={item.src} alt={item.alt} />
+        )}
+      </div>
     </div>
   )
 }
@@ -58,6 +106,7 @@ export default function Gallery() {
   const [current,   setCurrent]   = useState(0)
   const [flipping,  setFlipping]  = useState(null)
   const [direction, setDirection] = useState('next')
+  const [lbOpen,    setLbOpen]    = useState(false)
   const header  = useScrollReveal()
   const content = useScrollReveal()
 
@@ -68,22 +117,18 @@ export default function Gallery() {
     setCurrent(idx)
   }, [current])
 
-  const goPrev = useCallback(() => {
-    goTo((current - 1 + ITEMS.length) % ITEMS.length, 'prev')
-  }, [current, goTo])
-
-  const goNext = useCallback(() => {
-    goTo((current + 1) % ITEMS.length, 'next')
-  }, [current, goTo])
+  const goPrev = useCallback(() => goTo((current - 1 + ITEMS.length) % ITEMS.length, 'prev'), [current, goTo])
+  const goNext = useCallback(() => goTo((current + 1) % ITEMS.length, 'next'),                 [current, goTo])
 
   useEffect(() => {
     const onKey = e => {
+      if (lbOpen) return
       if (e.key === 'ArrowLeft')  goPrev()
       if (e.key === 'ArrowRight') goNext()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [goPrev, goNext])
+  }, [goPrev, goNext, lbOpen])
 
   const getSlideClass = i => {
     if (i === flipping) return direction === 'next' ? 'flip-out' : 'flip-out-reverse'
@@ -120,6 +165,14 @@ export default function Gallery() {
               <i className="fa-solid fa-chevron-right" />
             </button>
 
+            <button
+              className="slider-expand-btn"
+              onClick={() => setLbOpen(true)}
+              aria-label="Expand"
+            >
+              <i className="fa-solid fa-expand" />
+            </button>
+
             <div className="slider-dots">
               {ITEMS.map((item, i) => (
                 <button
@@ -154,6 +207,8 @@ export default function Gallery() {
         </div>
 
       </div>
+
+      {lbOpen && <Lightbox item={ITEMS[current]} onClose={() => setLbOpen(false)} />}
     </section>
   )
 }
