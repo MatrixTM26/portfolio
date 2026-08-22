@@ -42,10 +42,6 @@ export default function Navbar({ theme, onToggleTheme }) {
   return (
     <>
       <div className="desktop-float-dock">
-        <a href="#home" className="fdock-logo" onClick={() => handleLink('#home')}>
-          <i className="fa-solid fa-shield-halved" />
-        </a>
-        <span className="fdock-divider" />
         {NAV_ITEMS.map(item => (
           <a
             key={item.href}

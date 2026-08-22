@@ -22,7 +22,7 @@ export default function Home() {
 
           <div className={`home-left reveal-left${left.visible ? ' visible' : ''}`} ref={left.ref}>
             <p className="home-role-label">Red Team Operator</p>
-            <h1 className="home-headline">Teuku<br />Maulana</h1>
+            <h1 className="home-headline">Teuku Maulana</h1>
             <p className="home-desc">
               Penetration tester affiliated with Emperor Security Research.
               Specialized in adversarial simulation, vulnerability research,
@@ -52,10 +52,7 @@ export default function Home() {
                   <img src="https://github.com/MatrixTM26.png" alt="Teuku Maulana" className="profile-img" />
                 </div>
               </div>
-              <div className="profile-info">
-                <h2 className="profile-name">Teuku Maulana</h2>
-                <p className="profile-title">Penetration Tester · Red Team</p>
-              </div>
+
             </div>
           </div>
 

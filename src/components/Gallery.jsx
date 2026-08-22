@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Gallery.css'
 
-const IMAGES = Array.from({ length: 12 }, (_, i) => ({
-  src: `/img/${i + 1}.jpg`,
-  alt: `Gallery ${i + 1}`,
-}))
+const ITEMS = [
+  ...Array.from({ length: 12 }, (_, i) => ({ type: 'image', src: `/img/${i + 1}.jpg`, alt: `Gallery ${i + 1}` })),
+  { type: 'video', src: '/img/1.mp4', alt: 'Video 1' },
+]
 
 export default function Gallery() {
   const [current,   setCurrent]   = useState(0)
@@ -23,12 +23,10 @@ export default function Gallery() {
     clearAuto()
     autoRef.current = setInterval(() => {
       setCurrent(c => {
-        const next = (c + 1) % IMAGES.length
+        const next = (c + 1) % ITEMS.length
         setFlipping(c)
         setDirection('next')
-        setTimeout(() => {
-          setFlipping(null)
-        }, 720)
+        setTimeout(() => setFlipping(null), 720)
         return next
       })
     }, 4500)
@@ -44,11 +42,11 @@ export default function Gallery() {
   }, [current, startAuto])
 
   const goPrev = useCallback(() => {
-    goTo((current - 1 + IMAGES.length) % IMAGES.length, 'prev')
+    goTo((current - 1 + ITEMS.length) % ITEMS.length, 'prev')
   }, [current, goTo])
 
   const goNext = useCallback(() => {
-    goTo((current + 1) % IMAGES.length, 'next')
+    goTo((current + 1) % ITEMS.length, 'next')
   }, [current, goTo])
 
   useEffect(() => {
@@ -83,9 +81,20 @@ export default function Gallery() {
 
         <div className={`reveal${content.visible ? ' visible' : ''}`} ref={content.ref}>
           <div className="gallery-slider">
-            {IMAGES.map((img, i) => (
+            {ITEMS.map((item, i) => (
               <div key={i} className={`gallery-slide ${getSlideClass(i)}`}>
-                <img src={img.src} alt={img.alt} draggable={false} />
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    autoPlay={i === current}
+                    loop
+                    muted
+                    playsInline
+                    draggable={false}
+                  />
+                ) : (
+                  <img src={item.src} alt={item.alt} draggable={false} />
+                )}
               </div>
             ))}
 
@@ -97,27 +106,33 @@ export default function Gallery() {
             </button>
 
             <div className="slider-dots">
-              {IMAGES.map((_, i) => (
+              {ITEMS.map((item, i) => (
                 <button
                   key={i}
-                  className={`slider-dot${i === current ? ' active' : ''}`}
+                  className={`slider-dot${i === current ? ' active' : ''}${item.type === 'video' ? ' dot-video' : ''}`}
                   onClick={() => goTo(i, i > current ? 'next' : 'prev')}
                   aria-label={`Slide ${i + 1}`}
                 />
               ))}
             </div>
 
-            <div className="slider-counter">{current + 1} / {IMAGES.length}</div>
+            <div className="slider-counter">{current + 1} / {ITEMS.length}</div>
           </div>
 
           <div className="gallery-thumbs">
-            {IMAGES.map((img, i) => (
+            {ITEMS.map((item, i) => (
               <div
                 key={i}
                 className={`gallery-thumb${i === current ? ' active' : ''}`}
                 onClick={() => goTo(i, i > current ? 'next' : 'prev')}
               >
-                <img src={img.src} alt={img.alt} draggable={false} />
+                {item.type === 'video' ? (
+                  <div className="thumb-video-placeholder">
+                    <i className="fa-solid fa-play" />
+                  </div>
+                ) : (
+                  <img src={item.src} alt={item.alt} draggable={false} />
+                )}
               </div>
             ))}
           </div>
