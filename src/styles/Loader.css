@@ -1,0 +1,32 @@
+.loader-overlay {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loader-icon {
+  font-size: 2.5rem;
+  color: var(--text-3);
+  margin-bottom: 0.25rem;
+}
+
+.loader-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text-1);
+  letter-spacing: 0.06em;
+}
+.loader-name span { color: var(--text-2); }
