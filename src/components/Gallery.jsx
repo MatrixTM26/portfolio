@@ -1,35 +1,60 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Gallery.css'
 
-const IMAGES = [
-  { src: '/img/1.jpg', alt: 'Gallery 1' },
-  { src: '/img/2.jpg', alt: 'Gallery 2' },
-  { src: '/img/3.jpg', alt: 'Gallery 3' },
-  { src: '/img/4.jpg', alt: 'Gallery 4' },
-]
+const IMAGES = Array.from({ length: 12 }, (_, i) => ({
+  src: `/img/${i + 1}.jpg`,
+  alt: `Gallery ${i + 1}`,
+}))
 
 export default function Gallery() {
-  const [current, setCurrent] = useState(0)
-  const [prev,    setPrev]    = useState(null)
+  const [current,   setCurrent]   = useState(0)
+  const [flipping,  setFlipping]  = useState(null)
+  const [direction, setDirection] = useState('next')
+  const autoRef = useRef(null)
   const header  = useScrollReveal()
   const content = useScrollReveal()
 
-  const goTo = useCallback(idx => {
-    setCurrent(prev => {
-      setPrev(prev)
-      return idx
-    })
-    setTimeout(() => setPrev(null), 800)
+  const clearAuto = () => {
+    if (autoRef.current) clearInterval(autoRef.current)
+  }
+
+  const startAuto = useCallback(() => {
+    clearAuto()
+    autoRef.current = setInterval(() => {
+      setCurrent(c => {
+        const next = (c + 1) % IMAGES.length
+        setFlipping(c)
+        setDirection('next')
+        setTimeout(() => {
+          setFlipping(null)
+        }, 720)
+        return next
+      })
+    }, 4500)
   }, [])
 
-  const goPrev = useCallback(() => goTo((current - 1 + IMAGES.length) % IMAGES.length), [current, goTo])
-  const goNext = useCallback(() => goTo((current + 1) % IMAGES.length),                  [current, goTo])
+  const goTo = useCallback((idx, dir) => {
+    clearAuto()
+    setFlipping(current)
+    setDirection(dir)
+    setTimeout(() => setFlipping(null), 720)
+    setCurrent(idx)
+    startAuto()
+  }, [current, startAuto])
+
+  const goPrev = useCallback(() => {
+    goTo((current - 1 + IMAGES.length) % IMAGES.length, 'prev')
+  }, [current, goTo])
+
+  const goNext = useCallback(() => {
+    goTo((current + 1) % IMAGES.length, 'next')
+  }, [current, goTo])
 
   useEffect(() => {
-    const t = setInterval(goNext, 5000)
-    return () => clearInterval(t)
-  }, [goNext])
+    startAuto()
+    return clearAuto
+  }, [startAuto])
 
   useEffect(() => {
     const onKey = e => {
@@ -39,6 +64,12 @@ export default function Gallery() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [goPrev, goNext])
+
+  const getSlideClass = (i) => {
+    if (i === flipping) return direction === 'next' ? 'flip-out' : 'flip-out-reverse'
+    if (i === current)  return 'is-active'
+    return 'is-hidden'
+  }
 
   return (
     <section className="section gallery" id="gallery">
@@ -53,10 +84,7 @@ export default function Gallery() {
         <div className={`reveal${content.visible ? ' visible' : ''}`} ref={content.ref}>
           <div className="gallery-slider">
             {IMAGES.map((img, i) => (
-              <div
-                key={i}
-                className={`gallery-slide${i === current ? ' active' : ''}${i === prev ? ' prev' : ''}`}
-              >
+              <div key={i} className={`gallery-slide ${getSlideClass(i)}`}>
                 <img src={img.src} alt={img.alt} draggable={false} />
               </div>
             ))}
@@ -73,15 +101,13 @@ export default function Gallery() {
                 <button
                   key={i}
                   className={`slider-dot${i === current ? ' active' : ''}`}
-                  onClick={() => goTo(i)}
-                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => goTo(i, i > current ? 'next' : 'prev')}
+                  aria-label={`Slide ${i + 1}`}
                 />
               ))}
             </div>
 
-            <div className="slider-counter">
-              {current + 1} / {IMAGES.length}
-            </div>
+            <div className="slider-counter">{current + 1} / {IMAGES.length}</div>
           </div>
 
           <div className="gallery-thumbs">
@@ -89,7 +115,7 @@ export default function Gallery() {
               <div
                 key={i}
                 className={`gallery-thumb${i === current ? ' active' : ''}`}
-                onClick={() => goTo(i)}
+                onClick={() => goTo(i, i > current ? 'next' : 'prev')}
               >
                 <img src={img.src} alt={img.alt} draggable={false} />
               </div>
