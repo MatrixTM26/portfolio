@@ -1,49 +1,67 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
+    # Allows manual trigger from the Actions tab
+    workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
+# Only one deployment at a time; cancel in-progress if new push comes in
 concurrency:
-  group: pages
-  cancel-in-progress: true
+    group: pages
+    cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    #  1. Build
+    build:
+        name: Build (Vite)
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Patch asset paths for GitHub Pages
-        run: |
-          REPO_NAME="${GITHUB_REPOSITORY##*/}"
-          sed -i "s|../../pages/static/css/style.css|/${REPO_NAME}/pages/static/css/style.css|g" pages/template/index.html
-          sed -i "s|../../pages/static/js/main.js|/${REPO_NAME}/pages/static/js/main.js|g" pages/template/index.html
-          sed -i "s|../../public/img/|/${REPO_NAME}/public/img/|g" pages/template/index.html
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
 
-      - name: Copy index to root
-        run: cp pages/template/index.html index.html
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+            # Inject the repo name as the Vite base path so assets load correctly
+            # on https://<username>.github.io/<repo-name>/
+            # If you use a custom domain (CNAME), change BASE_PATH to '/'
+            - name: Build with Vite
+              env:
+                  BASE_PATH: /${{ github.event.repository.name }}/
+              run: npm run build -- --base "$BASE_PATH"
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
+            - name: Setup GitHub Pages
+              uses: actions/configure-pages@v5
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: dist # Vite default output directory
+
+    #  2. Deploy
+    deploy:
+        name: Deploy to GitHub Pages
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
