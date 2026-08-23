@@ -58,7 +58,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--icon);
 }
 
 .home-headline {
@@ -132,7 +132,7 @@
 .home-socials-label {
   font-size: 0.62rem;
   letter-spacing: 0.14em;
-  color: var(--text-3);
+  color: var(--icon);
   text-transform: uppercase;
   margin-right: 2px;
 }
@@ -207,7 +207,7 @@
 .profile-title {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-  color: var(--text-3);
+  color: var(--icon);
   text-transform: uppercase;
 }
 

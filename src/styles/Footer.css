@@ -19,7 +19,7 @@
 
 .footer-copy {
   font-size: 0.75rem;
-  color: var(--text-3);
+  color: var(--icon);
 }
 .footer-copy span { color: var(--text-2); }
 
@@ -27,7 +27,7 @@
 
 .footer-link {
   font-size: 0.75rem;
-  color: var(--text-3);
+  color: var(--icon);
   text-decoration: none;
   display: flex;
   align-items: center;
