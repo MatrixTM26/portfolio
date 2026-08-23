@@ -2,10 +2,10 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Home.css'
 
 const SOCIALS = [
-  { icon: 'fa-brands fa-github',    href: 'https://github.com/MatrixTM26',     label: 'GitHub'    },
-  { icon: 'fa-brands fa-instagram', href: 'https://instagram.com/matrix.tm26', label: 'Instagram' },
-  { icon: 'fa-brands fa-x-twitter', href: 'https://x.com/X_MatrixTM26',        label: 'X'         },
-  { icon: 'fa-brands fa-telegram',  href: 'https://t.me/MatrixTM26',            label: 'Telegram'  },
+  { icon: 'fa-brands fa-github',    href: 'https://github.com/MatrixTM26',          label: 'GitHub'    },
+  { icon: 'fa-brands fa-instagram', href: 'https://instagram.com/matrix.tm26',      label: 'Instagram' },
+  { icon: 'fa-brands fa-x-twitter', href: 'https://x.com/X_MatrixTM26',             label: 'X'         },
+  { icon: 'fa-brands fa-telegram',  href: 'https://t.me/MatrixTM26',                label: 'Telegram'  },
 ]
 
 export default function Home() {
@@ -14,8 +14,8 @@ export default function Home() {
 
   return (
     <section className="home" id="home">
-      <div className="home-parallax-layer" data-parallax="slow" />
-      <div className="home-grid-lines"     data-parallax="slow" />
+      <div className="home-parallax-layer" data-parallax="slow" aria-hidden="true" />
+      <div className="home-grid-lines"     data-parallax="slow" aria-hidden="true" />
 
       <div className="container">
         <div className="home-inner">
@@ -30,7 +30,7 @@ export default function Home() {
             </p>
             <div className="home-cta">
               <a href="#projects" className="btn-primary">
-                <i className="fa-solid fa-code-branch" /> Projects
+                <i className="fa-solid fa-code-branch" aria-hidden="true" /> Projects
               </a>
               <a href="#contact" className="btn-ghost">Contact</a>
             </div>
@@ -39,20 +39,25 @@ export default function Home() {
               {SOCIALS.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   className="social-icon-link" aria-label={s.label}>
-                  <i className={s.icon} />
+                  <i className={s.icon} aria-hidden="true" />
                 </a>
               ))}
             </div>
           </div>
 
           <div className={`home-right reveal-right${right.visible ? ' visible' : ''}`} ref={right.ref}>
-            <div className="profile-section">
-              <div className="profile-avatar-wrap" data-parallax="reverse">
-                <div className="profile-circle">
-                  <img src="https://github.com/MatrixTM26.png" alt="Teuku Maulana" className="profile-img" />
-                </div>
+            <div className="profile-avatar-wrap" data-parallax="reverse">
+              <div className="profile-circle">
+                <img
+                  src="https://github.com/MatrixTM26.png"
+                  alt="Teuku Maulana"
+                  className="profile-img"
+                  width="280"
+                  height="280"
+                  decoding="async"
+                  fetchpriority="high"
+                />
               </div>
-
             </div>
           </div>
 

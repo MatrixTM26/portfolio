@@ -1,17 +1,17 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, memo } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Gallery.css'
 
 const ITEMS = [
   ...Array.from({ length: 12 }, (_, i) => ({ type: 'image', src: `/img/${i + 1}.jpg`, alt: `Gallery ${i + 1}` })),
-  { type: 'video', src: '/img/1.mp4', alt: 'Video 1' },
+  { type: 'video', src: '/img/1.mp4', alt: 'Video' },
 ]
 
-function VideoSlide({ src, isActive }) {
+const VideoSlide = memo(function VideoSlide({ src, isActive }) {
   const videoRef  = useRef(null)
+  const hideRef   = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [visible, setVisible] = useState(true)
-  const hideTimer = useRef(null)
 
   useEffect(() => {
     if (!isActive && videoRef.current) {
@@ -22,17 +22,19 @@ function VideoSlide({ src, isActive }) {
     }
   }, [isActive])
 
-  const scheduleHide = () => {
-    clearTimeout(hideTimer.current)
-    hideTimer.current = setTimeout(() => setVisible(false), 2200)
-  }
+  useEffect(() => () => clearTimeout(hideRef.current), [])
 
-  const handleMouseMove = () => {
+  const scheduleHide = useCallback(() => {
+    clearTimeout(hideRef.current)
+    hideRef.current = setTimeout(() => setVisible(false), 2200)
+  }, [])
+
+  const handleInteract = useCallback(() => {
     setVisible(true)
     if (playing) scheduleHide()
-  }
+  }, [playing, scheduleHide])
 
-  const togglePlay = e => {
+  const togglePlay = useCallback(e => {
     e.stopPropagation()
     const v = videoRef.current
     if (!v) return
@@ -43,39 +45,30 @@ function VideoSlide({ src, isActive }) {
     } else {
       v.pause()
       setPlaying(false)
-      clearTimeout(hideTimer.current)
+      clearTimeout(hideRef.current)
       setVisible(true)
     }
-  }
+  }, [scheduleHide])
 
-  const handleEnded = () => {
+  const handleEnded = useCallback(() => {
     setPlaying(false)
-    clearTimeout(hideTimer.current)
+    clearTimeout(hideRef.current)
     setVisible(true)
-  }
-
-  useEffect(() => () => clearTimeout(hideTimer.current), [])
+  }, [])
 
   return (
-    <div className="video-slide-wrap" onMouseMove={handleMouseMove} onTouchStart={handleMouseMove}>
-      <video
-        ref={videoRef}
-        src={src}
-        playsInline
-        preload="metadata"
-        onEnded={handleEnded}
-        draggable={false}
-      />
+    <div className="video-slide-wrap" onMouseMove={handleInteract} onTouchStart={handleInteract}>
+      <video ref={videoRef} src={src} playsInline preload="metadata" onEnded={handleEnded} />
       <div className={`video-controls${visible ? ' visible' : ''}`}>
         <button className="video-play-btn" onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'}>
-          <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} />
+          <i className={`fa-solid ${playing ? 'fa-pause' : 'fa-play'}`} aria-hidden="true" />
         </button>
       </div>
     </div>
   )
-}
+})
 
-function Lightbox({ item, onClose }) {
+const Lightbox = memo(function Lightbox({ item, onClose }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     const onKey = e => { if (e.key === 'Escape') onClose() }
@@ -87,38 +80,43 @@ function Lightbox({ item, onClose }) {
   }, [onClose])
 
   return (
-    <div className="lb-overlay" onClick={onClose}>
-      <button className="lb-close-btn" onClick={onClose} aria-label="Close">
-        <i className="fa-solid fa-xmark" />
+    <div className="lb-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Image fullscreen">
+      <button className="lb-close-btn" onClick={onClose} aria-label="Close fullscreen">
+        <i className="fa-solid fa-xmark" aria-hidden="true" />
       </button>
       <div className="lb-content" onClick={e => e.stopPropagation()}>
-        {item.type === 'video' ? (
-          <video src={item.src} controls autoPlay playsInline />
-        ) : (
-          <img src={item.src} alt={item.alt} />
-        )}
+        {item.type === 'video'
+          ? <video src={item.src} controls autoPlay playsInline />
+          : <img src={item.src} alt={item.alt} decoding="async" />
+        }
       </div>
     </div>
   )
-}
+})
 
 export default function Gallery() {
-  const [current,   setCurrent]   = useState(0)
-  const [flipping,  setFlipping]  = useState(null)
-  const [direction, setDirection] = useState('next')
-  const [lbOpen,    setLbOpen]    = useState(false)
-  const header  = useScrollReveal()
-  const content = useScrollReveal()
+  const [current,  setCurrent]  = useState(0)
+  const [flipping, setFlipping] = useState(null)
+  const [direction,setDirection]= useState('next')
+  const [lbOpen,   setLbOpen]   = useState(false)
+  const flipTimer = useRef(null)
+  const header    = useScrollReveal()
+  const content   = useScrollReveal()
+
+  useEffect(() => () => clearTimeout(flipTimer.current), [])
 
   const goTo = useCallback((idx, dir) => {
+    clearTimeout(flipTimer.current)
     setFlipping(current)
     setDirection(dir)
-    setTimeout(() => setFlipping(null), 720)
+    flipTimer.current = setTimeout(() => setFlipping(null), 720)
     setCurrent(idx)
   }, [current])
 
   const goPrev = useCallback(() => goTo((current - 1 + ITEMS.length) % ITEMS.length, 'prev'), [current, goTo])
   const goNext = useCallback(() => goTo((current + 1) % ITEMS.length, 'next'),                 [current, goTo])
+  const openLb  = useCallback(() => setLbOpen(true),  [])
+  const closeLb = useCallback(() => setLbOpen(false), [])
 
   useEffect(() => {
     const onKey = e => {
@@ -130,15 +128,15 @@ export default function Gallery() {
     return () => window.removeEventListener('keydown', onKey)
   }, [goPrev, goNext, lbOpen])
 
-  const getSlideClass = i => {
+  const getSlideClass = useCallback(i => {
     if (i === flipping) return direction === 'next' ? 'flip-out' : 'flip-out-reverse'
     if (i === current)  return 'is-active'
     return 'is-hidden'
-  }
+  }, [flipping, direction, current])
 
   return (
     <section className="section gallery" id="gallery">
-      <div className="gallery-bg-layer" data-parallax="slow" />
+      <div className="gallery-bg-layer" data-parallax="slow" aria-hidden="true" />
       <div className="container">
 
         <div className={`gallery-header reveal${header.visible ? ' visible' : ''}`} ref={header.ref}>
@@ -147,36 +145,32 @@ export default function Gallery() {
         </div>
 
         <div className={`reveal${content.visible ? ' visible' : ''}`} ref={content.ref}>
-          <div className="gallery-slider">
+          <div className="gallery-slider" role="region" aria-label="Gallery slider">
             {ITEMS.map((item, i) => (
-              <div key={i} className={`gallery-slide ${getSlideClass(i)}`}>
-                {item.type === 'video' ? (
-                  <VideoSlide src={item.src} isActive={i === current} />
-                ) : (
-                  <img src={item.src} alt={item.alt} draggable={false} />
-                )}
+              <div key={i} className={`gallery-slide ${getSlideClass(i)}`} aria-hidden={i !== current}>
+                {item.type === 'video'
+                  ? <VideoSlide src={item.src} isActive={i === current} />
+                  : <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                }
               </div>
             ))}
 
-            <button className="slider-btn prev-btn" onClick={goPrev} aria-label="Previous">
-              <i className="fa-solid fa-chevron-left" />
+            <button className="slider-btn prev-btn" onClick={goPrev} aria-label="Previous slide">
+              <i className="fa-solid fa-chevron-left" aria-hidden="true" />
             </button>
-            <button className="slider-btn next-btn" onClick={goNext} aria-label="Next">
-              <i className="fa-solid fa-chevron-right" />
+            <button className="slider-btn next-btn" onClick={goNext} aria-label="Next slide">
+              <i className="fa-solid fa-chevron-right" aria-hidden="true" />
             </button>
-
-            <button
-              className="slider-expand-btn"
-              onClick={() => setLbOpen(true)}
-              aria-label="Expand"
-            >
-              <i className="fa-solid fa-expand" />
+            <button className="slider-expand-btn" onClick={openLb} aria-label="View fullscreen">
+              <i className="fa-solid fa-expand" aria-hidden="true" />
             </button>
 
-            <div className="slider-dots">
+            <div className="slider-dots" role="tablist" aria-label="Slides">
               {ITEMS.map((item, i) => (
                 <button
                   key={i}
+                  role="tab"
+                  aria-selected={i === current}
                   className={`slider-dot${i === current ? ' active' : ''}${item.type === 'video' ? ' dot-video' : ''}`}
                   onClick={() => goTo(i, i > current ? 'next' : 'prev')}
                   aria-label={`Slide ${i + 1}`}
@@ -184,22 +178,25 @@ export default function Gallery() {
               ))}
             </div>
 
-            <div className="slider-counter">{current + 1} / {ITEMS.length}</div>
+            <div className="slider-counter" aria-live="polite" aria-atomic="true">
+              {current + 1} / {ITEMS.length}
+            </div>
           </div>
 
-          <div className="gallery-thumbs">
+          <div className="gallery-thumbs" role="list">
             {ITEMS.map((item, i) => (
               <div
                 key={i}
+                role="listitem"
                 className={`gallery-thumb${i === current ? ' active' : ''}`}
                 onClick={() => goTo(i, i > current ? 'next' : 'prev')}
               >
                 {item.type === 'video' ? (
                   <div className="thumb-video-placeholder">
-                    <i className="fa-solid fa-play" />
+                    <i className="fa-solid fa-play" aria-hidden="true" />
                   </div>
                 ) : (
-                  <img src={item.src} alt={item.alt} draggable={false} />
+                  <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
                 )}
               </div>
             ))}
@@ -208,7 +205,7 @@ export default function Gallery() {
 
       </div>
 
-      {lbOpen && <Lightbox item={ITEMS[current]} onClose={() => setLbOpen(false)} />}
+      {lbOpen && <Lightbox item={ITEMS[current]} onClose={closeLb} />}
     </section>
   )
 }

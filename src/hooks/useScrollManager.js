@@ -1,10 +1,14 @@
 import { useEffect } from 'react'
 
+const SPEEDS = { slow: 0.05, med: 0.12, fast: 0.25, reverse: -0.08 }
+
 export function useScrollManager() {
   useEffect(() => {
-    const SPEEDS = { slow: 0.05, med: 0.12, fast: 0.25, reverse: -0.08 }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     let entries = []
     let rafId   = null
+    let ticking = false
 
     const getDocTop = el => {
       let top = 0
@@ -12,46 +16,58 @@ export function useScrollManager() {
       return top
     }
 
+    const remeasure = () => {
+      entries.forEach(e => {
+        e.sectionTop    = getDocTop(e.section)
+        e.sectionHeight = e.section.offsetHeight
+      })
+    }
+
     const collect = () => {
       entries = []
-      Object.entries(SPEEDS).forEach(([key, speed]) => {
+      for (const [key, speed] of Object.entries(SPEEDS)) {
         document.querySelectorAll(`[data-parallax="${key}"]`).forEach(el => {
           const section = el.closest('section') || el.parentElement
           entries.push({ el, speed, section })
         })
-      })
+      }
       remeasure()
-    }
-
-    const remeasure = () => {
-      entries.forEach(e => {
-        e.top    = getDocTop(e.section)
-        e.height = e.section.offsetHeight
-      })
     }
 
     const apply = () => {
       const sy = window.scrollY
       const vh = window.innerHeight * 0.5
-      entries.forEach(({ el, speed, top, height }) => {
-        const mid    = top + height * 0.5
+      for (const { el, speed, sectionTop, sectionHeight } of entries) {
+        const mid    = sectionTop + sectionHeight * 0.5
         const offset = (mid - sy - vh) * speed
-        el.style.transform = `translateY(${offset}px) translateZ(0)`
-      })
+        el.style.transform = `translateY(${offset.toFixed(2)}px) translateZ(0)`
+      }
+      ticking = false
     }
 
-    const loop = () => { apply(); rafId = requestAnimationFrame(loop) }
+    const loop = () => {
+      if (!ticking) {
+        ticking = true
+        rafId = requestAnimationFrame(apply)
+      }
+    }
 
-    const onResize = () => { remeasure(); apply() }
+    let resizeTimer
+    const onResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => { remeasure(); apply() }, 120)
+    }
 
     collect()
     apply()
-    rafId = requestAnimationFrame(loop)
+    window.addEventListener('scroll', loop, { passive: true })
     window.addEventListener('resize', onResize, { passive: true })
 
     return () => {
+      window.removeEventListener('scroll', loop)
       window.removeEventListener('resize', onResize)
       cancelAnimationFrame(rafId)
+      clearTimeout(resizeTimer)
     }
   }, [])
 }

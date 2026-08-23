@@ -5,13 +5,15 @@ export default function Loader() {
   const [hidden, setHidden] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setHidden(true), 2400)
+    const t = setTimeout(() => setHidden(true), 2000)
     return () => clearTimeout(t)
   }, [])
 
+  if (hidden) return null
+
   return (
-    <div className={`loader-overlay${hidden ? ' hidden' : ''}`}>
-      <img src="/loading.svg" alt="Loading" className="loader-svg" />
+    <div className="loader-overlay">
+      <img src="/loading.svg" alt="" className="loader-svg" width="120" height="120" />
     </div>
   )
 }
