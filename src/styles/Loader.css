@@ -1,20 +1,22 @@
 .loader-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #0a0a0a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: loaderFade 0.4s ease 1.8s forwards;
-  pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: loaderFade 0.4s ease 1.8s forwards;
+    pointer-events: none;
 }
 
 @keyframes loaderFade {
-  to { opacity: 0; }
+    to {
+        opacity: 0;
+    }
 }
 
 .loader-svg {
-  width: 120px;
-  height: 120px;
+    width: 120px;
+    height: 120px;
 }
