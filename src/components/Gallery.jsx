@@ -5,10 +5,10 @@ import "../styles/Gallery.css";
 const ITEMS = [
     ...Array.from({ length: 12 }, (_, i) => ({
         type: "image",
-        src: `/img/${i + 1}.jpg`,
+        src: `${import.meta.env.BASE_URL}img/${i + 1}.jpg`,
         alt: `Gallery ${i + 1}`
     })),
-    { type: "video", src: "/img/1.mp4", alt: "Video" }
+    { type: "video", src: `${import.meta.env.BASE_URL}img/1.mp4`, alt: "Video" }
 ];
 
 const VideoSlide = memo(function VideoSlide({ src, isActive }) {

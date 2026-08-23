@@ -14,11 +14,11 @@ export default function Loader() {
     return (
         <div className="loader-overlay">
             <img
-                src="/loading.svg"
+                src={`${import.meta.env.BASE_URL}loading.svg`}
                 alt=""
                 className="loader-svg"
-                width="120"
-                height="120"
+                width="100"
+                height="100"
             />
         </div>
     );
