@@ -2,7 +2,7 @@
 
 ### Pages
 
-- github pages: [open](https://matrixtm26.github.io/portfolio
+- github pages: [open](https://matrixtm26.github.io/portfolio)
 
 - public site: [open](https://xtm26.vercel.app)
 
