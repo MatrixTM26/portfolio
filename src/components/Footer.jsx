@@ -24,7 +24,7 @@ export default function Footer() {
             <div className="footer-inner">
                 <p className="footer-copy">
                     &copy; {new Date().getFullYear()} <span>MatrixTM26</span>{" "}
-                    &mdash; Emperor Security Research
+                    &mdash; All rights reserved.
                 </p>
                 <nav className="footer-links" aria-label="Social links">
                     {LINKS.map(l => (

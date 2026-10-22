@@ -26,17 +26,17 @@ function getIcon(name = "", lang) {
     const n = name.toLowerCase();
     if (n.includes("ctf") || n.includes("hack") || n.includes("pwn"))
         return "fa-solid fa-flag";
-    if (n.includes("web") || n.includes("http") || n.includes("sql"))
+    if (n.includes("hton") || n.includes("vsat") || n.includes("hellcat") || n.includes("demon") || n.includes("probe"))
         return "fa-solid fa-globe";
     if (n.includes("scan") || n.includes("recon") || n.includes("osint"))
         return "fa-solid fa-magnifying-glass";
     if (n.includes("exploit") || n.includes("vuln") || n.includes("cve"))
         return "fa-solid fa-bug";
-    if (n.includes("tool") || n.includes("script") || n.includes("auto"))
+    if (n.includes("tool") || n.includes("script") || n.includes("auto") || n.includes("xss") || n.includes("map"))
         return "fa-solid fa-screwdriver-wrench";
     if (n.includes("crack") || n.includes("pass") || n.includes("hash"))
         return "fa-solid fa-key";
-    if (n.includes("raven") || n.includes("corvus") || n.includes("metaphish"))
+    if (n.includes("raven") || n.includes("corvus") || n.includes("phish") || n.includes("shell") || n.includes("b4ckstabber") || n.includes("C2"))
         return "fa-solid fa-bug";
     if (lang === "Python") return "fa-brands fa-python";
     if (lang === "JavaScript" || lang === "TypeScript")
@@ -49,7 +49,7 @@ function getIcon(name = "", lang) {
 }
 
 const Card = memo(function Card({ repo, index }) {
-    const { ref, visible } = useScrollReveal({ threshold: 0.06 });
+    const { ref, visible } = useScrollReveal({ threshold: 0.03 });
     return (
         <div
             ref={ref}
