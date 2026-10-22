@@ -36,8 +36,8 @@ function getIcon(name = "", lang) {
         return "fa-solid fa-screwdriver-wrench";
     if (n.includes("crack") || n.includes("pass") || n.includes("hash"))
         return "fa-solid fa-key";
-    if (n.includes("raven") || n.includes("bird") || n.includes("crow"))
-        return "fa-solid fa-crow";
+    if (n.includes("raven") || n.includes("corvus") || n.includes("metaphish"))
+        return "fa-solid fa-bug";
     if (lang === "Python") return "fa-brands fa-python";
     if (lang === "JavaScript" || lang === "TypeScript")
         return "fa-brands fa-js";

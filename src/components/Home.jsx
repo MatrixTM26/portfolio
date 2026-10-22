@@ -25,8 +25,8 @@ const SOCIALS = [
 ];
 
 export default function Home() {
-    const left = useScrollReveal({ threshold: 0.05 });
-    const right = useScrollReveal({ threshold: 0.05 });
+    const left = useScrollReveal({ threshold: 0.01 });
+    const right = useScrollReveal({ threshold: 0.01 });
 
     return (
         <section className="home" id="home">
@@ -50,8 +50,8 @@ export default function Home() {
                         <p className="home-role-label">Red Team Operator</p>
                         <h1 className="home-headline">Teuku Maulana</h1>
                         <p className="home-desc">
-                            Penetration tester affiliated with Emperor Security
-                            Research. Specialized in adversarial simulation,
+                            Creator of Emperor Security
+                            Research a.k.a EMPSEC. Specialized in adversarial attack,
                             vulnerability research, and offensive tooling
                             development.
                         </p>
